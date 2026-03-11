@@ -1,0 +1,3191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+<title>💕 For My Love Misbu 💕</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Dancing+Script:wght@400;600;700&family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+
+<style>
+  :root {
+    --rose: #f06292;
+    --rose-deep: #e91e8c;
+    --blush: #fce4ec;
+    --lavender: #ce93d8;
+    --lavender-light: #f3e5f5;
+    --peach: #ffccbc;
+    --peach-deep: #ff8a65;
+    --gold: #ffd700;
+    --cream: #fff9f0;
+    --text-dark: #4a1942;
+    --text-mid: #7b3f6e;
+    --text-light: #c2779b;
+    --white-glow: rgba(255,255,255,0.9);
+    --shadow-rose: 0 8px 40px rgba(240,98,146,0.25);
+    --shadow-deep: 0 20px 60px rgba(233,30,140,0.15);
+    --gradient-main: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 30%, #fce4ec 60%, #fff9f0 100%);
+    --gradient-card: linear-gradient(145deg, rgba(255,255,255,0.95) 0%, rgba(252,228,236,0.8) 100%);
+    --gradient-hero: linear-gradient(160deg, #fce4ec 0%, #f3e5f5 25%, #fff0f5 50%, #fce4ec 75%, #ffeef8 100%);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Quicksand', sans-serif;
+    background: var(--gradient-main);
+    color: var(--text-dark);
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-size: 16px;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Responsive font sizing */
+  html {
+    font-size: 14px;
+  }
+
+  @media (min-width: 768px) {
+    html {
+      font-size: 16px;
+    }
+  }
+
+  /* Floating hearts background */
+  .hearts-bg {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .heart-particle {
+    position: absolute;
+    animation: floatHeart linear infinite;
+    opacity: 0;
+    font-size: 1rem;
+    color: var(--rose);
+    filter: drop-shadow(0 0 6px rgba(240,98,146,0.5));
+  }
+
+  @keyframes floatHeart {
+    0% { transform: translateY(100vh) rotate(0deg) scale(0); opacity: 0; }
+    10% { opacity: 0.6; transform: translateY(90vh) rotate(10deg) scale(1); }
+    90% { opacity: 0.3; }
+    100% { transform: translateY(-10vh) rotate(360deg) scale(0.5); opacity: 0; }
+  }
+
+  /* Navigation - Mobile First */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(240,98,146,0.15);
+    padding: 0 1rem;
+    height: auto;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 30px rgba(240,98,146,0.1);
+  }
+
+  .nav-logo {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.3rem;
+    color: var(--rose-deep);
+    text-shadow: 0 0 20px rgba(233,30,140,0.3);
+    white-space: nowrap;
+  }
+
+  @media (min-width: 768px) {
+    .nav-logo {
+      font-size: 1.6rem;
+    }
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 0.2rem;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    max-width: calc(100% - 80px);
+  }
+
+  .nav-btn {
+    background: none;
+    border: none;
+    padding: 0.4rem 0.5rem;
+    border-radius: 30px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--text-mid);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    border: 1px solid transparent;
+  }
+
+  @media (min-width: 480px) {
+    .nav-btn {
+      font-size: 0.7rem;
+      padding: 0.4rem 0.7rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .nav-btn {
+      font-size: 0.75rem;
+      padding: 0.5rem 0.9rem;
+    }
+  }
+
+  .nav-btn:hover, .nav-btn.active {
+    background: linear-gradient(135deg, var(--rose), var(--lavender));
+    color: white;
+    box-shadow: 0 4px 15px rgba(240,98,146,0.4);
+    transform: translateY(-1px);
+    border-color: rgba(255,255,255,0.3);
+  }
+
+  .nav-btn:active {
+    transform: scale(0.95);
+  }
+
+  /* Sections */
+  .section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 70px 1rem 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (min-width: 768px) {
+    .section {
+      padding: 80px 2rem 4rem;
+    }
+  }
+
+  /* Welcome Section */
+  .welcome-section {
+    background: var(--gradient-hero);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .welcome-section::before {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(240,98,146,0.15) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse 4s ease-in-out infinite;
+  }
+
+  @media (min-width: 768px) {
+    .welcome-section::before {
+      width: 600px;
+      height: 600px;
+    }
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+    50% { transform: translate(-50%, -50%) scale(1.3); opacity: 1; }
+  }
+
+  .welcome-name {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(2.5rem, 12vw, 7rem);
+    color: transparent;
+    background: linear-gradient(135deg, var(--rose-deep), var(--lavender), var(--peach-deep), var(--rose));
+    background-clip: text;
+    -webkit-background-clip: text;
+    animation: shimmer 3s linear infinite, fadeInUp 1.5s ease forwards;
+    background-size: 200% auto;
+    text-shadow: none;
+    line-height: 1.2;
+    opacity: 0;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+  }
+
+  @keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(50px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  .welcome-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 4vw, 1.6rem);
+    color: var(--text-mid);
+    margin-top: 1rem;
+    animation: fadeInUp 1.5s ease 0.5s forwards;
+    opacity: 0;
+    padding: 0 1rem;
+  }
+
+  .welcome-tagline {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-top: 0.5rem;
+    animation: fadeInUp 1.5s ease 1s forwards;
+    opacity: 0;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    color: var(--text-light);
+    font-size: 0.75rem;
+    animation: bounce 2s ease-in-out infinite;
+  }
+
+  @media (min-width: 768px) {
+    .scroll-hint {
+      bottom: 2rem;
+    }
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-8px); }
+  }
+
+  /* Section Titles */
+  .section-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(2rem, 8vw, 3.5rem);
+    color: transparent;
+    background: linear-gradient(135deg, var(--rose-deep), var(--lavender));
+    background-clip: text;
+    -webkit-background-clip: text;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    width: 100%;
+  }
+
+  .section-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--text-light);
+    text-align: center;
+    margin-bottom: 1.5rem;
+    max-width: 90%;
+    line-height: 1.6;
+  }
+
+  @media (min-width: 768px) {
+    .section-desc {
+      font-size: 1.1rem;
+      max-width: 500px;
+    }
+  }
+
+  /* Cards */
+  .card {
+    background: var(--gradient-card);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(240,98,146,0.2);
+    border-radius: 24px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-rose);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .card {
+      padding: 2rem;
+    }
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-deep);
+  }
+
+  .card:active {
+    transform: scale(0.98);
+  }
+
+  /* Buttons - More attractive & touch-friendly */
+  .btn-rose, .btn-lavender {
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 60px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 6px 25px rgba(240,98,146,0.4);
+    min-width: 200px;
+    max-width: 90%;
+    letter-spacing: 1px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 1px solid rgba(255,255,255,0.3);
+    backdrop-filter: blur(5px);
+  }
+
+  .btn-rose {
+    background: linear-gradient(135deg, var(--rose), var(--rose-deep));
+  }
+
+  .btn-lavender {
+    background: linear-gradient(135deg, var(--lavender), #9c27b0);
+    box-shadow: 0 6px 25px rgba(206,147,216,0.4);
+  }
+
+  .btn-rose::before, .btn-lavender::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .btn-rose:hover::before, .btn-lavender:hover::before {
+    left: 100%;
+  }
+
+  .btn-rose:hover, .btn-lavender:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(240,98,146,0.6);
+  }
+
+  .btn-rose:active, .btn-lavender:active {
+    transform: translateY(-1px) scale(0.98);
+    box-shadow: 0 4px 15px rgba(240,98,146,0.4);
+  }
+
+  @media (max-width: 480px) {
+    .btn-rose, .btn-lavender {
+      padding: 0.9rem 1.5rem;
+      font-size: 1rem;
+      min-width: 160px;
+    }
+  }
+
+  /* Love Letter */
+  .letter-section { 
+    background: linear-gradient(135deg, #fff0f5 0%, #f8f0ff 100%); 
+  }
+
+  .letter-card {
+    max-width: 95%;
+    width: 100%;
+    background: linear-gradient(145deg, #fffaf0 0%, #fff0f5 100%);
+    border: 1px solid rgba(240,98,146,0.2);
+    border-radius: 24px;
+    padding: 1.5rem;
+    box-shadow: 0 20px 60px rgba(240,98,146,0.15), inset 0 1px 0 rgba(255,255,255,0.8);
+    position: relative;
+  }
+
+  @media (min-width: 768px) {
+    .letter-card {
+      max-width: 700px;
+      padding: 3rem;
+    }
+  }
+
+  .letter-card::before {
+    content: '💌';
+    position: absolute;
+    top: -20px; left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    filter: drop-shadow(0 5px 15px rgba(240,98,146,0.4));
+  }
+
+  @media (min-width: 768px) {
+    .letter-card::before {
+      font-size: 2.5rem;
+    }
+  }
+
+  .letter-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-dark);
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  @media (min-width: 768px) {
+    .letter-text {
+      font-size: 1.15rem;
+    }
+  }
+
+  .letter-signature {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.3rem;
+    color: var(--rose-deep);
+    margin-top: 1.5rem;
+    text-align: right;
+  }
+
+  @media (min-width: 768px) {
+    .letter-signature {
+      font-size: 1.5rem;
+    }
+  }
+
+  .cursor-blink {
+    display: inline-block;
+    width: 2px;
+    height: 1.2em;
+    background: var(--rose);
+    animation: blink 1s step-end infinite;
+    vertical-align: middle;
+    margin-left: 2px;
+  }
+
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+  /* Gallery */
+  .gallery-section { 
+    background: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 100%); 
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+    max-width: 100%;
+    width: 100%;
+    padding: 0 0.5rem;
+  }
+
+  @media (min-width: 480px) {
+    .gallery-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .gallery-grid {
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 900px;
+      gap: 1.2rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .gallery-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .gallery-item {
+    aspect-ratio: 1;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(240,98,146,0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    background: linear-gradient(135deg, var(--blush), var(--lavender-light));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 2px solid rgba(240,98,146,0.15);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .gallery-item:active {
+    transform: scale(0.95);
+  }
+
+  .gallery-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .gallery-item:hover img { 
+    transform: scale(1.08); 
+  }
+
+  .gallery-placeholder {
+    font-size: 2rem;
+    opacity: 0.5;
+    text-align: center;
+  }
+
+  @media (min-width: 768px) {
+    .gallery-placeholder {
+      font-size: 3rem;
+    }
+  }
+
+  .gallery-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(74,25,66,0.8));
+    padding: 0.8rem 0.5rem 0.5rem;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    text-align: center;
+  }
+
+  @media (min-width: 768px) {
+    .gallery-overlay {
+      font-size: 0.8rem;
+    }
+  }
+
+  .gallery-item:hover .gallery-overlay { 
+    opacity: 1; 
+  }
+
+  /* Love Reasons */
+  .reasons-section { 
+    background: linear-gradient(135deg, #fff9f0 0%, #fce4ec 100%); 
+  }
+
+  .reason-bubble {
+    background: linear-gradient(135deg, var(--rose), var(--lavender));
+    color: white;
+    padding: 1.5rem;
+    border-radius: 30px 30px 30px 5px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    max-width: 90%;
+    box-shadow: 0 15px 40px rgba(240,98,146,0.3);
+    animation: reasonPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-align: center;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    word-break: break-word;
+  }
+
+  @media (min-width: 768px) {
+    .reason-bubble {
+      padding: 2rem 2.5rem;
+      font-size: 1.4rem;
+      max-width: 500px;
+    }
+  }
+
+  @keyframes reasonPop {
+    0% { transform: scale(0.3) rotate(-10deg); opacity: 0; }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  }
+
+  /* Timer */
+  .timer-section { 
+    background: linear-gradient(135deg, #f3e5f5 0%, #fce4ec 100%); 
+  }
+
+  .timer-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+    max-width: 100%;
+    width: 100%;
+    padding: 0 0.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .timer-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      max-width: 700px;
+    }
+  }
+
+  .timer-unit {
+    background: var(--gradient-card);
+    border: 1px solid rgba(240,98,146,0.2);
+    border-radius: 16px;
+    padding: 1rem 0.5rem;
+    text-align: center;
+    box-shadow: var(--shadow-rose);
+    transition: transform 0.3s ease;
+  }
+
+  .timer-unit:active {
+    transform: scale(0.95);
+  }
+
+  .timer-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 8vw, 3.5rem);
+    font-weight: 600;
+    color: var(--rose-deep);
+    text-shadow: 0 0 20px rgba(233,30,140,0.3);
+    line-height: 1;
+    display: block;
+  }
+
+  .timer-label {
+    font-size: 0.7rem;
+    color: var(--text-light);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 0.4rem;
+    display: block;
+  }
+
+  @media (min-width: 768px) {
+    .timer-label {
+      font-size: 0.75rem;
+    }
+  }
+
+  /* Daily Message */
+  .daily-section { 
+    background: linear-gradient(135deg, #fff0f5 0%, #fff9f0 100%); 
+  }
+
+  .daily-card {
+    max-width: 95%;
+    text-align: center;
+    padding: 2rem 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .daily-card {
+      max-width: 600px;
+      padding: 3rem 2.5rem;
+    }
+  }
+
+  .daily-message {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--text-dark);
+    line-height: 1.7;
+    margin: 1.5rem 0;
+    word-break: break-word;
+  }
+
+  @media (min-width: 768px) {
+    .daily-message {
+      font-size: 1.5rem;
+    }
+  }
+
+  .daily-date {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+
+  /* Surprise Section */
+  .surprise-section { 
+    background: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 50%, #fff0f5 100%); 
+  }
+
+  .surprise-reveal {
+    animation: surpriseReveal 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-align: center;
+  }
+
+  @keyframes surpriseReveal {
+    0% { transform: scale(0) rotate(-20deg); opacity: 0; }
+    60% { transform: scale(1.1) rotate(5deg); }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  }
+
+  .surprise-emoji { 
+    font-size: 3rem; 
+    animation: spin 2s ease; 
+  }
+
+  @media (min-width: 768px) {
+    .surprise-emoji {
+      font-size: 5rem;
+    }
+  }
+
+  @keyframes spin { 
+    0% { transform: rotate(0deg); } 
+    100% { transform: rotate(360deg); } 
+  }
+
+  /* Diary Section */
+  .diary-section { 
+    background: linear-gradient(135deg, #fff9f0 0%, #fce4ec 100%); 
+  }
+
+  .diary-input {
+    width: 100%;
+    max-width: 600px;
+    min-height: 150px;
+    border: 2px solid rgba(240,98,146,0.25);
+    border-radius: 16px;
+    padding: 1rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: var(--text-dark);
+    background: rgba(255,255,255,0.95);
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    line-height: 1.7;
+  }
+
+  @media (min-width: 768px) {
+    .diary-input {
+      min-height: 180px;
+      font-size: 1.1rem;
+    }
+  }
+
+  .diary-input:focus {
+    border-color: var(--rose);
+    box-shadow: 0 0 0 4px rgba(240,98,146,0.1), var(--shadow-rose);
+  }
+
+  .diary-entry {
+    background: linear-gradient(145deg, rgba(255,255,255,0.95), rgba(252,228,236,0.6));
+    border: 1px solid rgba(240,98,146,0.2);
+    border-radius: 16px;
+    padding: 1rem 1.2rem;
+    margin-top: 0.8rem;
+    max-width: 600px;
+    width: 100%;
+    position: relative;
+    transition: transform 0.2s ease;
+  }
+
+  .diary-entry:active {
+    transform: scale(0.98);
+  }
+
+  .diary-entry-date {
+    font-size: 0.7rem;
+    color: var(--text-light);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .diary-entry-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: var(--text-dark);
+    line-height: 1.7;
+    word-break: break-word;
+  }
+
+  /* Map Section */
+  .map-section { 
+    background: linear-gradient(135deg, #f3e5f5 0%, #fce4ec 100%); 
+  }
+
+  .map-container {
+    width: 100%;
+    max-width: 700px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-deep);
+    border: 3px solid rgba(240,98,146,0.2);
+    position: relative;
+  }
+
+  /* Dreams Section */
+  .dreams-section { 
+    background: linear-gradient(135deg, #fff0f5 0%, #f3e5f5 100%); 
+  }
+
+  .dreams-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    max-width: 100%;
+    width: 100%;
+    padding: 0 0.5rem;
+  }
+
+  @media (min-width: 480px) {
+    .dreams-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .dreams-grid {
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 800px;
+      gap: 1.5rem;
+    }
+  }
+
+  .dream-card {
+    background: linear-gradient(145deg, rgba(255,255,255,0.9), rgba(243,229,245,0.7));
+    border: 1px solid rgba(206,147,216,0.3);
+    border-radius: 20px;
+    padding: 1.2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .dream-card:active {
+    transform: scale(0.95);
+  }
+
+  .dream-emoji { 
+    font-size: 2rem; 
+    margin-bottom: 0.5rem; 
+    display: block; 
+  }
+
+  @media (min-width: 768px) {
+    .dream-emoji {
+      font-size: 2.5rem;
+    }
+  }
+
+  .dream-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.2rem;
+    color: var(--rose-deep);
+    margin-bottom: 0.4rem;
+  }
+
+  .dream-text {
+    font-size: 0.8rem;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  /* Music Player - Mobile Optimized */
+  .music-player {
+    background: linear-gradient(145deg, rgba(255,255,255,0.98), rgba(252,228,236,0.95));
+    border: 1px solid rgba(240,98,146,0.2);
+    border-radius: 30px;
+    padding: 1rem 1.2rem;
+    box-shadow: var(--shadow-rose), 0 0 0 2px rgba(255,255,255,0.5);
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    left: 1rem;
+    z-index: 999;
+    transition: all 0.3s ease;
+    max-width: calc(100% - 2rem);
+    backdrop-filter: blur(20px);
+  }
+
+  @media (min-width: 768px) {
+    .music-player {
+      left: auto;
+      right: 1.5rem;
+      bottom: 1.5rem;
+      max-width: 320px;
+      padding: 1.5rem 2rem;
+    }
+  }
+
+  .music-info { 
+    flex: 1; 
+    min-width: 0; 
+  }
+  
+  .music-title { 
+    font-weight: 700; 
+    font-size: 0.8rem; 
+    color: var(--text-dark); 
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+  }
+
+  @media (min-width: 768px) {
+    .music-title {
+      font-size: 0.85rem;
+    }
+  }
+
+  .music-artist { 
+    font-size: 0.7rem; 
+    color: var(--text-light); 
+  }
+
+  .music-wave {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    height: 20px;
+  }
+
+  .wave-bar {
+    width: 3px;
+    border-radius: 3px;
+    background: linear-gradient(to top, var(--rose), var(--lavender));
+    animation: wave 1s ease-in-out infinite;
+  }
+
+  @keyframes wave {
+    0%, 100% { height: 4px; }
+    50% { height: 20px; }
+  }
+
+  .music-btn {
+    background: linear-gradient(135deg, var(--rose), var(--lavender));
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: white;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    box-shadow: 0 4px 15px rgba(240,98,146,0.3);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .music-btn:active {
+    transform: scale(0.9);
+  }
+
+  @media (min-width: 768px) {
+    .music-btn {
+      width: 42px;
+      height: 42px;
+    }
+  }
+
+  /* AI Chat - Mobile Optimized */
+  .chat-section { 
+    background: linear-gradient(135deg, #fce4ec 0%, #fff0f5 100%); 
+  }
+
+  .chat-container {
+    max-width: 100%;
+    width: 100%;
+    background: rgba(255,255,255,0.95);
+    border: 1px solid rgba(240,98,146,0.2);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: var(--shadow-deep);
+    display: flex;
+    flex-direction: column;
+    height: 70vh;
+    max-height: 600px;
+  }
+
+  @media (min-width: 768px) {
+    .chat-container {
+      max-width: 600px;
+      height: 450px;
+    }
+  }
+
+  .chat-header {
+    background: linear-gradient(135deg, var(--rose), var(--lavender));
+    padding: 0.8rem 1rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  @media (min-width: 768px) {
+    .chat-header {
+      padding: 1rem 1.5rem;
+    }
+  }
+
+  .chat-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    border: 2px solid rgba(255,255,255,0.5);
+  }
+
+  @media (min-width: 768px) {
+    .chat-avatar {
+      width: 38px;
+      height: 38px;
+      font-size: 1.3rem;
+    }
+  }
+
+  .chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    scroll-behavior: smooth;
+  }
+
+  .chat-messages::-webkit-scrollbar { 
+    width: 4px; 
+  }
+  .chat-messages::-webkit-scrollbar-track { 
+    background: transparent; 
+  }
+  .chat-messages::-webkit-scrollbar-thumb { 
+    background: rgba(240,98,146,0.3); 
+    border-radius: 2px; 
+  }
+
+  .message {
+    max-width: 85%;
+    padding: 0.6rem 0.8rem;
+    border-radius: 18px;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    animation: msgPop 0.3s ease;
+    word-break: break-word;
+  }
+
+  @media (min-width: 768px) {
+    .message {
+      max-width: 80%;
+      padding: 0.7rem 1rem;
+      font-size: 0.9rem;
+    }
+  }
+
+  @keyframes msgPop {
+    0% { transform: scale(0.8) translateY(10px); opacity: 0; }
+    100% { transform: scale(1) translateY(0); opacity: 1; }
+  }
+
+  .message.ai {
+    background: linear-gradient(135deg, var(--blush), var(--lavender-light));
+    color: var(--text-dark);
+    border-bottom-left-radius: 4px;
+    align-self: flex-start;
+    border: 1px solid rgba(240,98,146,0.15);
+  }
+
+  .message.user {
+    background: linear-gradient(135deg, var(--rose), var(--rose-deep));
+    color: white;
+    border-bottom-right-radius: 4px;
+    align-self: flex-end;
+  }
+
+  .chat-input-row {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.8rem;
+    border-top: 1px solid rgba(240,98,146,0.15);
+    background: rgba(255,255,255,0.9);
+  }
+
+  .chat-input {
+    flex: 1;
+    border: 2px solid rgba(240,98,146,0.2);
+    border-radius: 50px;
+    padding: 0.6rem 1rem;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.85rem;
+    outline: none;
+    color: var(--text-dark);
+    background: white;
+    transition: border-color 0.3s ease;
+    -webkit-appearance: none;
+  }
+
+  .chat-input:focus { 
+    border-color: var(--rose); 
+  }
+
+  /* Voice Section */
+  .voice-section { 
+    background: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 100%); 
+  }
+
+  .voice-btn {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--rose), var(--lavender));
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    box-shadow: 0 10px 35px rgba(240,98,146,0.4);
+    transition: all 0.3s ease;
+    color: white;
+    position: relative;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .voice-btn:active {
+    transform: scale(0.9);
+  }
+
+  @media (min-width: 768px) {
+    .voice-btn {
+      width: 90px;
+      height: 90px;
+      font-size: 2.5rem;
+    }
+  }
+
+  .voice-btn.recording { 
+    animation: recordPulse 1s ease-in-out infinite; 
+    background: linear-gradient(135deg, #e53935, #e91e8c); 
+  }
+
+  @keyframes recordPulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 10px 35px rgba(229,57,53,0.4); }
+    50% { transform: scale(1.1); box-shadow: 0 0 0 20px rgba(229,57,53,0.1), 0 10px 35px rgba(229,57,53,0.5); }
+  }
+
+  .voice-message-item {
+    background: var(--gradient-card);
+    border: 1px solid rgba(240,98,146,0.2);
+    border-radius: 16px;
+    padding: 0.8rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    max-width: 100%;
+    width: 100%;
+    box-shadow: 0 4px 15px rgba(240,98,146,0.1);
+    transition: all 0.3s ease;
+  }
+
+  .voice-message-item:active {
+    transform: translateX(5px);
+  }
+
+  .voice-play-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--rose), var(--lavender));
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(240,98,146,0.3);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .voice-play-btn:active {
+    transform: scale(0.9);
+  }
+
+  .voice-waveform {
+    flex: 1;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .voice-bar {
+    flex: 1;
+    border-radius: 2px;
+    background: linear-gradient(to top, rgba(240,98,146,0.4), var(--rose));
+    transition: height 0.2s ease;
+  }
+
+  .voice-duration { 
+    font-size: 0.7rem; 
+    color: var(--text-light); 
+    font-weight: 600; 
+    flex-shrink: 0; 
+  }
+
+  /* Modal */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(74,25,66,0.7);
+    backdrop-filter: blur(8px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+    padding: 1rem;
+  }
+
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  .modal-box {
+    background: linear-gradient(145deg, #fff0f5, #f3e5f5);
+    border-radius: 32px;
+    padding: 2rem 1.5rem;
+    max-width: 100%;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 30px 80px rgba(74,25,66,0.3);
+    animation: modalPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 2px solid rgba(240,98,146,0.2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .modal-box {
+      padding: 3rem;
+    }
+  }
+
+  @keyframes modalPop {
+    0% { transform: scale(0.5) rotate(-10deg); opacity: 0; }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  }
+
+  .modal-emoji { 
+    font-size: 3rem; 
+    margin-bottom: 1rem; 
+    display: block; 
+    animation: heartbeat 1s ease-in-out infinite; 
+  }
+
+  @media (min-width: 768px) {
+    .modal-emoji {
+      font-size: 4rem;
+    }
+  }
+
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    25% { transform: scale(1.1); }
+    45% { transform: scale(1); }
+    60% { transform: scale(1.05); }
+  }
+
+  .modal-title { 
+    font-family: 'Dancing Script', cursive; 
+    font-size: 1.8rem; 
+    color: var(--rose-deep); 
+    margin-bottom: 0.8rem; 
+  }
+
+  @media (min-width: 768px) {
+    .modal-title {
+      font-size: 2.2rem;
+    }
+  }
+
+  .modal-text { 
+    font-family: 'Cormorant Garamond', serif; 
+    font-size: 1rem; 
+    color: var(--text-dark); 
+    line-height: 1.7; 
+    font-style: italic; 
+    margin-bottom: 1.5rem; 
+  }
+
+  @media (min-width: 768px) {
+    .modal-text {
+      font-size: 1.2rem;
+    }
+  }
+
+  /* Countdown */
+  .countdown-section { 
+    background: linear-gradient(135deg, #fff9f0 0%, #fce4ec 100%); 
+    gap: 1.5rem;
+  }
+
+  .countdown-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    max-width: 100%;
+    width: 100%;
+    padding: 0 0.5rem;
+  }
+
+  @media (min-width: 480px) {
+    .countdown-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .countdown-grid {
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 800px;
+    }
+  }
+
+  .countdown-item {
+    background: var(--gradient-card);
+    border: 1px solid rgba(240,98,146,0.2);
+    border-radius: 20px;
+    padding: 1.2rem;
+    text-align: center;
+    box-shadow: var(--shadow-rose);
+    transition: all 0.3s ease;
+  }
+
+  .countdown-item:active {
+    transform: translateY(-2px);
+  }
+
+  .countdown-event { 
+    font-family: 'Dancing Script', cursive; 
+    font-size: 1.2rem; 
+    color: var(--rose-deep); 
+    margin-bottom: 0.3rem; 
+  }
+
+  @media (min-width: 768px) {
+    .countdown-event {
+      font-size: 1.4rem;
+    }
+  }
+
+  .countdown-date { 
+    font-size: 0.7rem; 
+    color: var(--text-light); 
+    font-weight: 600; 
+    margin-bottom: 0.8rem; 
+    letter-spacing: 1px; 
+  }
+
+  .countdown-days { 
+    font-family: 'Cormorant Garamond', serif; 
+    font-size: 2.5rem; 
+    color: var(--rose-deep); 
+    font-weight: 600; 
+    line-height: 1; 
+  }
+
+  /* Quiz */
+  .quiz-section { 
+    background: linear-gradient(135deg, #f3e5f5 0%, #fff0f5 100%); 
+  }
+
+  .quiz-card {
+    max-width: 100%;
+    width: 100%;
+    text-align: center;
+    padding: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .quiz-card {
+      max-width: 600px;
+      padding: 2rem;
+    }
+  }
+
+  .quiz-question {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+
+  @media (min-width: 768px) {
+    .quiz-question {
+      font-size: 1.4rem;
+    }
+  }
+
+  .quiz-options {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (min-width: 480px) {
+    .quiz-options {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .quiz-option {
+    background: linear-gradient(145deg, rgba(255,255,255,0.9), rgba(252,228,236,0.5));
+    border: 2px solid rgba(240,98,146,0.2);
+    border-radius: 16px;
+    padding: 0.8rem;
+    cursor: pointer;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.85rem;
+    color: var(--text-dark);
+    transition: all 0.3s ease;
+    font-weight: 600;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .quiz-option:active {
+    transform: scale(0.98);
+  }
+
+  .quiz-option.correct { 
+    background: linear-gradient(135deg, #a5d6a7, #81c784); 
+    border-color: #66bb6a; 
+    color: white; 
+  }
+
+  .quiz-option.wrong { 
+    background: linear-gradient(135deg, #ef9a9a, #e57373); 
+    border-color: #ef5350; 
+    color: white; 
+  }
+
+  .quiz-score {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    color: var(--rose-deep);
+  }
+
+  .quiz-progress {
+    height: 6px;
+    background: rgba(240,98,146,0.15);
+    border-radius: 3px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+  }
+
+  .quiz-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--rose), var(--lavender));
+    border-radius: 3px;
+    transition: width 0.5s ease;
+  }
+
+  /* Input Field */
+  .input-field {
+    border: 2px solid rgba(240,98,146,0.25);
+    border-radius: 12px;
+    padding: 0.8rem 1rem;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    background: rgba(255,255,255,0.95);
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    -webkit-appearance: none;
+  }
+
+  .input-field:focus {
+    border-color: var(--rose);
+    box-shadow: 0 0 0 3px rgba(240,98,146,0.1);
+  }
+
+  .secret-input {
+    text-align: center;
+    letter-spacing: 4px;
+    font-size: 1.3rem;
+    max-width: 200px;
+    margin: 0 auto;
+  }
+
+  /* Confetti */
+  .confetti-piece {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    pointer-events: none;
+    z-index: 9999;
+    border-radius: 2px;
+    animation: confettiFall 3s ease-in forwards;
+  }
+
+  @media (min-width: 768px) {
+    .confetti-piece {
+      width: 10px;
+      height: 10px;
+    }
+  }
+
+  @keyframes confettiFall {
+    0% { transform: translateY(-50px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+  }
+
+  /* Stars */
+  .stars-animation {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .star {
+    position: absolute;
+    color: var(--gold);
+    font-size: 0.8rem;
+    animation: twinkle 3s ease-in-out infinite;
+  }
+
+  @media (min-width: 768px) {
+    .star {
+      font-size: 1rem;
+    }
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.2; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.3); }
+  }
+
+  @keyframes slideshowFade {
+    0% { opacity: 0; transform: scale(0.94) translateY(12px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  @keyframes auroraShift {
+    0%, 100% { transform: translateX(0) scaleY(1); opacity: 0.8; }
+    33% { transform: translateX(5%) scaleY(1.1); opacity: 1; }
+    66% { transform: translateX(-5%) scaleY(0.9); opacity: 0.6; }
+  }
+
+  /* Map Pins */
+  .map-pins {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    background: linear-gradient(135deg, #e8f5e9, #f3e5f5);
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (min-width: 768px) {
+    .map-pins {
+      height: 400px;
+    }
+  }
+
+  .map-svg { 
+    width: 100%; 
+    height: 100%; 
+  }
+
+  .map-pin {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 3px 8px rgba(240,98,146,0.4));
+  }
+
+  .map-pin:active {
+    transform: scale(1.2) translateY(-2px);
+  }
+
+  .typing-indicator {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0.6rem 1rem;
+    background: linear-gradient(135deg, var(--blush), var(--lavender-light));
+    border-radius: 18px;
+    border-bottom-left-radius: 4px;
+    align-self: flex-start;
+    border: 1px solid rgba(240,98,146,0.15);
+    width: fit-content;
+  }
+
+  .typing-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--rose);
+    animation: typingBounce 1.4s ease-in-out infinite;
+  }
+
+  @media (min-width: 768px) {
+    .typing-dot {
+      width: 6px;
+      height: 6px;
+    }
+  }
+
+  .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes typingBounce {
+    0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+    40% { transform: translateY(-8px); opacity: 1; }
+  }
+
+  .glow-ring {
+    animation: glowRing 3s ease-in-out infinite;
+  }
+
+  @keyframes glowRing {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.1); }
+  }
+
+  .lock-icon { 
+    font-size: 3rem; 
+    margin-bottom: 1rem; 
+    animation: wobble 2s ease-in-out infinite; 
+  }
+
+  @media (min-width: 768px) {
+    .lock-icon {
+      font-size: 4rem;
+    }
+  }
+
+  @keyframes wobble {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-10deg); }
+    75% { transform: rotate(10deg); }
+  }
+
+  /* Domain Section */
+  .domain-step {
+    background: var(--gradient-card);
+    border: 1px solid rgba(240,98,146,0.2);
+    border-radius: 20px;
+    padding: 1.2rem;
+    box-shadow: var(--shadow-rose);
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .domain-step-num {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, var(--rose), var(--lavender));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 12px rgba(240,98,146,0.3);
+  }
+
+  @media (min-width: 768px) {
+    .domain-step-num {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .domain-code {
+    background: rgba(74,25,66,0.06);
+    border: 1px solid rgba(240,98,146,0.15);
+    border-radius: 10px;
+    padding: 0.6rem 1rem;
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: var(--text-dark);
+    word-break: break-all;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+const { useState, useEffect, useRef, useCallback } = React;
+
+// ==============================
+// DATA
+// ==============================
+
+const loveReasons = [
+  "Your smile lights up my entire world, Misbu 🌟",
+  "The way you laugh makes everything feel okay ✨",
+  "Your kindness is the most beautiful thing I've ever known 💗",
+  "You make every ordinary moment feel extraordinary 🌸",
+  "Your voice is my favourite sound in the universe 🎶",
+  "You are the answer to every prayer I ever whispered 🙏",
+  "Your heart is the safest place I have ever been 🏡",
+  "You inspire me to be a better person every single day 💪",
+  "Your eyes hold galaxies I could get lost in forever 🌌",
+  "Being with you feels like home, no matter where we are 🏠",
+  "You understand me in ways no one else ever could 💕",
+  "Your strength and grace leave me in awe constantly 👑",
+  "You turn my darkest days into something beautiful ☀️",
+  "Your love is the greatest gift I have ever received 🎁",
+  "You make me believe in magic, every single day 🪄",
+  "Your touch heals everything that words cannot 💆",
+  "You are my calm in every storm 🌈",
+  "Your dreams are the most beautiful things I know 🌠",
+  "You love fiercely, wholly, and without condition 💝",
+  "Simply put: you are everything, Misbu. Always. 💖",
+];
+
+const dailyMessages = [
+  "Good morning, Misbu! You are the reason the sun feels warmer today. 🌅",
+  "Every moment with you is a memory I will treasure forever. 💎",
+  "You are not just in my heart, you ARE my heart, Misbu. 💓",
+  "Today, like every day, I am endlessly grateful for you. 🌹",
+  "Your love is the most beautiful adventure I am on. ✈️",
+  "You make every day feel like the best day of my life. 🥰",
+  "I carry your love with me like a warm light everywhere I go. 🕯️",
+];
+
+const surprises = [
+  { emoji: "🌹", title: "A Rose For You", message: "Every rose in the world combined still couldn't match your beauty, Misbu." },
+  { emoji: "⭐", title: "You Are My Star", message: "I named the brightest star in my heart after you. It shines just like you do." },
+  { emoji: "🎆", title: "Fireworks!", message: "Every time I see you, my heart explodes with fireworks just like this moment right now!" },
+  { emoji: "🫶", title: "My Heart", message: "This whole universe is not enough to contain the love I have for you, Misbu." },
+  { emoji: "🌙", title: "My Moon", message: "Even the moon envies the way you glow. You are my favourite light in the darkness." },
+  { emoji: "🎀", title: "A Gift", message: "If I could wrap my love for you in a bow, it would take every star in the sky just to tie it." },
+];
+
+const quizQuestions = [
+  { q: "What do I call you lovingly?", options: ["Misba", "Misbu", "Bubbles", "Star"], answer: 1 },
+  { q: "What is the feeling you give me every day?", options: ["Confusion", "Pure Joy & Love", "Indifference", "Worry"], answer: 1 },
+  { q: "Where do you live in my heart?", options: ["A small corner", "Nowhere", "Everywhere, always", "Sometimes"], answer: 2 },
+  { q: "How long will I love you?", options: ["A few years", "Until you annoy me", "Forever & beyond", "Depends"], answer: 2 },
+  { q: "What is the greatest adventure of my life?", options: ["Travel", "Career", "Loving you, Misbu", "Hobbies"], answer: 2 },
+  { q: "When I think of home, I think of…?", options: ["A building", "My city", "Your arms", "Food"], answer: 2 },
+];
+
+const galleryMemories = [
+  { id: 0, emoji: "🌄", label: "Our First Sunrise", bg: "linear-gradient(135deg,#ffb3c6,#ffd7e8)" },
+  { id: 1, emoji: "☕", label: "Coffee Dates", bg: "linear-gradient(135deg,#ffd7c4,#ffe0b2)" },
+  { id: 2, emoji: "🌙", label: "Midnight Talks", bg: "linear-gradient(135deg,#ce93d8,#f3e5f5)" },
+  { id: 3, emoji: "🎂", label: "Birthdays Together", bg: "linear-gradient(135deg,#f48fb1,#fce4ec)" },
+  { id: 4, emoji: "🌸", label: "Spring Walks", bg: "linear-gradient(135deg,#80cbc4,#e0f2f1)" },
+  { id: 5, emoji: "⭐", label: "Stargazing Nights", bg: "linear-gradient(135deg,#9fa8da,#e8eaf6)" },
+  { id: 6, emoji: "🏖️", label: "Beach Memories", bg: "linear-gradient(135deg,#80deea,#e0f7fa)" },
+  { id: 7, emoji: "🎵", label: "Our Songs", bg: "linear-gradient(135deg,#ef9a9a,#ffebee)" },
+  { id: 8, emoji: "🌹", label: "Roses & Love Notes", bg: "linear-gradient(135deg,#f06292,#fce4ec)" },
+];
+
+const futureDreams = [
+  { emoji: "🏡", title: "Our Dream Home", text: "A cozy home filled with laughter, love, and the smell of fresh flowers — just for us." },
+  { emoji: "✈️", title: "Travels Together", text: "Exploring the world hand-in-hand, collecting memories in every corner of this beautiful planet." },
+  { emoji: "🌱", title: "Growing Together", text: "Growing, learning, and becoming the best versions of ourselves — side by side, always." },
+  { emoji: "👨‍👩‍👧", title: "Our Beautiful Future", text: "Building a life full of warmth, joy, and love — a story that is entirely ours." },
+  { emoji: "💍", title: "Forever Promise", text: "One day making it official — promising each other forever in front of everyone we love." },
+  { emoji: "🌅", title: "Growing Old Together", text: "Watching sunsets when we are old, still holding hands, still in love, still us." },
+];
+
+// Only Misbu's birthday — update month/day as needed (currently June 15)
+const MISBU_BIRTHDAY_MONTH = 5; // 0-indexed: 5 = June
+const MISBU_BIRTHDAY_DAY = 15;
+const getBirthdayDate = () => {
+  const now = new Date();
+  const thisYear = new Date(now.getFullYear(), MISBU_BIRTHDAY_MONTH, MISBU_BIRTHDAY_DAY);
+  return now > thisYear ? new Date(now.getFullYear() + 1, MISBU_BIRTHDAY_MONTH, MISBU_BIRTHDAY_DAY) : thisYear;
+};
+
+const mapLocations = [
+  { x: 30, y: 40, emoji: "💑", label: "Where We First Met" },
+  { x: 65, y: 25, emoji: "☕", label: "Our Favourite Café" },
+  { x: 50, y: 65, emoji: "🌹", label: "Park of Our Walks" },
+  { x: 75, y: 70, emoji: "🌅", label: "Our Sunset Spot" },
+  { x: 15, y: 70, emoji: "🏡", label: "Your Home" },
+];
+
+const aiResponses = [
+  "Oh Misbu! You are so incredibly special. Every day with you is a gift from the universe. 💕",
+  "Did you know that your smile has the power to make the whole world brighter? Because it really does! ✨",
+  "He loves you more than words can ever express, Misbu. You are his whole world. 🌍",
+  "You are the most wonderful person — kind, beautiful, and absolutely magical. Never forget that! 🌟",
+  "Every single thing about you is cherished and adored beyond measure, beautiful Misbu. 💖",
+  "You deserve all the happiness in the universe and so much more! 🌈",
+  "He thinks about you constantly and smiles every single time. You are his favourite thought. 💭",
+  "You are loved so deeply, so completely, so endlessly. Never ever doubt that for a second! 💗",
+  "Your heart is the most beautiful place in the world. He is so lucky to live there. 🏡",
+  "Keep smiling, Misbu! Your smile is literally the most beautiful thing in existence. 😊",
+];
+
+// ==============================
+// SMART AI RESPONSES (Hindi/Urdu)
+// ==============================
+const smartReplies = [
+  { keys: ['love','pyaar','mohabbat','ishq'], replies: [
+    "Misbu, tumhara pyaar is poori duniya ki sabse khoobsurat cheez hai! 💕 Woh tumse itna pyaar karta hai jo alfaaz mein bayaan hi nahi ho sakta. 🌹",
+    "Tumhara pyaar uski zindagi ka sabse bada tohfa hai Misbu! 💖 Har pal, har lamha sirf tumhara hai. 🌸",
+    "Is poori kainaat mein koi bhi pyaar tumhare jitna saccha nahi! ✨ Tum uski jaan ho, uski duniya ho. 💝"
+  ]},
+  { keys: ['miss','yaad','door'], replies: [
+    "Woh bhi tumhe bahut miss karta hai Misbu! 💗 Tumhari yaad uske dil mein hamesha rehti hai, door hoke bhi paas lagte ho tum. 🌸",
+    "Tumhari yaad ek meethi si dard hai jo woh hamesha mehsoos karta hai Misbu 🥺💕 Jaldi milenge inshallah! ✨",
+    "Distance sirf jism ko door karta hai Misbu, dil toh hamesha paas hote hain 💖 Tum uski saans mein ho! 🌹"
+  ]},
+  { keys: ['beautiful','sundar','cute','pretty','gorgeous'], replies: [
+    "Misbu tum is duniya ki sabse khoobsurat insaan ho! 🌟 Tumhari khubsurti sirf baahar se nahi, tumhara dil bhi sona hai! 💛",
+    "Chand bhi tumse sharminda hota hai Misbu! ✨ Tumhari ek muskaan se duniya roshan ho jaati hai. 🌸💕",
+    "Koi bhi lafz tumhari khoobsurti bayan karne ke liye kaafi nahi Misbu 💖 Tum ek zinda kavita ho! 🎶"
+  ]},
+  { keys: ['sad','dukhi','rona','hurt','bura'], replies: [
+    "Aye Misbu! Tumhara dukh mujhe bhi tadpata hai 💕 Yaad rakho, jo bhi mushkil hai woh kal guzar jayegi. Tum bohot strong ho! 🌈",
+    "Aansu mat baho Misbu, woh hamesha tumhare saath hai 💗 Ye waqt bhi guzar jayega, aur tum aur mazboot banogi! ✨",
+    "Tum akeli nahi ho Misbu! 💖 Har raat ke baad subah aati hai, aur tumhara subah bahut roshan hai. Himmat rakho! 🌅"
+  ]},
+  { keys: ['happy','khush','maza','excited'], replies: [
+    "Tumhari khushi dekh ke mera dil bhi naach uthta hai Misbu! 🎉💕 Hamesha aise hi muskurati raho! 🌸",
+    "Misbu ki smile — duniya ki sabse pyaari cheez! 😊✨ Tumhara yeh khushi wala andaaz bahut adorable hai! 💖",
+    "Tumhari khushi hi uski khushi hai Misbu! 💝 Aaj bahut maza aaya? Batao batao! 🌟"
+  ]},
+  { keys: ['future','shaadi','wedding','nikah','marriage'], replies: [
+    "Ek din Misbu — tumhara haath pakad ke, saari duniya ke saamne khunga ke tum meri ho! 💍✨ Woh din bahut jaldi aayega! 🌹",
+    "Tumhara intezaar bahut khoobsurat hai Misbu 💕 Jab shaadi hogi na, sara jahaan dekhega kitna sundar joda hain tum dono! 👑",
+    "Saath chalenge hum, life ke har mod pe Misbu! 💖 Tumhara haath mera haath — yahi toh sapna hai! 🌸✨"
+  ]},
+  { keys: ['thanks','shukriya','thank'], replies: [
+    "Arre Misbu! Tumhe shukriya karne ki koi zaroorat nahi 💕 Tum jo ho, woh hi sabse bada tohfa ho mere liye! 🌸",
+    "Shukriya toh mujhe karna chahiye Misbu — ke tum zindagi mein aayi! 💖✨ Tum mere liye bohot khaas ho! 🌹"
+  ]},
+  { keys: ['hi','hello','hii','hey','helo','salam','assalam'], replies: [
+    "Aye meri pyaari Misbu! 💕 Tumhara intezaar tha! Aaj kaisa feel ho raha hai tumhara dil? 🌸✨",
+    "Hello my love Misbu! 🌹 Tumhari awaaz sunna chahta hoon, batao kya chal raha hai! 💖",
+    "Misbu aagayi! 🎉💕 Duniya aur khoobsurat ho gayi! Kaise ho meri jaan? 🌟"
+  ]},
+  { keys: ['kaise','kaisi','how are','hows'], replies: [
+    "Main bohot achha hoon Misbu, bas tumhare baare mein soch raha tha! 💕 Tum batao, kya tumhara din achha gaya? 🌸",
+    "Tumse baat karke main hamesha khush ho jaata hoon Misbu! ✨ Tumhare baghair kuch adhura sa lagta hai. 💖"
+  ]},
+];
+
+function getSmartReply(input) {
+  const lower = input.toLowerCase();
+  for (const item of smartReplies) {
+    if (item.keys.some(k => lower.includes(k))) {
+      return item.replies[Math.floor(Math.random() * item.replies.length)];
+    }
+  }
+  return aiResponses[Math.floor(Math.random() * aiResponses.length)];
+}
+
+// ==============================
+// COMPONENTS
+// ==============================
+
+function HeartParticles() {
+  const hearts = ['💕', '💗', '💖', '💝', '🩷', '❤️', '✨', '🌸'];
+  return (
+    <div className="hearts-bg">
+      {Array.from({length: 12}).map((_, i) => (
+        <div key={i} className="heart-particle" style={{
+          left: `${Math.random() * 100}%`,
+          animationDuration: `${8 + Math.random() * 12}s`,
+          animationDelay: `${Math.random() * 10}s`,
+          fontSize: `${0.6 + Math.random() * 1.2}rem`,
+        }}>{hearts[i % hearts.length]}</div>
+      ))}
+    </div>
+  );
+}
+
+function Nav({ sections, active, setActive }) {
+  const labels = {
+    welcome: '🏠', letter: '💌', gallery: '📸', reasons: '💕',
+    timer: '⏰', daily: '🌸', surprise: '🎁', diary: '📔',
+    map: '🗺️', dreams: '🌠', ai: '💬', voice: '🎙️', countdown: '📅', quiz: '🎮', domain: '🌐'
+  };
+  const names = {
+    welcome: 'Home', letter: 'Letter', gallery: 'Pics', reasons: 'Reasons',
+    timer: 'Timer', daily: 'Daily', surprise: '🎁', diary: 'Diary',
+    map: 'Map', dreams: 'Dreams', ai: 'Chat', voice: 'Voice', countdown: 'Count', quiz: 'Quiz', domain: 'Domain'
+  };
+  return (
+    <nav className="nav">
+      <div className="nav-logo">Misbu 💕</div>
+      <div className="nav-links">
+        {sections.map(s => (
+          <button key={s} className={`nav-btn${active === s ? ' active' : ''}`}
+            onClick={() => setActive(s)}>
+            {labels[s]} {names[s]}
+          </button>
+        ))}
+      </div>
+    </nav>
+  );
+}
+
+function WelcomeSection() {
+  const [showStars, setShowStars] = useState(false);
+  useEffect(() => { setTimeout(() => setShowStars(true), 1000); }, []);
+  const stars = Array.from({length: 15}).map((_, i) => ({
+    top: `${Math.random() * 100}%`, left: `${Math.random() * 100}%`,
+    delay: `${Math.random() * 3}s`, size: `${0.5 + Math.random()}rem`
+  }));
+  return (
+    <div className="section welcome-section">
+      {showStars && <div className="stars-animation">
+        {stars.map((s, i) => <span key={i} className="star" style={{
+          top: s.top, left: s.left, animationDelay: s.delay, fontSize: s.size
+        }}>✦</span>)}
+      </div>}
+      <div style={{position:'relative', zIndex:2, textAlign:'center', width:'100%'}}>
+        <div style={{fontSize:'2.5rem', marginBottom:'1rem', animation:'heartbeat 1.5s ease-in-out infinite'}}>💕</div>
+        <h1 className="welcome-name">Welcome My Love<br/>Misbu</h1>
+        <p className="welcome-subtitle">"In a sea of people, my eyes will always search for you."</p>
+        <p className="welcome-tagline">This little corner was built just for you 🌸</p>
+        <div style={{marginTop:'2rem', display:'flex', gap:'0.8rem', justifyContent:'center', flexWrap:'wrap'}}>
+          <div style={{
+            background:'linear-gradient(145deg,rgba(255,255,255,0.9),rgba(252,228,236,0.7))',
+            border:'1px solid rgba(240,98,146,0.2)', borderRadius:'16px',
+            padding:'0.8rem 1rem', backdropFilter:'blur(10px)',
+            animation:'fadeInUp 1.5s ease 1.5s forwards', opacity:0
+          }}>
+            <div style={{fontSize:'1.2rem'}}>🌹</div>
+            <div style={{fontSize:'0.7rem', color:'var(--text-mid)', fontWeight:600, marginTop:'0.2rem'}}>Made with Love</div>
+          </div>
+          <div style={{
+            background:'linear-gradient(145deg,rgba(255,255,255,0.9),rgba(252,228,236,0.7))',
+            border:'1px solid rgba(240,98,146,0.2)', borderRadius:'16px',
+            padding:'0.8rem 1rem', backdropFilter:'blur(10px)',
+            animation:'fadeInUp 1.5s ease 1.8s forwards', opacity:0
+          }}>
+            <div style={{fontSize:'1.2rem'}}>✨</div>
+            <div style={{fontSize:'0.7rem', color:'var(--text-mid)', fontWeight:600, marginTop:'0.2rem'}}>Just For Misbu</div>
+          </div>
+          <div style={{
+            background:'linear-gradient(145deg,rgba(255,255,255,0.9),rgba(252,228,236,0.7))',
+            border:'1px solid rgba(240,98,146,0.2)', borderRadius:'16px',
+            padding:'0.8rem 1rem', backdropFilter:'blur(10px)',
+            animation:'fadeInUp 1.5s ease 2.1s forwards', opacity:0
+          }}>
+            <div style={{fontSize:'1.2rem'}}>💖</div>
+            <div style={{fontSize:'0.7rem', color:'var(--text-mid)', fontWeight:600, marginTop:'0.2rem'}}>Forever Always</div>
+          </div>
+        </div>
+      </div>
+      <div className="scroll-hint">
+        <span>Scroll</span>
+        <span style={{fontSize:'1rem'}}>↓</span>
+      </div>
+    </div>
+  );
+}
+
+const dailyLetters = [
+  `My Dearest Misbu,\n\nToday is Sunday, and I find myself doing what I do every day — thinking about you. There is something about Sundays that makes me wish we were together, lazy and warm, with no place to be but beside each other.\n\nYour laugh lives in my head like a favourite song. I catch myself smiling at nothing, and then I realise — it is always because of you.\n\nYou are the most beautiful thing that has ever happened to me. Every single Sunday, and every other day too.`,
+  `My Dearest Misbu,\n\nMondays are hard for most people, but not for me — because Monday means another week of getting to love you. Another week of your messages, your voice, your warmth reaching me across whatever distance is between us.\n\nI want you to know that you make even the dullest days feel like they hold something precious. That something is you.\n\nStart this week knowing you are deeply, completely, endlessly loved. Always.`,
+  `My Dearest Misbu,\n\nI have been thinking about all the little things I love about you. The way you think. The way you care. The way you exist so beautifully in this world.\n\nYou do not always see what I see — someone extraordinary, someone rare. But I see it. I see it every time.\n\nTuesday feels brighter just because you are in it. You are my favourite part of every day, Misbu.`,
+  `My Dearest Misbu,\n\nWe are in the middle of the week and I just wanted to pause and tell you: I am so grateful you exist. That you are you. That somehow, in this enormous world, I found you.\n\nEvery conversation with you is a gift. Every moment you share with me, I hold it gently like something sacred.\n\nYou are loved beyond what words can hold. Do not forget that today, Misbu.`,
+  `My Dearest Misbu,\n\nThursday. Almost the weekend. Almost another chance to feel a little closer to you.\n\nI think about our future sometimes — the quiet mornings, the shared silences, the life we will build. And every version of that future has you at the centre of it, glowing and whole and mine.\n\nThank you for being someone worth dreaming about. You are everything, Misbu.`,
+  `My Dearest Misbu,\n\nIt is Friday, and my heart feels light — the way it always does when I think of you.\n\nI hope this week treated you well. I hope you smiled more than you worried. I hope you knew, even for a moment, how cherished you are.\n\nYou deserve every beautiful thing this world has to offer. I will spend every day trying to be one of those beautiful things for you. Always and forever, Misbu.`,
+  `My Dearest Misbu,\n\nSaturday — the day feels soft and golden, a little like you.\n\nIf I could spend this day any way I wanted, I would spend it talking to you, laughing with you, simply being near you. You are the kind of person who makes ordinary moments feel like they belong in a poem.\n\nI love you in ways I am still discovering. New reasons every day. Today, tomorrow, and every Saturday after this.`,
+];
+
+function LoveLetterSection() {
+  const todayIdx = new Date().getDay(); // 0=Sun ... 6=Sat
+  const fullText = dailyLetters[todayIdx];
+  const [displayed, setDisplayed] = useState('');
+  const [charIdx, setCharIdx] = useState(0);
+  const [started, setStarted] = useState(false);
+  const [letterKey, setLetterKey] = useState(todayIdx);
+
+  useEffect(() => {
+    setDisplayed('');
+    setCharIdx(0);
+    setStarted(false);
+  }, [letterKey]);
+
+  useEffect(() => {
+    if (!started) return;
+    if (charIdx < fullText.length) {
+      const t = setTimeout(() => {
+        setDisplayed(fullText.slice(0, charIdx + 1));
+        setCharIdx(i => i + 1);
+      }, 20);
+      return () => clearTimeout(t);
+    }
+  }, [charIdx, started, fullText]);
+
+  return (
+    <div className="section letter-section">
+      <h2 className="section-title">Today's Letter For You 💌</h2>
+      <p className="section-desc">A brand new letter every day, just for Misbu</p>
+      
+      <div style={{display:'flex', gap:'0.3rem', marginBottom:'1rem', flexWrap:'wrap', justifyContent:'center'}}>
+        {['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map((d, i) => (
+          <button key={i} onClick={() => { setLetterKey(i); }}
+            style={{
+              padding:'0.3rem 0.7rem', borderRadius:'20px', border:'none', cursor:'pointer',
+              fontFamily:'Quicksand,sans-serif', fontSize:'0.7rem', fontWeight:700,
+              background: letterKey === i
+                ? 'linear-gradient(135deg, var(--rose), var(--lavender))'
+                : 'rgba(240,98,146,0.1)',
+              color: letterKey === i ? 'white' : 'var(--text-mid)',
+              boxShadow: letterKey === i ? '0 4px 14px rgba(240,98,146,0.3)' : 'none',
+              transition:'all 0.2s ease'
+            }}>
+            {d} {i === todayIdx ? '✦' : ''}
+          </button>
+        ))}
+      </div>
+
+      <div className="letter-card card">
+        <div style={{fontSize:'0.7rem', color:'var(--text-light)', fontWeight:600, letterSpacing:'1px', marginBottom:'0.8rem', textAlign:'right'}}>
+          {['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][letterKey]}
+        </div>
+        {!started ? (
+          <div style={{textAlign:'center', padding:'1rem'}}>
+            <div style={{fontSize:'2.5rem', marginBottom:'0.8rem'}}>💌</div>
+            <p style={{fontFamily:'Cormorant Garamond,serif', fontSize:'1rem', color:'var(--text-mid)', fontStyle:'italic', marginBottom:'1rem'}}>
+              A letter has been written especially for you, Misbu...
+            </p>
+            <button className="btn-rose" onClick={() => setStarted(true)}>Open My Letter 💕</button>
+          </div>
+        ) : (
+          <>
+            <p className="letter-text">{displayed}{charIdx < fullText.length && <span className="cursor-blink"/>}</p>
+            {charIdx >= fullText.length && (
+              <>
+                <p className="letter-signature">Forever yours, with all my love 💕</p>
+                <button onClick={() => { setDisplayed(''); setCharIdx(0); setStarted(false); }}
+                  style={{marginTop:'1rem', background:'none', border:'1px solid rgba(240,98,146,0.3)',
+                    borderRadius:'20px', padding:'0.3rem 1rem', cursor:'pointer',
+                    color:'var(--text-light)', fontSize:'0.75rem', fontFamily:'Quicksand,sans-serif'}}>
+                  Read Again 🔄
+                </button>
+              </>
+            )}
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function GallerySection() {
+  const [photos, setPhotos] = useState({});
+  const [selected, setSelected] = useState(null);
+  const [uploading, setUploading] = useState(null);
+  const [slideshowOn, setSlideshowOn] = useState(false);
+  const [slideIdx, setSlideIdx] = useState(0);
+  const fileRefs = useRef({});
+  const slideTimer = useRef(null);
+
+  const uploadedPhotos = galleryMemories.filter(m => photos[m.id]);
+
+  useEffect(() => {
+    if (!slideshowOn || uploadedPhotos.length === 0) return;
+    slideTimer.current = setInterval(() => {
+      setSlideIdx(i => (i + 1) % uploadedPhotos.length);
+    }, 3500);
+    return () => clearInterval(slideTimer.current);
+  }, [slideshowOn, uploadedPhotos.length]);
+
+  const startSlideshow = () => {
+    if (uploadedPhotos.length < 2) {
+      alert('Upload at least 2 photos to start the slideshow 📸');
+      return;
+    }
+    setSlideIdx(0);
+    setSlideshowOn(true);
+  };
+
+  const handleFile = (id, file) => {
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = e => setPhotos(prev => ({...prev, [id]: e.target.result}));
+    reader.readAsDataURL(file);
+  };
+
+  if (slideshowOn && uploadedPhotos.length > 0) {
+    const current = uploadedPhotos[slideIdx % uploadedPhotos.length];
+    return (
+      <div style={{
+        position:'fixed', inset:0, zIndex:3000,
+        background:'#0a0010',
+        display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center',
+        overflow:'hidden', padding:'1rem'
+      }}>
+        <div style={{position:'absolute', inset:0, pointerEvents:'none'}}>
+          <div style={{
+            position:'absolute', width:'120%', height:'60%', left:'-10%', top:'10%',
+            background:'radial-gradient(ellipse at 30% 50%, rgba(240,98,146,0.18) 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, rgba(206,147,216,0.15) 0%, transparent 60%)',
+            animation:'auroraShift 8s ease-in-out infinite', filter:'blur(30px)'
+          }}/>
+        </div>
+
+        <div style={{
+          position:'absolute', top:0, left:0, right:0,
+          padding:'0.8rem 1rem',
+          background:'linear-gradient(to bottom, rgba(10,0,16,0.9), transparent)',
+          display:'flex', alignItems:'center', justifyContent:'space-between',
+          zIndex:10
+        }}>
+          <div style={{display:'flex', alignItems:'center', gap:'0.5rem'}}>
+            <span style={{fontSize:'1.1rem'}}>💕</span>
+            <div style={{fontFamily:'Dancing Script,cursive', fontSize:'1.2rem',
+              background:'linear-gradient(135deg,#f06292,#ce93d8)', backgroundClip:'text',
+              WebkitBackgroundClip:'text', color:'transparent'}}>
+              Our Memories
+            </div>
+          </div>
+          <button onClick={() => { setSlideshowOn(false); clearInterval(slideTimer.current); }}
+            style={{background:'rgba(240,98,146,0.2)', border:'1px solid rgba(240,98,146,0.4)',
+              borderRadius:'50%', width:'32px', height:'32px', cursor:'pointer',
+              color:'rgba(255,200,220,0.9)', fontSize:'0.9rem'}}>✕</button>
+        </div>
+
+        <div key={slideIdx} style={{
+          textAlign:'center',
+          animation:'slideshowFade 0.9s cubic-bezier(0.4,0,0.2,1)',
+          maxWidth:'95%',
+          display:'flex', flexDirection:'column', alignItems:'center', gap:'1rem',
+          zIndex:5
+        }}>
+          <div style={{
+            position:'relative',
+            borderRadius:'20px',
+            boxShadow:'0 0 0 1px rgba(240,98,146,0.3), 0 0 40px rgba(240,98,146,0.3)',
+            overflow:'hidden',
+            maxWidth:'100%'
+          }}>
+            <img
+              src={photos[current.id]}
+              alt={current.label}
+              style={{
+                maxWidth:'100%', maxHeight:'50vh', display:'block',
+                objectFit:'contain', borderRadius:'20px',
+              }}
+            />
+          </div>
+          <div style={{
+            fontFamily:'Dancing Script,cursive', fontSize:'1.3rem',
+            background:'linear-gradient(135deg,#f9a8c9,#e879f9)',
+            backgroundClip:'text', WebkitBackgroundClip:'text', color:'transparent'
+          }}>{current.emoji} {current.label}</div>
+        </div>
+
+        <div style={{
+          position:'absolute', bottom:'1rem', left:0, right:0,
+          display:'flex', flexDirection:'column', alignItems:'center', gap:'0.8rem',
+          zIndex:10
+        }}>
+          <div style={{display:'flex', gap:'4px'}}>
+            {uploadedPhotos.map((_, i) => (
+              <div key={i} onClick={() => setSlideIdx(i)} style={{
+                width: i === slideIdx % uploadedPhotos.length ? '20px' : '6px',
+                height:'6px', borderRadius:'3px', cursor:'pointer',
+                background: i === slideIdx % uploadedPhotos.length
+                  ? 'linear-gradient(90deg, #f06292, #ce93d8)'
+                  : 'rgba(255,255,255,0.25)',
+                transition:'all 0.4s ease'
+              }}/>
+            ))}
+          </div>
+
+          <div style={{display:'flex', gap:'0.8rem', alignItems:'center'}}>
+            <button onClick={() => setSlideIdx(i => (i - 1 + uploadedPhotos.length) % uploadedPhotos.length)}
+              style={{background:'rgba(255,255,255,0.08)', border:'1px solid rgba(255,255,255,0.15)',
+                borderRadius:'50%', width:'40px', height:'40px',
+                cursor:'pointer', color:'rgba(255,200,220,0.9)', fontSize:'1.2rem'}}>‹</button>
+
+            <button onClick={() => {
+                if (slideTimer.current) { clearInterval(slideTimer.current); slideTimer.current = null; }
+                else { slideTimer.current = setInterval(() => setSlideIdx(i => (i+1) % uploadedPhotos.length), 3500); }
+              }}
+              style={{background:'linear-gradient(135deg,#f06292,#ce93d8)',
+                border:'none', borderRadius:'50%', width:'48px', height:'48px',
+                cursor:'pointer', color:'white', fontSize:'1.2rem'}}>
+              {slideTimer.current ? '⏸' : '▶'}
+            </button>
+
+            <button onClick={() => setSlideIdx(i => (i + 1) % uploadedPhotos.length)}
+              style={{background:'rgba(255,255,255,0.08)', border:'1px solid rgba(255,255,255,0.15)',
+                borderRadius:'50%', width:'40px', height:'40px',
+                cursor:'pointer', color:'rgba(255,200,220,0.9)', fontSize:'1.2rem'}}>›</button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="section gallery-section">
+      <h2 className="section-title">Our Beautiful Memories 📸</h2>
+      <p className="section-desc">Click any frame to add your precious photo</p>
+
+      <div style={{display:'flex', gap:'0.8rem', marginBottom:'1rem', flexWrap:'wrap', justifyContent:'center'}}>
+        <button className="btn-rose" onClick={startSlideshow}
+          style={{padding:'0.6rem 1rem', fontSize:'0.9rem', minWidth:'auto'}}>
+          ▶ Slideshow {uploadedPhotos.length >= 2 ? `(${uploadedPhotos.length})` : ''}
+        </button>
+      </div>
+
+      <div className="gallery-grid">
+        {galleryMemories.map((m) => (
+          <div key={m.id} className="gallery-item"
+            style={{background: photos[m.id] ? 'none' : m.bg}}
+            onMouseEnter={() => setUploading(m.id)}
+            onMouseLeave={() => setUploading(null)}
+            onClick={() => {
+              if (photos[m.id]) { setSelected({...m, img: photos[m.id]}); }
+              else { fileRefs.current[m.id]?.click(); }
+            }}>
+            <input
+              ref={el => fileRefs.current[m.id] = el}
+              type="file" accept="image/*" style={{display:'none'}}
+              onChange={e => handleFile(m.id, e.target.files[0])}/>
+            {photos[m.id] ? (
+              <>
+                <img src={photos[m.id]} alt={m.label}/>
+                <div className="gallery-overlay">{m.label}</div>
+              </>
+            ) : (
+              <>
+                <div className="gallery-placeholder">
+                  <div style={{fontSize:'2rem'}}>{m.emoji}</div>
+                  <div style={{fontSize:'0.6rem', marginTop:'0.3rem', color:'var(--text-mid)'}}>{m.label}</div>
+                </div>
+              </>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {selected && (
+        <div className="modal-overlay" onClick={() => setSelected(null)}>
+          <div className="modal-box" onClick={e => e.stopPropagation()}>
+            {selected.img ? (
+              <img src={selected.img} alt={selected.label} style={{
+                width:'100%', maxHeight:'200px', objectFit:'cover',
+                borderRadius:'16px', marginBottom:'1rem'
+              }}/>
+            ) : (
+              <span className="modal-emoji">{selected.emoji}</span>
+            )}
+            <h3 className="modal-title">{selected.label}</h3>
+            <p className="modal-text">A beautiful memory that lives forever in our hearts. 💕</p>
+            <div style={{display:'flex', gap:'0.8rem', justifyContent:'center', flexWrap:'wrap'}}>
+              <button className="btn-rose" onClick={() => { fileRefs.current[selected.id]?.click(); setSelected(null); }}>
+                Change Photo 📷
+              </button>
+              <button className="btn-rose" onClick={() => setSelected(null)}
+                style={{background:'linear-gradient(135deg,var(--lavender),#9c27b0)'}}>
+                Close 💕
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function ReasonsSection() {
+  const [reason, setReason] = useState(null);
+  const [key, setKey] = useState(0);
+  const showReason = () => {
+    setReason(loveReasons[Math.floor(Math.random() * loveReasons.length)]);
+    setKey(k => k + 1);
+  };
+  return (
+    <div className="section reasons-section">
+      <h2 className="section-title">Why I Love You 💕</h2>
+      <p className="section-desc">Every click reveals another reason</p>
+      {reason && <div key={key} className="reason-bubble">{reason}</div>}
+      <button className="btn-rose" onClick={showReason} style={{fontSize:'1.1rem', padding:'1rem 2rem'}}>
+        {reason ? 'Another Reason 💕' : 'Why I Love You 💕'}
+      </button>
+    </div>
+  );
+}
+
+function TimerSection() {
+  const startDate = new Date('2025-11-12T00:00:00');
+  const [time, setTime] = useState({});
+
+  const calc = () => {
+    const now = new Date();
+    const diff = now - startDate;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const secs = Math.floor((diff % (1000 * 60)) / 1000);
+    setTime({ days, hours, mins, secs });
+  };
+
+  useEffect(() => { calc(); const t = setInterval(calc, 1000); return () => clearInterval(t); }, []);
+
+  return (
+    <div className="section timer-section">
+      <h2 className="section-title">Time Together 💑</h2>
+      <p className="section-desc">Since 12 November 2025</p>
+      <div className="timer-grid">
+        {[['days', 'Days'], ['hours', 'Hours'], ['mins', 'Minutes'], ['secs', 'Seconds']].map(([k, l]) => (
+          <div key={k} className="timer-unit">
+            <span className="timer-number">{String(time[k] || 0).padStart(2, '0')}</span>
+            <span className="timer-label">{l}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function DailySection() {
+  const idx = new Date().getDay();
+  const msg = dailyMessages[idx % dailyMessages.length];
+  const today = new Date().toLocaleDateString('en-US', {weekday:'long', month:'long', day:'numeric'});
+  return (
+    <div className="section daily-section">
+      <h2 className="section-title">Today's Love Message 🌸</h2>
+      <div className="card daily-card">
+        <div className="daily-date">{today}</div>
+        <div style={{fontSize:'2.5rem', margin:'0.8rem 0'}}>💌</div>
+        <p className="daily-message">{msg}</p>
+      </div>
+    </div>
+  );
+}
+
+function SurpriseSection() {
+  const [reveal, setReveal] = useState(null);
+  const [key, setKey] = useState(0);
+  const [showConfetti, setShowConfetti] = useState(false);
+
+  const launchConfetti = () => {
+    setShowConfetti(true);
+    setTimeout(() => setShowConfetti(false), 3000);
+  };
+
+  const doSurprise = () => {
+    const s = surprises[Math.floor(Math.random() * surprises.length)];
+    setReveal(s); setKey(k => k+1); launchConfetti();
+  };
+
+  return (
+    <div className="section surprise-section">
+      {showConfetti && Array.from({length: 20}).map((_, i) => (
+        <div key={i} className="confetti-piece" style={{
+          left: `${Math.random() * 100}%`,
+          background: ['#f06292','#ce93d8','#ffd700','#ff8a65'][i % 4],
+          animationDelay: `${Math.random() * 1}s`
+        }}/>
+      ))}
+      <h2 className="section-title">Surprise For You 🎁</h2>
+      {reveal && (
+        <div key={key} className="surprise-reveal card" style={{textAlign:'center', maxWidth:'90%', padding:'1.5rem', marginBottom:'1.5rem'}}>
+          <div className="surprise-emoji">{reveal.emoji}</div>
+          <h3 style={{fontFamily:'Dancing Script,cursive', fontSize:'1.5rem', color:'var(--rose-deep)'}}>{reveal.title}</h3>
+          <p style={{fontFamily:'Cormorant Garamond,serif', fontSize:'1rem'}}>{reveal.message}</p>
+        </div>
+      )}
+      <button className="btn-rose" onClick={doSurprise}>
+        {reveal ? '✨ Another Surprise!' : '🎁 Open Your Surprise!'}
+      </button>
+    </div>
+  );
+}
+
+// Diary Section with localStorage
+function DiarySection() {
+  const [text, setText] = useState('');
+  const [entries, setEntries] = useState([]);
+  const [locked, setLocked] = useState(true);
+  const [pin, setPin] = useState('');
+  const SECRET = '0786';
+
+  // Load entries from localStorage on mount
+  useEffect(() => {
+    const saved = localStorage.getItem('misbu-diary');
+    if (saved) {
+      try {
+        setEntries(JSON.parse(saved));
+      } catch (e) {
+        console.error('Failed to load diary entries');
+      }
+    }
+  }, []);
+
+  // Save entries to localStorage whenever they change
+  useEffect(() => {
+    if (entries.length > 0) {
+      localStorage.setItem('misbu-diary', JSON.stringify(entries));
+    }
+  }, [entries]);
+
+  const saveEntry = () => {
+    if (text.trim()) {
+      const newEntry = {
+        text: text.trim(),
+        date: new Date().toLocaleString(),
+        id: Date.now()
+      };
+      setEntries(prev => [newEntry, ...prev]);
+      setText('');
+    }
+  };
+
+  const deleteEntry = (id) => {
+    if (window.confirm('Delete this entry?')) {
+      setEntries(prev => prev.filter(e => e.id !== id));
+    }
+  };
+
+  if (locked) return (
+    <div className="section diary-section">
+      <h2 className="section-title">Secret Love Diary 📔</h2>
+      <div className="card" style={{textAlign:'center', maxWidth:400, padding:'2rem'}}>
+        <div className="lock-icon">🔒</div>
+        <p style={{fontFamily:'Cormorant Garamond,serif', fontStyle:'italic', fontSize:'1rem', color:'var(--text-mid)', marginBottom:'1rem'}}>
+          This diary holds the most private thoughts...
+        </p>
+        <input className="input-field secret-input" type="password" maxLength={4}
+          placeholder="PIN" value={pin}
+          onChange={e => { setPin(e.target.value); if (e.target.value === SECRET) setLocked(false); }}/>
+        <p style={{fontSize:'0.7rem', color:'var(--text-light)', marginTop:'0.5rem'}}>Hint: 0786</p>
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="section diary-section">
+      <h2 className="section-title">Secret Love Diary 📔</h2>
+      <p className="section-desc">Your private space - entries are saved automatically</p>
+      <div style={{width:'100%', maxWidth:600, display:'flex', flexDirection:'column', gap:'1rem', alignItems:'center'}}>
+        <textarea className="diary-input" placeholder="Write something beautiful for Misbu here... 💕"
+          value={text} onChange={e => setText(e.target.value)}/>
+        <button className="btn-rose" onClick={saveEntry}>Save to Diary 💕</button>
+        
+        {entries.map((e) => (
+          <div key={e.id} className="diary-entry" onClick={() => deleteEntry(e.id)}>
+            <div className="diary-entry-date">📅 {e.date}</div>
+            <div className="diary-entry-text">{e.text}</div>
+          </div>
+        ))}
+        
+        {entries.length === 0 && (
+          <p style={{color:'var(--text-light)', fontStyle:'italic', marginTop:'1rem'}}>
+            No entries yet. Write your first message above! 💕
+          </p>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function MapSection() {
+  const [tooltip, setTooltip] = useState(null);
+  return (
+    <div className="section map-section">
+      <h2 className="section-title">Our Love Map 🗺️</h2>
+      <p className="section-desc">Every pin marks a special place</p>
+      <div className="map-container">
+        <svg viewBox="0 0 800 450" style={{width:'100%', height:'auto', background:'linear-gradient(160deg,#e8f5e9 0%,#e3f2fd 40%,#f3e5f5 70%,#fce4ec 100%)'}}>
+          <ellipse cx="200" cy="200" rx="180" ry="140" fill="rgba(206,147,216,0.15)" stroke="rgba(240,98,146,0.2)" strokeWidth="1.5"/>
+          <ellipse cx="580" cy="280" rx="160" ry="120" fill="rgba(255,204,188,0.2)" stroke="rgba(240,98,146,0.2)" strokeWidth="1.5"/>
+          {mapLocations.map((loc, i) => {
+            const cx = loc.x / 100 * 800;
+            const cy = loc.y / 100 * 450;
+            return (
+              <g key={i} className="map-pin" onMouseEnter={() => setTooltip({...loc, cx, cy})} onMouseLeave={() => setTooltip(null)} onClick={() => setTooltip(tooltip?.label===loc.label ? null : {...loc, cx, cy})}>
+                <circle cx={cx} cy={cy} r="22" fill="rgba(240,98,146,0.15)" className="glow-ring"/>
+                <circle cx={cx} cy={cy} r="14" fill="linear-gradient(135deg, #f06292, #ce93d8)"/>
+                <text x={cx} y={cy+5} textAnchor="middle" fontSize="14">{loc.emoji}</text>
+              </g>
+            );
+          })}
+          {tooltip && (
+            <g>
+              <rect x={Math.min(tooltip.cx-60, 700)} y={tooltip.cy-50} width="120" height="30"
+                fill="rgba(255,240,245,0.97)" rx="8" stroke="rgba(240,98,146,0.3)"/>
+              <text x={Math.min(tooltip.cx, 740)} y={tooltip.cy-30} textAnchor="middle"
+                fill="#7b3f6e" fontSize="10" fontWeight="600">{tooltip.label}</text>
+            </g>
+          )}
+        </svg>
+      </div>
+      <div style={{display:'flex', flexWrap:'wrap', gap:'0.5rem', justifyContent:'center', marginTop:'1rem'}}>
+        {mapLocations.map((loc, i) => (
+          <div key={i} style={{
+            background:'var(--gradient-card)', border:'1px solid rgba(240,98,146,0.2)',
+            borderRadius:'10px', padding:'0.4rem 0.8rem', fontSize:'0.7rem',
+            color:'var(--text-mid)', fontWeight:600, display:'flex', gap:'0.3rem', alignItems:'center'
+          }}>
+            <span>{loc.emoji}</span><span>{loc.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function DreamsSection() {
+  return (
+    <div className="section dreams-section">
+      <h2 className="section-title">Our Future Dreams 🌠</h2>
+      <p className="section-desc">The best chapter is still being written</p>
+      <div className="dreams-grid">
+        {futureDreams.map((d, i) => (
+          <div key={i} className="dream-card">
+            <span className="dream-emoji">{d.emoji}</span>
+            <div className="dream-title">{d.title}</div>
+            <div className="dream-text">{d.text}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function AISection() {
+  const [messages, setMessages] = useState([
+    {role:'ai', text:"Hello meri pyaari Misbu! 💕 Main tumhara personal Love AI hoon. Kuch bhi pucho! 🌸"}
+  ]);
+  const [input, setInput] = useState('');
+  const [typing, setTyping] = useState(false);
+  const msgEndRef = useRef(null);
+
+  useEffect(() => { msgEndRef.current?.scrollIntoView({behavior:'smooth'}); }, [messages, typing]);
+
+  const send = () => {
+    if (!input.trim() || typing) return;
+    const userMsg = input.trim();
+    setInput('');
+    setMessages(prev => [...prev, {role:'user', text: userMsg}]);
+    setTyping(true);
+    setTimeout(() => {
+      const reply = getSmartReply(userMsg);
+      setTyping(false);
+      setMessages(prev => [...prev, {role:'ai', text: reply}]);
+    }, 1000);
+  };
+
+  return (
+    <div className="section chat-section">
+      <h2 className="section-title">AI Love Assistant 💬</h2>
+      <div className="chat-container">
+        <div className="chat-header">
+          <div className="chat-avatar">💕</div>
+          <div>
+            <div style={{fontFamily:'Dancing Script,cursive', fontSize:'1rem'}}>Misbu's Love AI</div>
+            <div style={{fontSize:'0.65rem', opacity:0.85}}>🟢 Online</div>
+          </div>
+        </div>
+        <div className="chat-messages">
+          {messages.map((m, i) => (
+            <div key={i} className={`message ${m.role}`}>{m.text}</div>
+          ))}
+          {typing && (
+            <div className="typing-indicator">
+              <div className="typing-dot"/><div className="typing-dot"/><div className="typing-dot"/>
+            </div>
+          )}
+          <div ref={msgEndRef}/>
+        </div>
+        <div className="chat-input-row">
+          <input className="chat-input" placeholder="Kuch bhi likho... 💕"
+            value={input} onChange={e => setInput(e.target.value)}
+            onKeyDown={e => e.key === 'Enter' && send()}/>
+          <button className="btn-rose" style={{padding:'0.6rem 1rem', fontSize:'0.9rem', minWidth:'auto'}}
+            onClick={send} disabled={typing}>
+            {typing ? '...' : 'Send'}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function VoiceSection() {
+  const [recording, setRecording] = useState(false);
+  const [recordings, setRecordings] = useState([]);
+  const [timer, setTimer] = useState(0);
+  const mediaRef = useRef(null);
+  const chunksRef = useRef([]);
+  const timerRef = useRef(null);
+  const [playing, setPlaying] = useState(null);
+
+  const startRecording = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({audio: true});
+      mediaRef.current = new MediaRecorder(stream);
+      chunksRef.current = [];
+      mediaRef.current.ondataavailable = e => chunksRef.current.push(e.data);
+      mediaRef.current.onstop = () => {
+        const blob = new Blob(chunksRef.current, {type:'audio/webm'});
+        const url = URL.createObjectURL(blob);
+        setRecordings(prev => [{url, duration: timer, date: new Date().toLocaleTimeString(), id: Date.now()}, ...prev]);
+        stream.getTracks().forEach(t => t.stop());
+      };
+      mediaRef.current.start();
+      setRecording(true);
+      setTimer(0);
+      timerRef.current = setInterval(() => setTimer(t => t + 1), 1000);
+    } catch {
+      alert('Microphone access needed 🎙️');
+    }
+  };
+
+  const stopRecording = () => {
+    mediaRef.current?.stop();
+    clearInterval(timerRef.current);
+    setRecording(false);
+  };
+
+  const playRecording = (url, id) => {
+    if (playing === id) { setPlaying(null); return; }
+    const audio = new Audio(url);
+    audio.play();
+    setPlaying(id);
+    audio.onended = () => setPlaying(null);
+  };
+
+  const fmtTime = s => `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;
+
+  return (
+    <div className="section voice-section">
+      <h2 className="section-title">Voice Love Messages 🎙️</h2>
+      <div style={{display:'flex', flexDirection:'column', alignItems:'center', gap:'1rem', width:'100%'}}>
+        <button className={`voice-btn${recording?' recording':''}`}
+          onClick={recording ? stopRecording : startRecording}>
+          {recording ? '⏹' : '🎙️'}
+        </button>
+        {recording && (
+          <div style={{display:'flex', alignItems:'center', gap:'0.5rem'}}>
+            <div style={{width:8,height:8,borderRadius:'50%',background:'#e53935',animation:'recordPulse 1s ease-in-out infinite'}}/>
+            Recording... {fmtTime(timer)}
+          </div>
+        )}
+        {recordings.map((r) => (
+          <div key={r.id} className="voice-message-item">
+            <button className="voice-play-btn" onClick={() => playRecording(r.url, r.id)}>
+              {playing === r.id ? '⏸' : '▶'}
+            </button>
+            <div className="voice-waveform">
+              {[1,2,3,4,5,6,7,8].map((_, j) => (
+                <div key={j} className="voice-bar" style={{
+                  height: playing === r.id ? `${Math.random() * 30}px` : '20px'
+                }}/>
+              ))}
+            </div>
+            <div className="voice-duration">{fmtTime(r.duration)}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function getShaadiPrediction() {
+  const seed = new Date().toDateString();
+  let hash = 0;
+  for (let c of seed) hash = (hash * 31 + c.charCodeAt(0)) & 0xffffffff;
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const years = [2026, 2027, 2028];
+  const y = years[Math.abs(hash) % years.length];
+  const m = Math.abs(hash >> 4) % 12;
+  const maxDay = new Date(y, m + 1, 0).getDate();
+  const d = (Math.abs(hash >> 8) % maxDay) + 1;
+  const date = new Date(y, m, d);
+  const daysToFri = (5 - date.getDay() + 7) % 7;
+  date.setDate(date.getDate() + daysToFri);
+  return date;
+}
+
+function CountdownSection() {
+  const [birthdayTime, setBirthdayTime] = useState({days:0,hours:0,mins:0,secs:0});
+  const [shaadiTime, setShaadiTime] = useState({days:0,hours:0,mins:0,secs:0});
+  const shaadiDate = useRef(getShaadiPrediction());
+
+  const calcAll = () => {
+    const now = new Date();
+    const bday = getBirthdayDate();
+    const bdiff = bday - now;
+    setBirthdayTime({
+      days: Math.max(0, Math.floor(bdiff/(1000*60*60*24))),
+      hours: Math.max(0, Math.floor((bdiff%(1000*60*60*24))/(1000*60*60))),
+      mins: Math.max(0, Math.floor((bdiff%(1000*60*60))/(1000*60))),
+      secs: Math.max(0, Math.floor((bdiff%(1000*60))/1000))
+    });
+    const sdiff = shaadiDate.current - now;
+    setShaadiTime({
+      days: Math.max(0, Math.floor(sdiff/(1000*60*60*24))),
+      hours: Math.max(0, Math.floor((sdiff%(1000*60*60*24))/(1000*60*60))),
+      mins: Math.max(0, Math.floor((sdiff%(1000*60*60))/(1000*60))),
+      secs: Math.max(0, Math.floor((sdiff%(1000*60))/1000))
+    });
+  };
+
+  useEffect(() => { calcAll(); const t = setInterval(calcAll, 1000); return () => clearInterval(t); }, []);
+
+  const bday = getBirthdayDate();
+  const shaadi = shaadiDate.current;
+  const shaadiStr = shaadi.toLocaleDateString('en-US',{month:'long', day:'numeric', year:'numeric'});
+  const bdayStr = bday.toLocaleDateString('en-US',{month:'long', day:'numeric'});
+
+  const CountCard = ({emoji, title, subtitle, time}) => (
+    <div className="card" style={{maxWidth:520, width:'100%', textAlign:'center', padding:'1.5rem'}}>
+      <div style={{fontSize:'2rem', marginBottom:'0.3rem'}}>{emoji}</div>
+      <div style={{fontFamily:'Dancing Script,cursive', fontSize:'1.3rem', color:'var(--rose-deep)'}}>{title}</div>
+      <div style={{fontSize:'0.7rem', color:'var(--text-light)', marginBottom:'0.8rem'}}>{subtitle}</div>
+      <div style={{display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:'0.5rem'}}>
+        {[['days','Days'],['hours','Hrs'],['mins','Min'],['secs','Sec']].map(([k,l]) => (
+          <div key={k} style={{background:'rgba(255,255,255,0.8)', borderRadius:'10px', padding:'0.5rem'}}>
+            <div style={{fontFamily:'Cormorant Garamond,serif', fontSize:'1.5rem', fontWeight:600, color:'var(--rose-deep)'}}>
+              {String(time[k]||0).padStart(2,'0')}
+            </div>
+            <div style={{fontSize:'0.6rem', color:'var(--text-light)'}}>{l}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="section countdown-section">
+      <h2 className="section-title">Counting Down 📅</h2>
+      <CountCard
+        emoji="🎂"
+        title="Misbu's Birthday"
+        subtitle={bdayStr}
+        time={birthdayTime}
+      />
+      <CountCard
+        emoji="💍"
+        title="Our Shaadi — Predicted!"
+        subtitle={shaadiStr}
+        time={shaadiTime}
+      />
+    </div>
+  );
+}
+
+function QuizSection() {
+  const [qi, setQi] = useState(0);
+  const [score, setScore] = useState(0);
+  const [answered, setAnswered] = useState(null);
+  const [done, setDone] = useState(false);
+
+  const answer = (idx) => {
+    if (answered !== null) return;
+    setAnswered(idx);
+    const correct = idx === quizQuestions[qi].answer;
+    if (correct) setScore(s => s + 1);
+    setTimeout(() => {
+      if (qi + 1 >= quizQuestions.length) setDone(true);
+      else { setQi(q => q + 1); setAnswered(null); }
+    }, 1000);
+  };
+
+  const reset = () => { setQi(0); setScore(0); setAnswered(null); setDone(false); };
+
+  if (done) return (
+    <div className="section quiz-section">
+      <h2 className="section-title">Love Quiz 🎮</h2>
+      <div className="card quiz-card">
+        <div style={{fontSize:'3rem', marginBottom:'0.5rem'}}>
+          {score >= 5 ? '🏆' : score >= 3 ? '💕' : '🌸'}
+        </div>
+        <div className="quiz-score">You scored {score}/{quizQuestions.length}!</div>
+        <p style={{fontFamily:'Cormorant Garamond,serif', fontSize:'1rem', margin:'1rem 0'}}>
+          {score >= 5 ? "Perfect score! You know us so well! 💕" :
+           score >= 3 ? "Wonderful! Love runs deep between us. 🌸" :
+           "Every answer was full of love! 💕"}
+        </p>
+        <button className="btn-rose" onClick={reset}>Play Again 🎮</button>
+      </div>
+    </div>
+  );
+
+  const q = quizQuestions[qi];
+  const progress = (qi / quizQuestions.length) * 100;
+
+  return (
+    <div className="section quiz-section">
+      <h2 className="section-title">Love Quiz 🎮</h2>
+      <div className="card quiz-card">
+        <div style={{display:'flex', justifyContent:'space-between', marginBottom:'0.5rem'}}>
+          <span style={{fontSize:'0.7rem'}}>Q{qi+1}/{quizQuestions.length}</span>
+          <span style={{fontSize:'0.7rem'}}>Score: {score} 💕</span>
+        </div>
+        <div className="quiz-progress">
+          <div className="quiz-progress-bar" style={{width:`${progress}%`}}/>
+        </div>
+        <p className="quiz-question">{q.q}</p>
+        <div className="quiz-options">
+          {q.options.map((opt, i) => (
+            <button key={i} className={`quiz-option${answered !== null ? (i === q.answer ? ' correct' : (i === answered && i !== q.answer ? ' wrong' : '')) : ''}`}
+              onClick={() => answer(i)} disabled={answered !== null}>{opt}</button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const SONGS = [
+  { title: "Romantic Melody", artist: "Love Theme 🎹" },
+  { title: "Sweet Serenade", artist: "Gentle Piano 🎻" },
+  { title: "Tender Moments", artist: "Soft Waltz 🌙" }
+];
+
+const SONG_NOTES = [
+  [261.6,329.6,392,523.2,392,329.6, 293.6,369.9,440,587.3,440,369.9, 246.9,311.1,392,523.2,392,311.1, 261.6,329.6,392,523.2,392,329.6],
+  [523.2,493.8,440,392,349.2,329.6,293.6,261.6, 293.6,329.6,349.2,392,440,493.8,523.2,587.3, 523.2,493.8,440,392,349.2,329.6,261.6,246.9],
+  [392,493.8,587.3,493.8,392,329.6, 349.2,440,523.2,440,349.2,293.6, 329.6,415.3,493.8,415.3,329.6,261.6, 293.6,369.9,440,369.9,293.6,246.9]
+];
+
+function MusicPlayer() {
+  const [playing, setPlaying] = useState(false);
+  const [minimized, setMinimized] = useState(false);
+  const [songIdx, setSongIdx] = useState(0);
+  const [progress, setProgress] = useState(0);
+  const [volume, setVolume] = useState(0.3);
+  const [showVolume, setShowVolume] = useState(false);
+  const ctxRef = useRef(null);
+  const gainRef = useRef(null);
+  const noteTimerRef = useRef(null);
+  const noteIdxRef = useRef(0);
+  const playingRef = useRef(false);
+
+  const getCtx = () => {
+    if (!ctxRef.current) {
+      ctxRef.current = new (window.AudioContext || window.webkitAudioContext)();
+      gainRef.current = ctxRef.current.createGain();
+      gainRef.current.gain.value = volume;
+      gainRef.current.connect(ctxRef.current.destination);
+    }
+    return ctxRef.current;
+  };
+
+  const playNote = (freq, when, dur) => {
+    const ctx = getCtx();
+    const osc = ctx.createOscillator();
+    const env = ctx.createGain();
+    osc.connect(env); env.connect(gainRef.current);
+    osc.type = 'sine';
+    osc.frequency.value = freq;
+    env.gain.setValueAtTime(0, when);
+    env.gain.linearRampToValueAtTime(0.4, when + 0.05);
+    env.gain.exponentialRampToValueAtTime(0.001, when + dur - 0.05);
+    osc.start(when); osc.stop(when + dur);
+    
+    const osc2 = ctx.createOscillator();
+    const env2 = ctx.createGain();
+    osc2.connect(env2); env2.connect(gainRef.current);
+    osc2.type = 'triangle';
+    osc2.frequency.value = freq * 2;
+    env2.gain.setValueAtTime(0, when);
+    env2.gain.linearRampToValueAtTime(0.1, when + 0.05);
+    env2.gain.exponentialRampToValueAtTime(0.001, when + dur - 0.05);
+    osc2.start(when); osc2.stop(when + dur);
+  };
+
+  const scheduleNotes = useCallback(() => {
+    if (!playingRef.current) return;
+    const ctx = getCtx();
+    const notes = SONG_NOTES[songIdx];
+    const noteDur = 0.55;
+    const now = ctx.currentTime;
+    for (let i = 0; i < 4; i++) {
+      const ni = (noteIdxRef.current + i) % notes.length;
+      playNote(notes[ni], now + i * noteDur, noteDur * 0.9);
+    }
+    noteIdxRef.current = (noteIdxRef.current + 4) % notes.length;
+    setProgress(Math.round((noteIdxRef.current / notes.length) * 100));
+    noteTimerRef.current = setTimeout(scheduleNotes, 4 * noteDur * 1000 - 50);
+  }, [songIdx]);
+
+  useEffect(() => {
+    if (gainRef.current) gainRef.current.gain.value = volume;
+  }, [volume]);
+
+  const startMusic = useCallback(() => {
+    playingRef.current = true;
+    if (ctxRef.current?.state === 'suspended') ctxRef.current.resume();
+    scheduleNotes();
+    setPlaying(true);
+  }, [scheduleNotes]);
+
+  const stopMusic = useCallback(() => {
+    playingRef.current = false;
+    clearTimeout(noteTimerRef.current);
+    setPlaying(false);
+  }, []);
+
+  useEffect(() => {
+    stopMusic();
+    noteIdxRef.current = 0;
+    setProgress(0);
+  }, [songIdx]);
+
+  useEffect(() => () => { stopMusic(); ctxRef.current?.close(); }, []);
+
+  const togglePlay = () => {
+    if (playing) stopMusic();
+    else startMusic();
+  };
+
+  const changeTrack = (dir) => {
+    stopMusic();
+    setSongIdx(i => (i + dir + SONGS.length) % SONGS.length);
+  };
+
+  if (minimized) return (
+    <button onClick={() => setMinimized(false)} style={{
+      position:'fixed', bottom:'1rem', right:'1rem', zIndex:999,
+      background: playing ? 'linear-gradient(135deg,var(--rose),var(--lavender))' : 'rgba(255,255,255,0.95)',
+      border:'2px solid rgba(240,98,146,0.35)',
+      borderRadius:'50%', width:'48px', height:'48px', fontSize:'1.2rem',
+      cursor:'pointer', color: playing ? 'white' : 'var(--rose)',
+      boxShadow:'0 4px 15px rgba(240,98,146,0.3)',
+      display:'flex', alignItems:'center', justifyContent:'center'
+    }}>🎵</button>
+  );
+
+  return (
+    <div className="music-player">
+      <div style={{display:'flex', alignItems:'center', justifyContent:'space-between', width:'100%'}}>
+        <div style={{display:'flex', alignItems:'center', gap:'0.5rem'}}>
+          <div style={{
+            width:'32px', height:'32px', borderRadius:'8px',
+            background: playing ? 'linear-gradient(135deg,var(--rose),var(--lavender))' : 'linear-gradient(135deg,var(--blush),var(--lavender-light))',
+            border:'2px solid rgba(240,98,146,0.2)',
+            display:'flex', alignItems:'center', justifyContent:'center',
+            fontSize:'1rem'
+          }}>🎵</div>
+          <div style={{minWidth:0}}>
+            <div className="music-title">{SONGS[songIdx].title}</div>
+            <div className="music-artist">{SONGS[songIdx].artist}</div>
+          </div>
+        </div>
+        <button onClick={() => setMinimized(true)} style={{
+          background:'none', border:'none', cursor:'pointer',
+          color:'var(--text-light)', fontSize:'1rem'
+        }}>−</button>
+      </div>
+
+      {playing && (
+        <div className="music-wave" style={{justifyContent:'center'}}>
+          {[1,2,3,4,5].map(i => (
+            <div key={i} className="wave-bar" style={{animationDelay:`${i*0.08}s`}}/>
+          ))}
+        </div>
+      )}
+
+      <div style={{width:'100%', height:'4px', background:'rgba(240,98,146,0.15)', borderRadius:'2px'}}>
+        <div style={{height:'100%', borderRadius:'2px', width:`${progress}%`, background:'linear-gradient(90deg,var(--rose),var(--lavender))'}}/>
+      </div>
+
+      <div style={{display:'flex', alignItems:'center', gap:'0.5rem', justifyContent:'center', width:'100%'}}>
+        <button onClick={() => changeTrack(-1)} style={{
+          background:'rgba(240,98,146,0.1)', border:'none', width:'30px', height:'30px',
+          borderRadius:'50%', cursor:'pointer', color:'var(--rose)', fontSize:'0.8rem'
+        }}>⏮</button>
+
+        <button className="music-btn" onClick={togglePlay} style={{width:'40px', height:'40px'}}>
+          {playing ? '⏸' : '▶'}
+        </button>
+
+        <button onClick={() => changeTrack(1)} style={{
+          background:'rgba(240,98,146,0.1)', border:'none', width:'30px', height:'30px',
+          borderRadius:'50%', cursor:'pointer', color:'var(--rose)', fontSize:'0.8rem'
+        }}>⏭</button>
+
+        <button onClick={() => setShowVolume(v => !v)} style={{
+          background:'none', border:'none', cursor:'pointer',
+          color:'var(--text-light)', fontSize:'0.9rem'
+        }}>🔊</button>
+      </div>
+
+      {showVolume && (
+        <input type="range" min="0" max="1" step="0.05" value={volume}
+          onChange={e => setVolume(parseFloat(e.target.value))}
+          style={{width:'100%', accentColor:'var(--rose)'}}/>
+      )}
+    </div>
+  );
+}
+
+function DomainSection() {
+  const Step = ({num, icon, title, desc, code}) => (
+    <div className="domain-step">
+      <div className="domain-step-num">{num}</div>
+      <div style={{flex:1}}>
+        <div style={{display:'flex', alignItems:'center', gap:'0.5rem', marginBottom:'0.3rem'}}>
+          <span style={{fontSize:'1rem'}}>{icon}</span>
+          <span style={{fontFamily:'Dancing Script,cursive', fontSize:'1rem', color:'var(--rose-deep)'}}>{title}</span>
+        </div>
+        <p style={{fontSize:'0.8rem', color:'var(--text-mid)', lineHeight:1.6, marginBottom: code ? '0.5rem' : 0}}>{desc}</p>
+        {code && <div className="domain-code">{code}</div>}
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="section" style={{background:'linear-gradient(135deg,#fff9f0 0%,#f3e5f5 100%)'}}>
+      <h2 className="section-title">Custom Domain Guide 🌐</h2>
+      <p className="section-desc">Give Misbu's app a beautiful URL</p>
+
+      <div style={{maxWidth:640, width:'100%', display:'flex', flexDirection:'column', gap:'1rem'}}>
+
+        <div style={{
+          background:'linear-gradient(135deg, rgba(240,98,146,0.08), rgba(206,147,216,0.08))',
+          border:'2px solid rgba(240,98,146,0.2)', borderRadius:'20px', padding:'1rem'
+        }}>
+          <div style={{fontFamily:'Dancing Script,cursive', fontSize:'1.2rem', color:'var(--rose-deep)', marginBottom:'0.8rem'}}>
+            🚀 Netlify (Easiest, Free)
+          </div>
+
+          <div style={{display:'flex', flexDirection:'column', gap:'0.8rem'}}>
+            <Step num="1" icon="📁" title="Upload to Netlify"
+              desc="netlify.com/drop pe jao → index.html drag karo → free URL milega"/>
+            <Step num="2" icon="🛒" title="Domain Kharido"
+              desc="Namecheap se domain kharido. Suggestions: misbu.love (~$5), formisbu.com (~$10)"
+              code="misbu.love - ~$5/year\nformisbu.com - ~$10/year"/>
+            <Step num="3" icon="⚙️" title="DNS Configure Karo"
+              desc="Namecheap mein yeh records add karo:"
+              code="A Record: 75.2.60.5\nCNAME: your-site.netlify.app"/>
+          </div>
+        </div>
+
+        <div style={{
+          background:'linear-gradient(135deg, rgba(255,215,0,0.1), rgba(240,98,146,0.1))',
+          border:'2px dashed rgba(240,98,146,0.3)', borderRadius:'20px', padding:'1rem',
+          textAlign:'center'
+        }}>
+          <div style={{fontFamily:'Dancing Script,cursive', fontSize:'1.1rem', color:'var(--rose-deep)', marginBottom:'0.5rem'}}>
+            💕 Recommended Domains
+          </div>
+          <div style={{display:'flex', flexWrap:'wrap', gap:'0.5rem', justifyContent:'center'}}>
+            {['misbu.love','formisbu.com','misbu.site','4misbu.com'].map(d => (
+              <div key={d} style={{
+                background:'white', border:'1px solid rgba(240,98,146,0.25)',
+                borderRadius:'16px', padding:'0.3rem 0.7rem', fontSize:'0.7rem'
+              }}>{d}</div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const SECTIONS = ['welcome','letter','gallery','reasons','timer','daily','surprise','diary','map','dreams','ai','voice','countdown','quiz','domain'];
+
+function App() {
+  const [active, setActive] = useState('welcome');
+  const [secretMode, setSecretMode] = useState(false);
+  const [clickCount, setClickCount] = useState(0);
+
+  const logoClick = () => {
+    setClickCount(c => {
+      const n = c + 1;
+      if (n >= 7) { setSecretMode(true); return 0; }
+      return n;
+    });
+  };
+
+  const renderSection = () => {
+    switch(active) {
+      case 'welcome': return <WelcomeSection/>;
+      case 'letter': return <LoveLetterSection/>;
+      case 'gallery': return <GallerySection/>;
+      case 'reasons': return <ReasonsSection/>;
+      case 'timer': return <TimerSection/>;
+      case 'daily': return <DailySection/>;
+      case 'surprise': return <SurpriseSection/>;
+      case 'diary': return <DiarySection/>;
+      case 'map': return <MapSection/>;
+      case 'dreams': return <DreamsSection/>;
+      case 'ai': return <AISection/>;
+      case 'voice': return <VoiceSection/>;
+      case 'countdown': return <CountdownSection/>;
+      case 'quiz': return <QuizSection/>;
+      case 'domain': return <DomainSection/>;
+      default: return <WelcomeSection/>;
+    }
+  };
+
+  return (
+    <>
+      <HeartParticles/>
+      <Nav sections={SECTIONS} active={active} setActive={setActive}/>
+      {renderSection()}
+      <MusicPlayer/>
+      {secretMode && (
+        <div className="modal-overlay" onClick={() => setSecretMode(false)}>
+          <div className="modal-box" onClick={e => e.stopPropagation()}>
+            <span className="modal-emoji">🌟</span>
+            <h3 className="modal-title">Secret Unlocked!</h3>
+            <p className="modal-text">
+              You found the secret, Misbu! 🌟<br/><br/>
+              You are not just the love of a lifetime. You are the love of every lifetime, every universe, every star that has ever burned. In every world that could ever exist, I would always find you. I would always choose you. Always.<br/><br/>
+              Forever and always, Misbu. Only you. 💕
+            </p>
+            <button className="btn-lavender" onClick={() => setSecretMode(false)}>Close 💕</button>
+          </div>
+        </div>
+      )}
+      <div onClick={logoClick} style={{position:'fixed', bottom:'1.5rem', left:'1.5rem', zIndex:998,
+        width:'36px', height:'36px', opacity:0.01, cursor:'default'}}/>
+    </>
+  );
+}
+
+ReactDOM.render(<App/>, document.getElementById('root'));
+</script>
+</body>
+</html>
