@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
 <title>💕 For My Love Misbu 💕</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Dancing+Script:wght@400;600;700&family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
@@ -39,7 +39,19 @@
     color: var(--text-dark);
     min-height: 100vh;
     overflow-x: hidden;
-    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23f06292' d='M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z'/%3E%3C/svg%3E"), auto;
+    font-size: 16px;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Responsive font sizing */
+  html {
+    font-size: 14px;
+  }
+
+  @media (min-width: 768px) {
+    html {
+      font-size: 16px;
+    }
   }
 
   /* Floating hearts background */
@@ -68,16 +80,17 @@
     100% { transform: translateY(-10vh) rotate(360deg) scale(0.5); opacity: 0; }
   }
 
-  /* Navigation */
+  /* Navigation - Mobile First */
   .nav {
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 1000;
-    background: rgba(255,255,255,0.85);
+    background: rgba(255,255,255,0.95);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(240,98,146,0.15);
-    padding: 0 2rem;
-    height: 60px;
+    padding: 0 1rem;
+    height: auto;
+    min-height: 60px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -86,30 +99,57 @@
 
   .nav-logo {
     font-family: 'Dancing Script', cursive;
-    font-size: 1.6rem;
+    font-size: 1.3rem;
     color: var(--rose-deep);
     text-shadow: 0 0 20px rgba(233,30,140,0.3);
+    white-space: nowrap;
+  }
+
+  @media (min-width: 768px) {
+    .nav-logo {
+      font-size: 1.6rem;
+    }
   }
 
   .nav-links {
     display: flex;
-    gap: 0.3rem;
+    gap: 0.2rem;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: flex-end;
+    max-width: calc(100% - 80px);
   }
 
   .nav-btn {
     background: none;
     border: none;
-    padding: 0.3rem 0.7rem;
-    border-radius: 20px;
+    padding: 0.4rem 0.5rem;
+    border-radius: 30px;
     font-family: 'Quicksand', sans-serif;
-    font-size: 0.75rem;
+    font-size: 0.65rem;
     font-weight: 600;
     color: var(--text-mid);
     cursor: pointer;
     transition: all 0.3s ease;
     white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    border: 1px solid transparent;
+  }
+
+  @media (min-width: 480px) {
+    .nav-btn {
+      font-size: 0.7rem;
+      padding: 0.4rem 0.7rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .nav-btn {
+      font-size: 0.75rem;
+      padding: 0.5rem 0.9rem;
+    }
   }
 
   .nav-btn:hover, .nav-btn.active {
@@ -117,6 +157,11 @@
     color: white;
     box-shadow: 0 4px 15px rgba(240,98,146,0.4);
     transform: translateY(-1px);
+    border-color: rgba(255,255,255,0.3);
+  }
+
+  .nav-btn:active {
+    transform: scale(0.95);
   }
 
   /* Sections */
@@ -126,9 +171,15 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 80px 2rem 4rem;
+    padding: 70px 1rem 2rem;
     position: relative;
     z-index: 1;
+  }
+
+  @media (min-width: 768px) {
+    .section {
+      padding: 80px 2rem 4rem;
+    }
   }
 
   /* Welcome Section */
@@ -142,11 +193,19 @@
   .welcome-section::before {
     content: '';
     position: absolute;
-    width: 600px; height: 600px;
+    width: 300px;
+    height: 300px;
     background: radial-gradient(circle, rgba(240,98,146,0.15) 0%, transparent 70%);
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     animation: pulse 4s ease-in-out infinite;
+  }
+
+  @media (min-width: 768px) {
+    .welcome-section::before {
+      width: 600px;
+      height: 600px;
+    }
   }
 
   @keyframes pulse {
@@ -156,7 +215,7 @@
 
   .welcome-name {
     font-family: 'Dancing Script', cursive;
-    font-size: clamp(3rem, 10vw, 7rem);
+    font-size: clamp(2.5rem, 12vw, 7rem);
     color: transparent;
     background: linear-gradient(135deg, var(--rose-deep), var(--lavender), var(--peach-deep), var(--rose));
     background-clip: text;
@@ -181,15 +240,16 @@
   .welcome-subtitle {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
-    font-size: clamp(1.1rem, 3vw, 1.6rem);
+    font-size: clamp(1rem, 4vw, 1.6rem);
     color: var(--text-mid);
     margin-top: 1rem;
     animation: fadeInUp 1.5s ease 0.5s forwards;
     opacity: 0;
+    padding: 0 1rem;
   }
 
   .welcome-tagline {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: var(--text-light);
     margin-top: 0.5rem;
     animation: fadeInUp 1.5s ease 1s forwards;
@@ -198,7 +258,7 @@
 
   .scroll-hint {
     position: absolute;
-    bottom: 2rem;
+    bottom: 1rem;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -206,8 +266,14 @@
     align-items: center;
     gap: 0.3rem;
     color: var(--text-light);
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     animation: bounce 2s ease-in-out infinite;
+  }
+
+  @media (min-width: 768px) {
+    .scroll-hint {
+      bottom: 2rem;
+    }
   }
 
   @keyframes bounce {
@@ -218,14 +284,33 @@
   /* Section Titles */
   .section-title {
     font-family: 'Dancing Script', cursive;
-    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-size: clamp(2rem, 8vw, 3.5rem);
     color: transparent;
     background: linear-gradient(135deg, var(--rose-deep), var(--lavender));
     background-clip: text;
     -webkit-background-clip: text;
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     line-height: 1.2;
+    width: 100%;
+  }
+
+  .section-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--text-light);
+    text-align: center;
+    margin-bottom: 1.5rem;
+    max-width: 90%;
+    line-height: 1.6;
+  }
+
+  @media (min-width: 768px) {
+    .section-desc {
+      font-size: 1.1rem;
+      max-width: 500px;
+    }
   }
 
   /* Cards */
@@ -234,9 +319,17 @@
     backdrop-filter: blur(20px);
     border: 1px solid rgba(240,98,146,0.2);
     border-radius: 24px;
-    padding: 2rem;
+    padding: 1.5rem;
     box-shadow: var(--shadow-rose);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .card {
+      padding: 2rem;
+    }
   }
 
   .card:hover {
@@ -244,64 +337,96 @@
     box-shadow: var(--shadow-deep);
   }
 
-  /* Buttons */
-  .btn-rose {
-    background: linear-gradient(135deg, var(--rose), var(--rose-deep));
-    color: white;
-    border: none;
-    padding: 0.85rem 2rem;
-    border-radius: 50px;
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 600;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 6px 25px rgba(240,98,146,0.4);
-    position: relative;
-    overflow: hidden;
+  .card:active {
+    transform: scale(0.98);
   }
 
-  .btn-rose::before {
+  /* Buttons - More attractive & touch-friendly */
+  .btn-rose, .btn-lavender {
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 60px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 6px 25px rgba(240,98,146,0.4);
+    min-width: 200px;
+    max-width: 90%;
+    letter-spacing: 1px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 1px solid rgba(255,255,255,0.3);
+    backdrop-filter: blur(5px);
+  }
+
+  .btn-rose {
+    background: linear-gradient(135deg, var(--rose), var(--rose-deep));
+  }
+
+  .btn-lavender {
+    background: linear-gradient(135deg, var(--lavender), #9c27b0);
+    box-shadow: 0 6px 25px rgba(206,147,216,0.4);
+  }
+
+  .btn-rose::before, .btn-lavender::before {
     content: '';
     position: absolute;
     top: 0; left: -100%;
     width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    transition: left 0.5s;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: left 0.5s ease;
   }
 
-  .btn-rose:hover::before { left: 100%; }
-  .btn-rose:hover { transform: translateY(-3px); box-shadow: 0 10px 35px rgba(240,98,146,0.5); }
-  .btn-rose:active { transform: translateY(-1px); }
-
-  .btn-lavender {
-    background: linear-gradient(135deg, var(--lavender), #9c27b0);
-    color: white;
-    border: none;
-    padding: 0.85rem 2rem;
-    border-radius: 50px;
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 600;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 6px 25px rgba(206,147,216,0.4);
+  .btn-rose:hover::before, .btn-lavender:hover::before {
+    left: 100%;
   }
 
-  .btn-lavender:hover { transform: translateY(-3px); box-shadow: 0 10px 35px rgba(206,147,216,0.5); }
+  .btn-rose:hover, .btn-lavender:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(240,98,146,0.6);
+  }
+
+  .btn-rose:active, .btn-lavender:active {
+    transform: translateY(-1px) scale(0.98);
+    box-shadow: 0 4px 15px rgba(240,98,146,0.4);
+  }
+
+  @media (max-width: 480px) {
+    .btn-rose, .btn-lavender {
+      padding: 0.9rem 1.5rem;
+      font-size: 1rem;
+      min-width: 160px;
+    }
+  }
 
   /* Love Letter */
-  .letter-section { background: linear-gradient(135deg, #fff0f5 0%, #f8f0ff 100%); }
+  .letter-section { 
+    background: linear-gradient(135deg, #fff0f5 0%, #f8f0ff 100%); 
+  }
 
   .letter-card {
-    max-width: 700px;
+    max-width: 95%;
     width: 100%;
     background: linear-gradient(145deg, #fffaf0 0%, #fff0f5 100%);
     border: 1px solid rgba(240,98,146,0.2);
     border-radius: 24px;
-    padding: 3rem;
+    padding: 1.5rem;
     box-shadow: 0 20px 60px rgba(240,98,146,0.15), inset 0 1px 0 rgba(255,255,255,0.8);
     position: relative;
+  }
+
+  @media (min-width: 768px) {
+    .letter-card {
+      max-width: 700px;
+      padding: 3rem;
+    }
   }
 
   .letter-card::before {
@@ -309,24 +434,43 @@
     position: absolute;
     top: -20px; left: 50%;
     transform: translateX(-50%);
-    font-size: 2.5rem;
+    font-size: 2rem;
     filter: drop-shadow(0 5px 15px rgba(240,98,146,0.4));
+  }
+
+  @media (min-width: 768px) {
+    .letter-card::before {
+      font-size: 2.5rem;
+    }
   }
 
   .letter-text {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.15rem;
-    line-height: 1.9;
+    font-size: 1rem;
+    line-height: 1.8;
     color: var(--text-dark);
     white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  @media (min-width: 768px) {
+    .letter-text {
+      font-size: 1.15rem;
+    }
   }
 
   .letter-signature {
     font-family: 'Dancing Script', cursive;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: var(--rose-deep);
     margin-top: 1.5rem;
     text-align: right;
+  }
+
+  @media (min-width: 768px) {
+    .letter-signature {
+      font-size: 1.5rem;
+    }
   }
 
   .cursor-blink {
@@ -342,22 +486,46 @@
   @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
   /* Gallery */
-  .gallery-section { background: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 100%); }
+  .gallery-section { 
+    background: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 100%); 
+  }
 
   .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 1.2rem;
-    max-width: 900px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+    max-width: 100%;
     width: 100%;
+    padding: 0 0.5rem;
+  }
+
+  @media (min-width: 480px) {
+    .gallery-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .gallery-grid {
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 900px;
+      gap: 1.2rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .gallery-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 
   .gallery-item {
     aspect-ratio: 1;
-    border-radius: 20px;
+    border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 8px 25px rgba(240,98,146,0.2);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
     background: linear-gradient(135deg, var(--blush), var(--lavender-light));
     display: flex;
@@ -365,9 +533,12 @@
     justify-content: center;
     cursor: pointer;
     border: 2px solid rgba(240,98,146,0.15);
+    -webkit-tap-highlight-color: transparent;
   }
 
-  .gallery-item:hover { transform: scale(1.05) rotate(1deg); box-shadow: 0 15px 40px rgba(240,98,146,0.35); }
+  .gallery-item:active {
+    transform: scale(0.95);
+  }
 
   .gallery-item img {
     width: 100%; height: 100%;
@@ -375,45 +546,73 @@
     transition: transform 0.4s ease;
   }
 
-  .gallery-item:hover img { transform: scale(1.08); }
+  .gallery-item:hover img { 
+    transform: scale(1.08); 
+  }
 
   .gallery-placeholder {
-    font-size: 3rem;
+    font-size: 2rem;
     opacity: 0.5;
     text-align: center;
+  }
+
+  @media (min-width: 768px) {
+    .gallery-placeholder {
+      font-size: 3rem;
+    }
   }
 
   .gallery-overlay {
     position: absolute;
     bottom: 0; left: 0; right: 0;
-    background: linear-gradient(transparent, rgba(74,25,66,0.7));
-    padding: 1rem 0.8rem 0.8rem;
+    background: linear-gradient(transparent, rgba(74,25,66,0.8));
+    padding: 0.8rem 0.5rem 0.5rem;
     color: white;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     font-weight: 600;
     opacity: 0;
     transition: opacity 0.3s ease;
+    text-align: center;
   }
 
-  .gallery-item:hover .gallery-overlay { opacity: 1; }
+  @media (min-width: 768px) {
+    .gallery-overlay {
+      font-size: 0.8rem;
+    }
+  }
+
+  .gallery-item:hover .gallery-overlay { 
+    opacity: 1; 
+  }
 
   /* Love Reasons */
-  .reasons-section { background: linear-gradient(135deg, #fff9f0 0%, #fce4ec 100%); }
+  .reasons-section { 
+    background: linear-gradient(135deg, #fff9f0 0%, #fce4ec 100%); 
+  }
 
   .reason-bubble {
     background: linear-gradient(135deg, var(--rose), var(--lavender));
     color: white;
-    padding: 2rem 2.5rem;
+    padding: 1.5rem;
     border-radius: 30px 30px 30px 5px;
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-style: italic;
-    max-width: 500px;
+    max-width: 90%;
     box-shadow: 0 15px 40px rgba(240,98,146,0.3);
     animation: reasonPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     text-align: center;
     line-height: 1.5;
     margin-bottom: 1.5rem;
+    word-break: break-word;
+  }
+
+  @media (min-width: 768px) {
+    .reason-bubble {
+      padding: 2rem 2.5rem;
+      font-size: 1.4rem;
+      max-width: 500px;
+    }
   }
 
   @keyframes reasonPop {
@@ -422,31 +621,44 @@
   }
 
   /* Timer */
-  .timer-section { background: linear-gradient(135deg, #f3e5f5 0%, #fce4ec 100%); }
+  .timer-section { 
+    background: linear-gradient(135deg, #f3e5f5 0%, #fce4ec 100%); 
+  }
 
   .timer-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-    max-width: 700px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+    max-width: 100%;
     width: 100%;
+    padding: 0 0.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .timer-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      max-width: 700px;
+    }
   }
 
   .timer-unit {
     background: var(--gradient-card);
     border: 1px solid rgba(240,98,146,0.2);
-    border-radius: 20px;
-    padding: 1.5rem 1rem;
+    border-radius: 16px;
+    padding: 1rem 0.5rem;
     text-align: center;
     box-shadow: var(--shadow-rose);
     transition: transform 0.3s ease;
   }
 
-  .timer-unit:hover { transform: translateY(-5px) scale(1.03); }
+  .timer-unit:active {
+    transform: scale(0.95);
+  }
 
   .timer-number {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-size: clamp(1.8rem, 8vw, 3.5rem);
     font-weight: 600;
     color: var(--rose-deep);
     text-shadow: 0 0 20px rgba(233,30,140,0.3);
@@ -455,7 +667,7 @@
   }
 
   .timer-label {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     color: var(--text-light);
     font-weight: 600;
     text-transform: uppercase;
@@ -464,33 +676,57 @@
     display: block;
   }
 
+  @media (min-width: 768px) {
+    .timer-label {
+      font-size: 0.75rem;
+    }
+  }
+
   /* Daily Message */
-  .daily-section { background: linear-gradient(135deg, #fff0f5 0%, #fff9f0 100%); }
+  .daily-section { 
+    background: linear-gradient(135deg, #fff0f5 0%, #fff9f0 100%); 
+  }
 
   .daily-card {
-    max-width: 600px;
+    max-width: 95%;
     text-align: center;
-    padding: 3rem 2.5rem;
+    padding: 2rem 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .daily-card {
+      max-width: 600px;
+      padding: 3rem 2.5rem;
+    }
   }
 
   .daily-message {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-style: italic;
     color: var(--text-dark);
     line-height: 1.7;
     margin: 1.5rem 0;
+    word-break: break-word;
+  }
+
+  @media (min-width: 768px) {
+    .daily-message {
+      font-size: 1.5rem;
+    }
   }
 
   .daily-date {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--text-light);
     font-weight: 600;
     letter-spacing: 1px;
   }
 
   /* Surprise Section */
-  .surprise-section { background: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 50%, #fff0f5 100%); }
+  .surprise-section { 
+    background: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 50%, #fff0f5 100%); 
+  }
 
   .surprise-reveal {
     animation: surpriseReveal 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -503,27 +739,49 @@
     100% { transform: scale(1) rotate(0deg); opacity: 1; }
   }
 
-  .surprise-emoji { font-size: 5rem; animation: spin 2s ease; }
-  @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  .surprise-emoji { 
+    font-size: 3rem; 
+    animation: spin 2s ease; 
+  }
+
+  @media (min-width: 768px) {
+    .surprise-emoji {
+      font-size: 5rem;
+    }
+  }
+
+  @keyframes spin { 
+    0% { transform: rotate(0deg); } 
+    100% { transform: rotate(360deg); } 
+  }
 
   /* Diary Section */
-  .diary-section { background: linear-gradient(135deg, #fff9f0 0%, #fce4ec 100%); }
+  .diary-section { 
+    background: linear-gradient(135deg, #fff9f0 0%, #fce4ec 100%); 
+  }
 
   .diary-input {
     width: 100%;
     max-width: 600px;
-    min-height: 180px;
+    min-height: 150px;
     border: 2px solid rgba(240,98,146,0.25);
     border-radius: 16px;
-    padding: 1.2rem;
+    padding: 1rem;
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: var(--text-dark);
-    background: rgba(255,255,255,0.9);
+    background: rgba(255,255,255,0.95);
     resize: vertical;
     outline: none;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
     line-height: 1.7;
+  }
+
+  @media (min-width: 768px) {
+    .diary-input {
+      min-height: 180px;
+      font-size: 1.1rem;
+    }
   }
 
   .diary-input:focus {
@@ -535,15 +793,20 @@
     background: linear-gradient(145deg, rgba(255,255,255,0.95), rgba(252,228,236,0.6));
     border: 1px solid rgba(240,98,146,0.2);
     border-radius: 16px;
-    padding: 1.2rem 1.5rem;
+    padding: 1rem 1.2rem;
     margin-top: 0.8rem;
     max-width: 600px;
     width: 100%;
     position: relative;
+    transition: transform 0.2s ease;
+  }
+
+  .diary-entry:active {
+    transform: scale(0.98);
   }
 
   .diary-entry-date {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     color: var(--text-light);
     font-weight: 600;
     margin-bottom: 0.5rem;
@@ -551,18 +814,21 @@
 
   .diary-entry-text {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.05rem;
+    font-size: 1rem;
     color: var(--text-dark);
     line-height: 1.7;
+    word-break: break-word;
   }
 
   /* Map Section */
-  .map-section { background: linear-gradient(135deg, #f3e5f5 0%, #fce4ec 100%); }
+  .map-section { 
+    background: linear-gradient(135deg, #f3e5f5 0%, #fce4ec 100%); 
+  }
 
   .map-container {
     width: 100%;
     max-width: 700px;
-    border-radius: 24px;
+    border-radius: 20px;
     overflow: hidden;
     box-shadow: var(--shadow-deep);
     border: 3px solid rgba(240,98,146,0.2);
@@ -570,60 +836,124 @@
   }
 
   /* Dreams Section */
-  .dreams-section { background: linear-gradient(135deg, #fff0f5 0%, #f3e5f5 100%); }
+  .dreams-section { 
+    background: linear-gradient(135deg, #fff0f5 0%, #f3e5f5 100%); 
+  }
+
+  .dreams-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    max-width: 100%;
+    width: 100%;
+    padding: 0 0.5rem;
+  }
+
+  @media (min-width: 480px) {
+    .dreams-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .dreams-grid {
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 800px;
+      gap: 1.5rem;
+    }
+  }
 
   .dream-card {
     background: linear-gradient(145deg, rgba(255,255,255,0.9), rgba(243,229,245,0.7));
     border: 1px solid rgba(206,147,216,0.3);
     border-radius: 20px;
-    padding: 1.5rem;
+    padding: 1.2rem;
     text-align: center;
     transition: all 0.3s ease;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
   }
 
-  .dream-card:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 15px 40px rgba(206,147,216,0.3);
-    background: linear-gradient(145deg, rgba(255,255,255,0.95), rgba(243,229,245,0.9));
+  .dream-card:active {
+    transform: scale(0.95);
   }
 
-  .dream-emoji { font-size: 2.5rem; margin-bottom: 0.8rem; display: block; }
+  .dream-emoji { 
+    font-size: 2rem; 
+    margin-bottom: 0.5rem; 
+    display: block; 
+  }
+
+  @media (min-width: 768px) {
+    .dream-emoji {
+      font-size: 2.5rem;
+    }
+  }
+
   .dream-title {
     font-family: 'Dancing Script', cursive;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     color: var(--rose-deep);
     margin-bottom: 0.4rem;
   }
+
   .dream-text {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--text-mid);
     line-height: 1.6;
   }
 
-  /* Music Player */
+  /* Music Player - Mobile Optimized */
   .music-player {
-    background: linear-gradient(145deg, rgba(255,255,255,0.95), rgba(252,228,236,0.8));
+    background: linear-gradient(145deg, rgba(255,255,255,0.98), rgba(252,228,236,0.95));
     border: 1px solid rgba(240,98,146,0.2);
-    border-radius: 24px;
-    padding: 1.5rem 2rem;
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    box-shadow: var(--shadow-rose);
+    border-radius: 30px;
+    padding: 1rem 1.2rem;
+    box-shadow: var(--shadow-rose), 0 0 0 2px rgba(255,255,255,0.5);
     position: fixed;
-    bottom: 1.5rem;
-    right: 1.5rem;
+    bottom: 1rem;
+    right: 1rem;
+    left: 1rem;
     z-index: 999;
     transition: all 0.3s ease;
-    max-width: 320px;
+    max-width: calc(100% - 2rem);
+    backdrop-filter: blur(20px);
   }
 
-  .music-player:hover { box-shadow: var(--shadow-deep); }
+  @media (min-width: 768px) {
+    .music-player {
+      left: auto;
+      right: 1.5rem;
+      bottom: 1.5rem;
+      max-width: 320px;
+      padding: 1.5rem 2rem;
+    }
+  }
 
-  .music-info { flex: 1; min-width: 0; }
-  .music-title { font-weight: 700; font-size: 0.85rem; color: var(--text-dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .music-artist { font-size: 0.75rem; color: var(--text-light); }
+  .music-info { 
+    flex: 1; 
+    min-width: 0; 
+  }
+  
+  .music-title { 
+    font-weight: 700; 
+    font-size: 0.8rem; 
+    color: var(--text-dark); 
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+  }
+
+  @media (min-width: 768px) {
+    .music-title {
+      font-size: 0.85rem;
+    }
+  }
+
+  .music-artist { 
+    font-size: 0.7rem; 
+    color: var(--text-light); 
+  }
 
   .music-wave {
     display: flex;
@@ -647,78 +977,130 @@
   .music-btn {
     background: linear-gradient(135deg, var(--rose), var(--lavender));
     border: none;
-    width: 42px; height: 42px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     cursor: pointer;
     color: white;
-    font-size: 1.1rem;
+    font-size: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
     flex-shrink: 0;
     box-shadow: 0 4px 15px rgba(240,98,146,0.3);
+    -webkit-tap-highlight-color: transparent;
   }
 
-  .music-btn:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(240,98,146,0.5); }
+  .music-btn:active {
+    transform: scale(0.9);
+  }
 
-  /* AI Chat */
-  .chat-section { background: linear-gradient(135deg, #fce4ec 0%, #fff0f5 100%); }
+  @media (min-width: 768px) {
+    .music-btn {
+      width: 42px;
+      height: 42px;
+    }
+  }
+
+  /* AI Chat - Mobile Optimized */
+  .chat-section { 
+    background: linear-gradient(135deg, #fce4ec 0%, #fff0f5 100%); 
+  }
 
   .chat-container {
-    max-width: 600px;
+    max-width: 100%;
     width: 100%;
-    background: rgba(255,255,255,0.9);
+    background: rgba(255,255,255,0.95);
     border: 1px solid rgba(240,98,146,0.2);
     border-radius: 24px;
     overflow: hidden;
     box-shadow: var(--shadow-deep);
     display: flex;
     flex-direction: column;
-    height: 450px;
+    height: 70vh;
+    max-height: 600px;
+  }
+
+  @media (min-width: 768px) {
+    .chat-container {
+      max-width: 600px;
+      height: 450px;
+    }
   }
 
   .chat-header {
     background: linear-gradient(135deg, var(--rose), var(--lavender));
-    padding: 1rem 1.5rem;
+    padding: 0.8rem 1rem;
     color: white;
     display: flex;
     align-items: center;
     gap: 0.8rem;
   }
 
+  @media (min-width: 768px) {
+    .chat-header {
+      padding: 1rem 1.5rem;
+    }
+  }
+
   .chat-avatar {
-    width: 38px; height: 38px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     background: rgba(255,255,255,0.3);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     border: 2px solid rgba(255,255,255,0.5);
+  }
+
+  @media (min-width: 768px) {
+    .chat-avatar {
+      width: 38px;
+      height: 38px;
+      font-size: 1.3rem;
+    }
   }
 
   .chat-messages {
     flex: 1;
     overflow-y: auto;
-    padding: 1rem;
+    padding: 0.8rem;
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    gap: 0.6rem;
     scroll-behavior: smooth;
   }
 
-  .chat-messages::-webkit-scrollbar { width: 4px; }
-  .chat-messages::-webkit-scrollbar-track { background: transparent; }
-  .chat-messages::-webkit-scrollbar-thumb { background: rgba(240,98,146,0.3); border-radius: 2px; }
+  .chat-messages::-webkit-scrollbar { 
+    width: 4px; 
+  }
+  .chat-messages::-webkit-scrollbar-track { 
+    background: transparent; 
+  }
+  .chat-messages::-webkit-scrollbar-thumb { 
+    background: rgba(240,98,146,0.3); 
+    border-radius: 2px; 
+  }
 
   .message {
-    max-width: 80%;
-    padding: 0.7rem 1rem;
+    max-width: 85%;
+    padding: 0.6rem 0.8rem;
     border-radius: 18px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     line-height: 1.5;
     animation: msgPop 0.3s ease;
+    word-break: break-word;
+  }
+
+  @media (min-width: 768px) {
+    .message {
+      max-width: 80%;
+      padding: 0.7rem 1rem;
+      font-size: 0.9rem;
+    }
   }
 
   @keyframes msgPop {
@@ -744,94 +1126,373 @@
   .chat-input-row {
     display: flex;
     gap: 0.5rem;
-    padding: 1rem;
+    padding: 0.8rem;
     border-top: 1px solid rgba(240,98,146,0.15);
-    background: rgba(255,255,255,0.8);
+    background: rgba(255,255,255,0.9);
   }
 
   .chat-input {
     flex: 1;
     border: 2px solid rgba(240,98,146,0.2);
     border-radius: 50px;
-    padding: 0.6rem 1.2rem;
+    padding: 0.6rem 1rem;
     font-family: 'Quicksand', sans-serif;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     outline: none;
     color: var(--text-dark);
     background: white;
     transition: border-color 0.3s ease;
+    -webkit-appearance: none;
   }
 
-  .chat-input:focus { border-color: var(--rose); }
+  .chat-input:focus { 
+    border-color: var(--rose); 
+  }
+
+  /* Voice Section */
+  .voice-section { 
+    background: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 100%); 
+  }
+
+  .voice-btn {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--rose), var(--lavender));
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    box-shadow: 0 10px 35px rgba(240,98,146,0.4);
+    transition: all 0.3s ease;
+    color: white;
+    position: relative;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .voice-btn:active {
+    transform: scale(0.9);
+  }
+
+  @media (min-width: 768px) {
+    .voice-btn {
+      width: 90px;
+      height: 90px;
+      font-size: 2.5rem;
+    }
+  }
+
+  .voice-btn.recording { 
+    animation: recordPulse 1s ease-in-out infinite; 
+    background: linear-gradient(135deg, #e53935, #e91e8c); 
+  }
+
+  @keyframes recordPulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 10px 35px rgba(229,57,53,0.4); }
+    50% { transform: scale(1.1); box-shadow: 0 0 0 20px rgba(229,57,53,0.1), 0 10px 35px rgba(229,57,53,0.5); }
+  }
+
+  .voice-message-item {
+    background: var(--gradient-card);
+    border: 1px solid rgba(240,98,146,0.2);
+    border-radius: 16px;
+    padding: 0.8rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    max-width: 100%;
+    width: 100%;
+    box-shadow: 0 4px 15px rgba(240,98,146,0.1);
+    transition: all 0.3s ease;
+  }
+
+  .voice-message-item:active {
+    transform: translateX(5px);
+  }
+
+  .voice-play-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--rose), var(--lavender));
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(240,98,146,0.3);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .voice-play-btn:active {
+    transform: scale(0.9);
+  }
+
+  .voice-waveform {
+    flex: 1;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .voice-bar {
+    flex: 1;
+    border-radius: 2px;
+    background: linear-gradient(to top, rgba(240,98,146,0.4), var(--rose));
+    transition: height 0.2s ease;
+  }
+
+  .voice-duration { 
+    font-size: 0.7rem; 
+    color: var(--text-light); 
+    font-weight: 600; 
+    flex-shrink: 0; 
+  }
+
+  /* Modal */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(74,25,66,0.7);
+    backdrop-filter: blur(8px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+    padding: 1rem;
+  }
+
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  .modal-box {
+    background: linear-gradient(145deg, #fff0f5, #f3e5f5);
+    border-radius: 32px;
+    padding: 2rem 1.5rem;
+    max-width: 100%;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 30px 80px rgba(74,25,66,0.3);
+    animation: modalPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 2px solid rgba(240,98,146,0.2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .modal-box {
+      padding: 3rem;
+    }
+  }
+
+  @keyframes modalPop {
+    0% { transform: scale(0.5) rotate(-10deg); opacity: 0; }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  }
+
+  .modal-emoji { 
+    font-size: 3rem; 
+    margin-bottom: 1rem; 
+    display: block; 
+    animation: heartbeat 1s ease-in-out infinite; 
+  }
+
+  @media (min-width: 768px) {
+    .modal-emoji {
+      font-size: 4rem;
+    }
+  }
+
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    25% { transform: scale(1.1); }
+    45% { transform: scale(1); }
+    60% { transform: scale(1.05); }
+  }
+
+  .modal-title { 
+    font-family: 'Dancing Script', cursive; 
+    font-size: 1.8rem; 
+    color: var(--rose-deep); 
+    margin-bottom: 0.8rem; 
+  }
+
+  @media (min-width: 768px) {
+    .modal-title {
+      font-size: 2.2rem;
+    }
+  }
+
+  .modal-text { 
+    font-family: 'Cormorant Garamond', serif; 
+    font-size: 1rem; 
+    color: var(--text-dark); 
+    line-height: 1.7; 
+    font-style: italic; 
+    margin-bottom: 1.5rem; 
+  }
+
+  @media (min-width: 768px) {
+    .modal-text {
+      font-size: 1.2rem;
+    }
+  }
 
   /* Countdown */
-  .countdown-section { background: linear-gradient(135deg, #fff9f0 0%, #fce4ec 100%); }
+  .countdown-section { 
+    background: linear-gradient(135deg, #fff9f0 0%, #fce4ec 100%); 
+    gap: 1.5rem;
+  }
 
   .countdown-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 1.2rem;
-    max-width: 800px;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    max-width: 100%;
     width: 100%;
+    padding: 0 0.5rem;
+  }
+
+  @media (min-width: 480px) {
+    .countdown-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .countdown-grid {
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 800px;
+    }
   }
 
   .countdown-item {
     background: var(--gradient-card);
     border: 1px solid rgba(240,98,146,0.2);
     border-radius: 20px;
-    padding: 1.5rem;
+    padding: 1.2rem;
     text-align: center;
     box-shadow: var(--shadow-rose);
     transition: all 0.3s ease;
   }
 
-  .countdown-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-deep); }
-  .countdown-event { font-family: 'Dancing Script', cursive; font-size: 1.4rem; color: var(--rose-deep); margin-bottom: 0.3rem; }
-  .countdown-date { font-size: 0.75rem; color: var(--text-light); font-weight: 600; margin-bottom: 1rem; letter-spacing: 1px; }
-  .countdown-days { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; color: var(--rose-deep); font-weight: 600; line-height: 1; }
-  .countdown-unit { font-size: 0.75rem; color: var(--text-mid); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+  .countdown-item:active {
+    transform: translateY(-2px);
+  }
+
+  .countdown-event { 
+    font-family: 'Dancing Script', cursive; 
+    font-size: 1.2rem; 
+    color: var(--rose-deep); 
+    margin-bottom: 0.3rem; 
+  }
+
+  @media (min-width: 768px) {
+    .countdown-event {
+      font-size: 1.4rem;
+    }
+  }
+
+  .countdown-date { 
+    font-size: 0.7rem; 
+    color: var(--text-light); 
+    font-weight: 600; 
+    margin-bottom: 0.8rem; 
+    letter-spacing: 1px; 
+  }
+
+  .countdown-days { 
+    font-family: 'Cormorant Garamond', serif; 
+    font-size: 2.5rem; 
+    color: var(--rose-deep); 
+    font-weight: 600; 
+    line-height: 1; 
+  }
 
   /* Quiz */
-  .quiz-section { background: linear-gradient(135deg, #f3e5f5 0%, #fff0f5 100%); }
+  .quiz-section { 
+    background: linear-gradient(135deg, #f3e5f5 0%, #fff0f5 100%); 
+  }
 
   .quiz-card {
-    max-width: 600px;
+    max-width: 100%;
     width: 100%;
     text-align: center;
+    padding: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .quiz-card {
+      max-width: 600px;
+      padding: 2rem;
+    }
   }
 
   .quiz-question {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     color: var(--text-dark);
     margin-bottom: 1.5rem;
     line-height: 1.5;
     font-weight: 400;
   }
 
+  @media (min-width: 768px) {
+    .quiz-question {
+      font-size: 1.4rem;
+    }
+  }
+
   .quiz-options {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 0.8rem;
     margin-bottom: 1.5rem;
+  }
+
+  @media (min-width: 480px) {
+    .quiz-options {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
   .quiz-option {
     background: linear-gradient(145deg, rgba(255,255,255,0.9), rgba(252,228,236,0.5));
     border: 2px solid rgba(240,98,146,0.2);
     border-radius: 16px;
-    padding: 0.9rem;
+    padding: 0.8rem;
     cursor: pointer;
     font-family: 'Quicksand', sans-serif;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--text-dark);
     transition: all 0.3s ease;
-    font-weight: 500;
+    font-weight: 600;
+    -webkit-tap-highlight-color: transparent;
   }
 
-  .quiz-option:hover { border-color: var(--rose); background: rgba(240,98,146,0.1); transform: scale(1.02); }
-  .quiz-option.correct { background: linear-gradient(135deg, #a5d6a7, #81c784); border-color: #66bb6a; color: white; }
-  .quiz-option.wrong { background: linear-gradient(135deg, #ef9a9a, #e57373); border-color: #ef5350; color: white; }
+  .quiz-option:active {
+    transform: scale(0.98);
+  }
+
+  .quiz-option.correct { 
+    background: linear-gradient(135deg, #a5d6a7, #81c784); 
+    border-color: #66bb6a; 
+    color: white; 
+  }
+
+  .quiz-option.wrong { 
+    background: linear-gradient(135deg, #ef9a9a, #e57373); 
+    border-color: #ef5350; 
+    color: white; 
+  }
 
   .quiz-score {
     font-family: 'Dancing Script', cursive;
@@ -854,171 +1515,50 @@
     transition: width 0.5s ease;
   }
 
-  /* Voice Messages */
-  .voice-section { background: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 100%); }
-
-  .voice-btn {
-    width: 90px; height: 90px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--rose), var(--lavender));
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    box-shadow: 0 10px 35px rgba(240,98,146,0.4);
-    transition: all 0.3s ease;
-    color: white;
-    position: relative;
-  }
-
-  .voice-btn:hover { transform: scale(1.1); box-shadow: 0 15px 50px rgba(240,98,146,0.5); }
-  .voice-btn.recording { animation: recordPulse 1s ease-in-out infinite; background: linear-gradient(135deg, #e53935, #e91e8c); }
-
-  @keyframes recordPulse {
-    0%, 100% { transform: scale(1); box-shadow: 0 10px 35px rgba(229,57,53,0.4); }
-    50% { transform: scale(1.1); box-shadow: 0 0 0 20px rgba(229,57,53,0.1), 0 10px 35px rgba(229,57,53,0.5); }
-  }
-
-  .voice-message-item {
-    background: var(--gradient-card);
-    border: 1px solid rgba(240,98,146,0.2);
-    border-radius: 16px;
-    padding: 1rem 1.2rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    max-width: 480px;
+  /* Input Field */
+  .input-field {
+    border: 2px solid rgba(240,98,146,0.25);
+    border-radius: 12px;
+    padding: 0.8rem 1rem;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    background: rgba(255,255,255,0.95);
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
     width: 100%;
-    box-shadow: 0 4px 15px rgba(240,98,146,0.1);
-    transition: all 0.3s ease;
+    -webkit-appearance: none;
   }
 
-  .voice-message-item:hover { transform: translateX(5px); box-shadow: var(--shadow-rose); }
-
-  .voice-play-btn {
-    width: 42px; height: 42px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--rose), var(--lavender));
-    border: none;
-    cursor: pointer;
-    color: white;
-    font-size: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(240,98,146,0.3);
+  .input-field:focus {
+    border-color: var(--rose);
+    box-shadow: 0 0 0 3px rgba(240,98,146,0.1);
   }
 
-  .voice-play-btn:hover { transform: scale(1.1); }
-
-  .voice-waveform {
-    flex: 1;
-    height: 36px;
-    display: flex;
-    align-items: center;
-    gap: 2px;
-  }
-
-  .voice-bar {
-    flex: 1;
-    border-radius: 2px;
-    background: linear-gradient(to top, rgba(240,98,146,0.4), var(--rose));
-    transition: height 0.2s ease;
-  }
-
-  .voice-duration { font-size: 0.75rem; color: var(--text-light); font-weight: 600; flex-shrink: 0; }
-
-  /* Modal / Fireworks */
-  .modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(74,25,66,0.5);
-    backdrop-filter: blur(8px);
-    z-index: 2000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    animation: fadeIn 0.3s ease;
-  }
-
-  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-  .modal-box {
-    background: linear-gradient(145deg, #fff0f5, #f3e5f5);
-    border-radius: 32px;
-    padding: 3rem;
-    max-width: 500px;
-    width: 90%;
+  .secret-input {
     text-align: center;
-    box-shadow: 0 30px 80px rgba(74,25,66,0.3);
-    animation: modalPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    border: 2px solid rgba(240,98,146,0.2);
-    position: relative;
-    overflow: hidden;
+    letter-spacing: 4px;
+    font-size: 1.3rem;
+    max-width: 200px;
+    margin: 0 auto;
   }
 
-  @keyframes modalPop {
-    0% { transform: scale(0.5) rotate(-10deg); opacity: 0; }
-    100% { transform: scale(1) rotate(0deg); opacity: 1; }
-  }
-
-  .modal-box::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 50% 0%, rgba(240,98,146,0.1), transparent 60%);
-    pointer-events: none;
-  }
-
-  .modal-emoji { font-size: 4rem; margin-bottom: 1rem; display: block; animation: heartbeat 1s ease-in-out infinite; }
-  @keyframes heartbeat {
-    0%, 100% { transform: scale(1); }
-    25% { transform: scale(1.1); }
-    45% { transform: scale(1); }
-    60% { transform: scale(1.05); }
-  }
-
-  .modal-title { font-family: 'Dancing Script', cursive; font-size: 2.2rem; color: var(--rose-deep); margin-bottom: 0.8rem; }
-  .modal-text { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--text-dark); line-height: 1.7; font-style: italic; margin-bottom: 1.5rem; }
-
-  /* Responsive */
-  @media (max-width: 768px) {
-    .nav-links { gap: 0.2rem; }
-    .nav-btn { font-size: 0.65rem; padding: 0.25rem 0.5rem; }
-    .timer-grid { grid-template-columns: repeat(2, 1fr); }
-    .quiz-options { grid-template-columns: 1fr; }
-    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-    .music-player { bottom: 1rem; right: 1rem; left: 1rem; max-width: none; }
-    .countdown-grid { grid-template-columns: 1fr; }
-    .dreams-grid { grid-template-columns: 1fr; }
-  }
-
-  @media (max-width: 480px) {
-    .nav { padding: 0 1rem; }
-    .section { padding: 70px 1rem 3rem; }
-    .letter-card { padding: 2rem 1.2rem; }
-    .timer-grid { grid-template-columns: repeat(2, 1fr); gap: 0.7rem; }
-  }
-
-  .dreams-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1rem;
-    max-width: 800px;
-    width: 100%;
-  }
-
+  /* Confetti */
   .confetti-piece {
     position: fixed;
-    width: 10px; height: 10px;
+    width: 6px;
+    height: 6px;
     pointer-events: none;
     z-index: 9999;
     border-radius: 2px;
     animation: confettiFall 3s ease-in forwards;
+  }
+
+  @media (min-width: 768px) {
+    .confetti-piece {
+      width: 10px;
+      height: 10px;
+    }
   }
 
   @keyframes confettiFall {
@@ -1026,11 +1566,48 @@
     100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
   }
 
-  /* Map pins */
+  /* Stars */
+  .stars-animation {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .star {
+    position: absolute;
+    color: var(--gold);
+    font-size: 0.8rem;
+    animation: twinkle 3s ease-in-out infinite;
+  }
+
+  @media (min-width: 768px) {
+    .star {
+      font-size: 1rem;
+    }
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.2; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.3); }
+  }
+
+  @keyframes slideshowFade {
+    0% { opacity: 0; transform: scale(0.94) translateY(12px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  @keyframes auroraShift {
+    0%, 100% { transform: translateX(0) scaleY(1); opacity: 0.8; }
+    33% { transform: translateX(5%) scaleY(1.1); opacity: 1; }
+    66% { transform: translateX(-5%) scaleY(0.9); opacity: 0.6; }
+  }
+
+  /* Map Pins */
   .map-pins {
     position: relative;
     width: 100%;
-    height: 400px;
+    height: 350px;
     background: linear-gradient(135deg, #e8f5e9, #f3e5f5);
     border-radius: 20px;
     overflow: hidden;
@@ -1039,7 +1616,16 @@
     justify-content: center;
   }
 
-  .map-svg { width: 100%; height: 100%; }
+  @media (min-width: 768px) {
+    .map-pins {
+      height: 400px;
+    }
+  }
+
+  .map-svg { 
+    width: 100%; 
+    height: 100%; 
+  }
 
   .map-pin {
     cursor: pointer;
@@ -1047,24 +1633,8 @@
     filter: drop-shadow(0 3px 8px rgba(240,98,146,0.4));
   }
 
-  .map-pin:hover { transform: scale(1.3) translateY(-5px); }
-
-  .input-field {
-    border: 2px solid rgba(240,98,146,0.25);
-    border-radius: 12px;
-    padding: 0.7rem 1rem;
-    font-family: 'Quicksand', sans-serif;
-    font-size: 0.9rem;
-    color: var(--text-dark);
-    background: rgba(255,255,255,0.9);
-    outline: none;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    width: 100%;
-  }
-
-  .input-field:focus {
-    border-color: var(--rose);
-    box-shadow: 0 0 0 3px rgba(240,98,146,0.1);
+  .map-pin:active {
+    transform: scale(1.2) translateY(-2px);
   }
 
   .typing-indicator {
@@ -1081,10 +1651,18 @@
   }
 
   .typing-dot {
-    width: 6px; height: 6px;
+    width: 5px;
+    height: 5px;
     border-radius: 50%;
     background: var(--rose);
     animation: typingBounce 1.4s ease-in-out infinite;
+  }
+
+  @media (min-width: 768px) {
+    .typing-dot {
+      width: 6px;
+      height: 6px;
+    }
   }
 
   .typing-dot:nth-child(2) { animation-delay: 0.2s; }
@@ -1104,58 +1682,69 @@
     50% { opacity: 0.7; transform: scale(1.1); }
   }
 
-  .section-desc {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1rem;
-    font-style: italic;
-    color: var(--text-light);
-    text-align: center;
-    margin-bottom: 2rem;
-    max-width: 500px;
+  .lock-icon { 
+    font-size: 3rem; 
+    margin-bottom: 1rem; 
+    animation: wobble 2s ease-in-out infinite; 
   }
 
-  .lock-icon { font-size: 4rem; margin-bottom: 1rem; animation: wobble 2s ease-in-out infinite; }
+  @media (min-width: 768px) {
+    .lock-icon {
+      font-size: 4rem;
+    }
+  }
+
   @keyframes wobble {
     0%, 100% { transform: rotate(0deg); }
     25% { transform: rotate(-10deg); }
     75% { transform: rotate(10deg); }
   }
 
-  .secret-input {
-    text-align: center;
-    letter-spacing: 4px;
-    font-size: 1.5rem;
-    max-width: 200px;
+  /* Domain Section */
+  .domain-step {
+    background: var(--gradient-card);
+    border: 1px solid rgba(240,98,146,0.2);
+    border-radius: 20px;
+    padding: 1.2rem;
+    box-shadow: var(--shadow-rose);
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    width: 100%;
   }
 
-  .stars-animation {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    overflow: hidden;
+  .domain-step-num {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, var(--rose), var(--lavender));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 12px rgba(240,98,146,0.3);
   }
 
-  .star {
-    position: absolute;
-    color: var(--gold);
-    font-size: 1rem;
-    animation: twinkle 3s ease-in-out infinite;
+  @media (min-width: 768px) {
+    .domain-step-num {
+      width: 40px;
+      height: 40px;
+    }
   }
 
-  @keyframes twinkle {
-    0%, 100% { opacity: 0.2; transform: scale(0.8); }
-    50% { opacity: 1; transform: scale(1.3); }
-  }
-
-  @keyframes slideshowFade {
-    0% { opacity: 0; transform: scale(0.94) translateY(12px); }
-    100% { opacity: 1; transform: scale(1) translateY(0); }
-  }
-
-  @keyframes auroraShift {
-    0%, 100% { transform: translateX(0) scaleY(1); opacity: 0.8; }
-    33% { transform: translateX(5%) scaleY(1.1); opacity: 1; }
-    66% { transform: translateX(-5%) scaleY(0.9); opacity: 0.6; }
+  .domain-code {
+    background: rgba(74,25,66,0.06);
+    border: 1px solid rgba(240,98,146,0.15);
+    border-radius: 10px;
+    padding: 0.6rem 1rem;
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: var(--text-dark);
+    word-break: break-all;
+    line-height: 1.6;
   }
 </style>
 </head>
@@ -1232,7 +1821,7 @@ const galleryMemories = [
   { id: 8, emoji: "🌹", label: "Roses & Love Notes", bg: "linear-gradient(135deg,#f06292,#fce4ec)" },
 ];
 
-const futureDrawms = [
+const futureDreams = [
   { emoji: "🏡", title: "Our Dream Home", text: "A cozy home filled with laughter, love, and the smell of fresh flowers — just for us." },
   { emoji: "✈️", title: "Travels Together", text: "Exploring the world hand-in-hand, collecting memories in every corner of this beautiful planet." },
   { emoji: "🌱", title: "Growing Together", text: "Growing, learning, and becoming the best versions of ourselves — side by side, always." },
@@ -1272,788 +1861,8 @@ const aiResponses = [
 ];
 
 // ==============================
-// COMPONENTS
+// SMART AI RESPONSES (Hindi/Urdu)
 // ==============================
-
-function HeartParticles() {
-  const hearts = ['💕', '💗', '💖', '💝', '🩷', '❤️', '✨', '🌸'];
-  return (
-    <div className="hearts-bg">
-      {Array.from({length: 18}).map((_, i) => (
-        <div key={i} className="heart-particle" style={{
-          left: `${Math.random() * 100}%`,
-          animationDuration: `${8 + Math.random() * 12}s`,
-          animationDelay: `${Math.random() * 10}s`,
-          fontSize: `${0.6 + Math.random() * 1.2}rem`,
-        }}>{hearts[i % hearts.length]}</div>
-      ))}
-    </div>
-  );
-}
-
-function Nav({ sections, active, setActive }) {
-  const labels = {
-    welcome: '🏠', letter: '💌', gallery: '📸', reasons: '💕',
-    timer: '⏰', daily: '🌸', surprise: '🎁', diary: '📔',
-    map: '🗺️', dreams: '🌠', ai: '💬', voice: '🎙️', countdown: '📅', quiz: '🎮', domain: '🌐'
-  };
-  const names = {
-    welcome: 'Welcome', letter: 'Letter', gallery: 'Gallery', reasons: 'Love',
-    timer: 'Timer', daily: 'Daily', surprise: 'Surprise', diary: 'Diary',
-    map: 'Map', dreams: 'Dreams', ai: 'AI Chat', voice: 'Voice', countdown: 'Countdown', quiz: 'Quiz', domain: 'Domain'
-  };
-  return (
-    <nav className="nav">
-      <div className="nav-logo">Misbu 💕</div>
-      <div className="nav-links">
-        {sections.map(s => (
-          <button key={s} className={`nav-btn${active === s ? ' active' : ''}`}
-            onClick={() => setActive(s)}>
-            {labels[s]} {names[s]}
-          </button>
-        ))}
-      </div>
-    </nav>
-  );
-}
-
-function WelcomeSection() {
-  const [showStars, setShowStars] = useState(false);
-  useEffect(() => { setTimeout(() => setShowStars(true), 1000); }, []);
-  const stars = Array.from({length: 20}).map((_, i) => ({
-    top: `${Math.random() * 100}%`, left: `${Math.random() * 100}%`,
-    delay: `${Math.random() * 3}s`, size: `${0.5 + Math.random()}rem`
-  }));
-  return (
-    <div className="section welcome-section">
-      {showStars && <div className="stars-animation">
-        {stars.map((s, i) => <span key={i} className="star" style={{
-          top: s.top, left: s.left, animationDelay: s.delay, fontSize: s.size
-        }}>✦</span>)}
-      </div>}
-      <div style={{position:'relative', zIndex:2, textAlign:'center'}}>
-        <div style={{fontSize:'3rem', marginBottom:'1rem', animation:'heartbeat 1.5s ease-in-out infinite'}}>💕</div>
-        <h1 className="welcome-name">Welcome My Love<br/>Misbu</h1>
-        <p className="welcome-subtitle">"In a sea of people, my eyes will always search for you."</p>
-        <p className="welcome-tagline">This little corner of the universe was built just for you 🌸</p>
-        <div style={{marginTop:'2.5rem', display:'flex', gap:'1rem', justifyContent:'center', flexWrap:'wrap'}}>
-          <div style={{
-            background:'linear-gradient(145deg,rgba(255,255,255,0.9),rgba(252,228,236,0.7))',
-            border:'1px solid rgba(240,98,146,0.2)', borderRadius:'20px',
-            padding:'1rem 1.5rem', backdropFilter:'blur(10px)',
-            animation:'fadeInUp 1.5s ease 1.5s forwards', opacity:0
-          }}>
-            <div style={{fontSize:'1.5rem'}}>🌹</div>
-            <div style={{fontSize:'0.75rem', color:'var(--text-mid)', fontWeight:600, marginTop:'0.3rem'}}>Made with Love</div>
-          </div>
-          <div style={{
-            background:'linear-gradient(145deg,rgba(255,255,255,0.9),rgba(252,228,236,0.7))',
-            border:'1px solid rgba(240,98,146,0.2)', borderRadius:'20px',
-            padding:'1rem 1.5rem', backdropFilter:'blur(10px)',
-            animation:'fadeInUp 1.5s ease 1.8s forwards', opacity:0
-          }}>
-            <div style={{fontSize:'1.5rem'}}>✨</div>
-            <div style={{fontSize:'0.75rem', color:'var(--text-mid)', fontWeight:600, marginTop:'0.3rem'}}>Just For Misbu</div>
-          </div>
-          <div style={{
-            background:'linear-gradient(145deg,rgba(255,255,255,0.9),rgba(252,228,236,0.7))',
-            border:'1px solid rgba(240,98,146,0.2)', borderRadius:'20px',
-            padding:'1rem 1.5rem', backdropFilter:'blur(10px)',
-            animation:'fadeInUp 1.5s ease 2.1s forwards', opacity:0
-          }}>
-            <div style={{fontSize:'1.5rem'}}>💖</div>
-            <div style={{fontSize:'0.75rem', color:'var(--text-mid)', fontWeight:600, marginTop:'0.3rem'}}>Forever Always</div>
-          </div>
-        </div>
-      </div>
-      <div className="scroll-hint">
-        <span>Scroll to explore</span>
-        <span style={{fontSize:'1.2rem'}}>↓</span>
-      </div>
-    </div>
-  );
-}
-
-const dailyLetters = [
-  // Sunday
-  `My Dearest Misbu,\n\nToday is Sunday, and I find myself doing what I do every day — thinking about you. There is something about Sundays that makes me wish we were together, lazy and warm, with no place to be but beside each other.\n\nYour laugh lives in my head like a favourite song. I catch myself smiling at nothing, and then I realise — it is always because of you.\n\nYou are the most beautiful thing that has ever happened to me. Every single Sunday, and every other day too.`,
-  // Monday
-  `My Dearest Misbu,\n\nMondays are hard for most people, but not for me — because Monday means another week of getting to love you. Another week of your messages, your voice, your warmth reaching me across whatever distance is between us.\n\nI want you to know that you make even the dullest days feel like they hold something precious. That something is you.\n\nStart this week knowing you are deeply, completely, endlessly loved. Always.`,
-  // Tuesday
-  `My Dearest Misbu,\n\nI have been thinking about all the little things I love about you. The way you think. The way you care. The way you exist so beautifully in this world.\n\nYou do not always see what I see — someone extraordinary, someone rare. But I see it. I see it every time.\n\nTuesday feels brighter just because you are in it. You are my favourite part of every day, Misbu.`,
-  // Wednesday
-  `My Dearest Misbu,\n\nWe are in the middle of the week and I just wanted to pause and tell you: I am so grateful you exist. That you are you. That somehow, in this enormous world, I found you.\n\nEvery conversation with you is a gift. Every moment you share with me, I hold it gently like something sacred.\n\nYou are loved beyond what words can hold. Do not forget that today, Misbu.`,
-  // Thursday
-  `My Dearest Misbu,\n\nThursday. Almost the weekend. Almost another chance to feel a little closer to you.\n\nI think about our future sometimes — the quiet mornings, the shared silences, the life we will build. And every version of that future has you at the centre of it, glowing and whole and mine.\n\nThank you for being someone worth dreaming about. You are everything, Misbu.`,
-  // Friday
-  `My Dearest Misbu,\n\nIt is Friday, and my heart feels light — the way it always does when I think of you.\n\nI hope this week treated you well. I hope you smiled more than you worried. I hope you knew, even for a moment, how cherished you are.\n\nYou deserve every beautiful thing this world has to offer. I will spend every day trying to be one of those beautiful things for you. Always and forever, Misbu.`,
-  // Saturday
-  `My Dearest Misbu,\n\nSaturday — the day feels soft and golden, a little like you.\n\nIf I could spend this day any way I wanted, I would spend it talking to you, laughing with you, simply being near you. You are the kind of person who makes ordinary moments feel like they belong in a poem.\n\nI love you in ways I am still discovering. New reasons every day. Today, tomorrow, and every Saturday after this.`,
-];
-
-function LoveLetterSection() {
-  const todayIdx = new Date().getDay(); // 0=Sun ... 6=Sat
-  const fullText = dailyLetters[todayIdx];
-  const today = new Date().toLocaleDateString('en-US', {weekday:'long', month:'long', day:'numeric', year:'numeric'});
-  const [displayed, setDisplayed] = useState('');
-  const [charIdx, setCharIdx] = useState(0);
-  const [started, setStarted] = useState(false);
-  const [letterKey, setLetterKey] = useState(todayIdx);
-
-  // Reset when letter changes (day changed or re-open)
-  useEffect(() => {
-    setDisplayed('');
-    setCharIdx(0);
-    setStarted(false);
-  }, [letterKey]);
-
-  useEffect(() => {
-    if (!started) return;
-    if (charIdx < fullText.length) {
-      const t = setTimeout(() => {
-        setDisplayed(fullText.slice(0, charIdx + 1));
-        setCharIdx(i => i + 1);
-      }, 22);
-      return () => clearTimeout(t);
-    }
-  }, [charIdx, started, fullText]);
-
-  return (
-    <div className="section letter-section">
-      <h2 className="section-title">Today's Letter For You 💌</h2>
-      <p className="section-desc">A brand new letter written just for you, every single day</p>
-      <div style={{display:'flex', gap:'0.5rem', marginBottom:'1.5rem', flexWrap:'wrap', justifyContent:'center'}}>
-        {['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map((d, i) => (
-          <button key={i} onClick={() => { setLetterKey(i); }}
-            style={{
-              padding:'0.4rem 0.9rem', borderRadius:'20px', border:'none', cursor:'pointer',
-              fontFamily:'Quicksand,sans-serif', fontSize:'0.78rem', fontWeight:700,
-              background: letterKey === i
-                ? 'linear-gradient(135deg, var(--rose), var(--lavender))'
-                : 'rgba(240,98,146,0.1)',
-              color: letterKey === i ? 'white' : 'var(--text-mid)',
-              boxShadow: letterKey === i ? '0 4px 14px rgba(240,98,146,0.3)' : 'none',
-              transition:'all 0.2s ease'
-            }}>
-            {d} {i === todayIdx ? '✦' : ''}
-          </button>
-        ))}
-      </div>
-      <div className="letter-card card">
-        <div style={{fontSize:'0.75rem', color:'var(--text-light)', fontWeight:600, letterSpacing:'1px', marginBottom:'1rem', textAlign:'right'}}>
-          {['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][letterKey]}
-        </div>
-        {!started ? (
-          <div style={{textAlign:'center', padding:'2rem'}}>
-            <div style={{fontSize:'3rem', marginBottom:'1rem'}}>💌</div>
-            <p style={{fontFamily:'Cormorant Garamond,serif', fontSize:'1.1rem', color:'var(--text-mid)', fontStyle:'italic', marginBottom:'1.5rem'}}>
-              A letter has been written especially for you, Misbu...
-            </p>
-            <button className="btn-rose" onClick={() => setStarted(true)}>Open My Letter 💕</button>
-          </div>
-        ) : (
-          <>
-            <p className="letter-text">{displayed}{charIdx < fullText.length && <span className="cursor-blink"/>}</p>
-            {charIdx >= fullText.length && (
-              <>
-                <p className="letter-signature">Forever yours, with all my love 💕</p>
-                <button onClick={() => { setDisplayed(''); setCharIdx(0); setStarted(false); }}
-                  style={{marginTop:'1rem', background:'none', border:'1px solid rgba(240,98,146,0.3)',
-                    borderRadius:'20px', padding:'0.4rem 1.2rem', cursor:'pointer',
-                    color:'var(--text-light)', fontSize:'0.8rem', fontFamily:'Quicksand,sans-serif'}}>
-                  Read Again 🔄
-                </button>
-              </>
-            )}
-          </>
-        )}
-      </div>
-    </div>
-  );
-}
-
-function GallerySection() {
-  const [photos, setPhotos] = useState({});
-  const [selected, setSelected] = useState(null);
-  const [uploading, setUploading] = useState(null);
-  const [slideshowOn, setSlideshowOn] = useState(false);
-  const [slideIdx, setSlideIdx] = useState(0);
-  const fileRefs = useRef({});
-  const slideTimer = useRef(null);
-
-  // Get only frames that have photos uploaded
-  const uploadedPhotos = galleryMemories.filter(m => photos[m.id]);
-
-  // Slideshow auto-advance
-  useEffect(() => {
-    if (!slideshowOn || uploadedPhotos.length === 0) return;
-    slideTimer.current = setInterval(() => {
-      setSlideIdx(i => (i + 1) % uploadedPhotos.length);
-    }, 3500);
-    return () => clearInterval(slideTimer.current);
-  }, [slideshowOn, uploadedPhotos.length]);
-
-  const startSlideshow = () => {
-    if (uploadedPhotos.length < 2) {
-      alert('Upload at least 2 photos to start the slideshow 📸');
-      return;
-    }
-    setSlideIdx(0);
-    setSlideshowOn(true);
-  };
-
-  const handleFile = (id, file) => {
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = e => setPhotos(prev => ({...prev, [id]: e.target.result}));
-    reader.readAsDataURL(file);
-  };
-
-  // ---- Slideshow Modal ----
-  if (slideshowOn && uploadedPhotos.length > 0) {
-    const current = uploadedPhotos[slideIdx % uploadedPhotos.length];
-    return (
-      <div style={{
-        position:'fixed', inset:0, zIndex:3000,
-        background:'#0a0010',
-        display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center',
-        overflow:'hidden'
-      }}>
-
-        {/* ── Aurora background ── */}
-        <div style={{position:'absolute', inset:0, pointerEvents:'none'}}>
-          <div style={{
-            position:'absolute', width:'120%', height:'60%', left:'-10%', top:'10%',
-            background:'radial-gradient(ellipse at 30% 50%, rgba(240,98,146,0.18) 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, rgba(206,147,216,0.15) 0%, transparent 60%)',
-            animation:'auroraShift 8s ease-in-out infinite', filter:'blur(30px)'
-          }}/>
-          <div style={{
-            position:'absolute', width:'100%', height:'50%', bottom:0,
-            background:'radial-gradient(ellipse at 50% 100%, rgba(233,30,140,0.12) 0%, transparent 70%)',
-            animation:'auroraShift 10s ease-in-out infinite reverse', filter:'blur(40px)'
-          }}/>
-        </div>
-
-        {/* ── Twinkling stars ── */}
-        {Array.from({length:30}).map((_,i) => (
-          <div key={`star-${i}`} style={{
-            position:'absolute',
-            left:`${Math.random()*100}%`,
-            top:`${Math.random()*100}%`,
-            width: i%5===0 ? '3px' : '2px',
-            height: i%5===0 ? '3px' : '2px',
-            borderRadius:'50%',
-            background:'white',
-            opacity: 0.2 + Math.random()*0.6,
-            animation:`twinkle ${2+Math.random()*3}s ease-in-out infinite`,
-            animationDelay:`${Math.random()*4}s`
-          }}/>
-        ))}
-
-        {/* ── Floating hearts & petals ── */}
-        {['💕','💗','🌸','✨','💖','🌹','💫','🩷'].map((h,i) => (
-          <div key={`heart-${i}`} style={{
-            position:'absolute',
-            fontSize:`${0.8 + Math.random()*1.2}rem`,
-            left:`${Math.random()*100}%`,
-            bottom:'-20px',
-            animation:`floatHeart ${8+Math.random()*8}s linear infinite`,
-            animationDelay:`${Math.random()*6}s`,
-            opacity:0.5,
-            filter:'drop-shadow(0 0 8px rgba(240,98,146,0.6))'
-          }}>{h}</div>
-        ))}
-
-        {/* ── Top bar ── */}
-        <div style={{
-          position:'absolute', top:0, left:0, right:0,
-          padding:'1rem 1.5rem',
-          background:'linear-gradient(to bottom, rgba(10,0,16,0.9), transparent)',
-          display:'flex', alignItems:'center', justifyContent:'space-between',
-          zIndex:10
-        }}>
-          <div style={{display:'flex', alignItems:'center', gap:'0.6rem'}}>
-            <span style={{fontSize:'1.3rem', animation:'heartbeat 2s ease-in-out infinite'}}>💕</span>
-            <div style={{fontFamily:'Dancing Script,cursive', fontSize:'1.5rem',
-              background:'linear-gradient(135deg,#f06292,#ce93d8)', backgroundClip:'text',
-              WebkitBackgroundClip:'text', color:'transparent'}}>
-              Our Memories
-            </div>
-          </div>
-          <div style={{display:'flex', alignItems:'center', gap:'0.8rem'}}>
-            <div style={{fontSize:'0.75rem', color:'rgba(255,200,220,0.7)', fontWeight:600}}>
-              {(slideIdx % uploadedPhotos.length) + 1} / {uploadedPhotos.length}
-            </div>
-            <button onClick={() => { setSlideshowOn(false); clearInterval(slideTimer.current); }}
-              style={{background:'rgba(240,98,146,0.2)', border:'1px solid rgba(240,98,146,0.4)',
-                borderRadius:'50%', width:'36px', height:'36px', cursor:'pointer',
-                color:'rgba(255,200,220,0.9)', fontSize:'1rem',
-                display:'flex', alignItems:'center', justifyContent:'center',
-                transition:'all 0.2s'}}>✕</button>
-          </div>
-        </div>
-
-        {/* ── Main photo ── */}
-        <div key={slideIdx} style={{
-          textAlign:'center',
-          animation:'slideshowFade 0.9s cubic-bezier(0.4,0,0.2,1)',
-          maxWidth:'88vw', maxHeight:'68vh',
-          display:'flex', flexDirection:'column', alignItems:'center', gap:'1.2rem',
-          zIndex:5
-        }}>
-          <div style={{
-            position:'relative',
-            borderRadius:'24px',
-            boxShadow:'0 0 0 1px rgba(240,98,146,0.3), 0 0 40px rgba(240,98,146,0.3), 0 0 80px rgba(206,147,216,0.15)',
-            overflow:'hidden'
-          }}>
-            <img
-              src={photos[current.id]}
-              alt={current.label}
-              style={{
-                maxWidth:'100%', maxHeight:'60vh', display:'block',
-                objectFit:'contain', borderRadius:'24px',
-              }}
-            />
-            {/* Glow overlay on photo */}
-            <div style={{
-              position:'absolute', inset:0, borderRadius:'24px',
-              background:'linear-gradient(to top, rgba(240,98,146,0.15) 0%, transparent 40%)',
-              pointerEvents:'none'
-            }}/>
-          </div>
-          <div style={{
-            fontFamily:'Dancing Script,cursive', fontSize:'1.6rem',
-            background:'linear-gradient(135deg,#f9a8c9,#e879f9)',
-            backgroundClip:'text', WebkitBackgroundClip:'text', color:'transparent',
-            textShadow:'none', filter:'drop-shadow(0 2px 12px rgba(240,98,146,0.5))'
-          }}>{current.emoji} {current.label}</div>
-        </div>
-
-        {/* ── Controls ── */}
-        <div style={{
-          position:'absolute', bottom:'2rem', left:0, right:0,
-          display:'flex', flexDirection:'column', alignItems:'center', gap:'1rem',
-          zIndex:10
-        }}>
-          {/* Progress dots */}
-          <div style={{display:'flex', gap:'6px'}}>
-            {uploadedPhotos.map((_, i) => (
-              <div key={i} onClick={() => setSlideIdx(i)} style={{
-                width: i === slideIdx % uploadedPhotos.length ? '28px' : '8px',
-                height:'8px', borderRadius:'4px', cursor:'pointer',
-                background: i === slideIdx % uploadedPhotos.length
-                  ? 'linear-gradient(90deg, #f06292, #ce93d8)'
-                  : 'rgba(255,255,255,0.25)',
-                transition:'all 0.4s ease',
-                boxShadow: i === slideIdx % uploadedPhotos.length ? '0 0 10px rgba(240,98,146,0.6)' : 'none'
-              }}/>
-            ))}
-          </div>
-
-          {/* Prev / Pause / Next */}
-          <div style={{display:'flex', gap:'1rem', alignItems:'center'}}>
-            <button onClick={() => setSlideIdx(i => (i - 1 + uploadedPhotos.length) % uploadedPhotos.length)}
-              style={{background:'rgba(255,255,255,0.08)', border:'1px solid rgba(255,255,255,0.15)',
-                backdropFilter:'blur(10px)', borderRadius:'50%', width:'46px', height:'46px',
-                cursor:'pointer', color:'rgba(255,200,220,0.9)', fontSize:'1.3rem',
-                display:'flex', alignItems:'center', justifyContent:'center',
-                transition:'all 0.2s', boxShadow:'0 4px 15px rgba(0,0,0,0.3)'}}>‹</button>
-
-            <button onClick={() => {
-                if (slideTimer.current) { clearInterval(slideTimer.current); slideTimer.current = null; }
-                else { slideTimer.current = setInterval(() => setSlideIdx(i => (i+1) % uploadedPhotos.length), 3500); }
-              }}
-              style={{background:'linear-gradient(135deg,#f06292,#ce93d8)',
-                border:'none', borderRadius:'50%', width:'56px', height:'56px',
-                cursor:'pointer', color:'white', fontSize:'1.4rem',
-                display:'flex', alignItems:'center', justifyContent:'center',
-                boxShadow:'0 0 25px rgba(240,98,146,0.6), 0 6px 20px rgba(240,98,146,0.4)',
-                animation:'heartbeat 2s ease-in-out infinite'}}>
-              {slideTimer.current ? '⏸' : '▶'}
-            </button>
-
-            <button onClick={() => setSlideIdx(i => (i + 1) % uploadedPhotos.length)}
-              style={{background:'rgba(255,255,255,0.08)', border:'1px solid rgba(255,255,255,0.15)',
-                backdropFilter:'blur(10px)', borderRadius:'50%', width:'46px', height:'46px',
-                cursor:'pointer', color:'rgba(255,200,220,0.9)', fontSize:'1.3rem',
-                display:'flex', alignItems:'center', justifyContent:'center',
-                transition:'all 0.2s', boxShadow:'0 4px 15px rgba(0,0,0,0.3)'}}>›</button>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  // ---- Normal Gallery View ----
-  return (
-    <div className="section gallery-section">
-      <h2 className="section-title">Our Beautiful Memories 📸</h2>
-      <p className="section-desc">Click any frame to add your precious photo — every memory deserves its place here</p>
-
-      <div style={{display:'flex', gap:'0.8rem', marginBottom:'1.5rem', flexWrap:'wrap', justifyContent:'center'}}>
-        <div style={{
-          background:'linear-gradient(135deg,rgba(240,98,146,0.08),rgba(206,147,216,0.08))',
-          borderRadius:'16px', padding:'0.8rem 1.2rem',
-          border:'1px dashed rgba(240,98,146,0.3)', textAlign:'center'
-        }}>
-          <span style={{fontSize:'0.82rem', color:'var(--text-mid)', fontWeight:600}}>
-            📷 Click any photo frame to upload your memory
-          </span>
-        </div>
-        <button className="btn-rose" onClick={startSlideshow}
-          style={{padding:'0.7rem 1.5rem', fontSize:'0.9rem',
-            opacity: uploadedPhotos.length >= 2 ? 1 : 0.5}}>
-          ▶ Slideshow {uploadedPhotos.length >= 2 ? `(${uploadedPhotos.length} photos)` : '(upload 2+ photos)'}
-        </button>
-      </div>
-
-      <div className="gallery-grid">
-        {galleryMemories.map((m) => (
-          <div key={m.id} className="gallery-item"
-            style={{background: photos[m.id] ? 'none' : m.bg, position:'relative'}}
-            onMouseEnter={() => setUploading(m.id)}
-            onMouseLeave={() => setUploading(null)}
-            onClick={() => {
-              if (photos[m.id]) { setSelected({...m, img: photos[m.id]}); }
-              else { fileRefs.current[m.id]?.click(); }
-            }}>
-            <input
-              ref={el => fileRefs.current[m.id] = el}
-              type="file" accept="image/*" style={{display:'none'}}
-              onChange={e => handleFile(m.id, e.target.files[0])}/>
-            {photos[m.id] ? (
-              <>
-                <img src={photos[m.id]} alt={m.label} style={{width:'100%',height:'100%',objectFit:'cover'}}/>
-                <div className="gallery-overlay">{m.label}</div>
-                {uploading === m.id && (
-                  <div style={{
-                    position:'absolute', inset:0, background:'rgba(74,25,66,0.55)',
-                    display:'flex', flexDirection:'column', alignItems:'center',
-                    justifyContent:'center', gap:'0.4rem', borderRadius:'18px'
-                  }}>
-                    <span style={{fontSize:'1.8rem'}}>🔄</span>
-                    <span style={{color:'white', fontSize:'0.75rem', fontWeight:700}}>Change Photo</span>
-                  </div>
-                )}
-              </>
-            ) : (
-              <>
-                <div className="gallery-placeholder">
-                  <div style={{fontSize:'3rem'}}>{m.emoji}</div>
-                  <div style={{fontSize:'0.7rem', marginTop:'0.5rem', color:'var(--text-mid)', fontWeight:600}}>{m.label}</div>
-                </div>
-                {uploading === m.id && (
-                  <div style={{
-                    position:'absolute', inset:0, background:'rgba(240,98,146,0.15)',
-                    display:'flex', flexDirection:'column', alignItems:'center',
-                    justifyContent:'center', gap:'0.4rem', borderRadius:'18px',
-                    border:'2px dashed rgba(240,98,146,0.5)'
-                  }}>
-                    <span style={{fontSize:'2rem'}}>📷</span>
-                    <span style={{color:'var(--rose-deep)', fontSize:'0.75rem', fontWeight:700}}>Upload Photo</span>
-                  </div>
-                )}
-              </>
-            )}
-          </div>
-        ))}
-      </div>
-
-      {selected && (
-        <div className="modal-overlay" onClick={() => setSelected(null)}>
-          <div className="modal-box" onClick={e => e.stopPropagation()} style={{maxWidth:560}}>
-            {selected.img ? (
-              <img src={selected.img} alt={selected.label} style={{
-                width:'100%', maxHeight:'300px', objectFit:'cover',
-                borderRadius:'16px', marginBottom:'1rem',
-                boxShadow:'0 10px 30px rgba(240,98,146,0.2)'
-              }}/>
-            ) : (
-              <span className="modal-emoji">{selected.emoji}</span>
-            )}
-            <h3 className="modal-title">{selected.label}</h3>
-            <p className="modal-text">A beautiful memory that lives forever in our hearts. Every moment with you is pure gold, Misbu. 💕</p>
-            <div style={{display:'flex', gap:'0.8rem', justifyContent:'center', flexWrap:'wrap'}}>
-              <button className="btn-rose" onClick={() => { fileRefs.current[selected.id]?.click(); setSelected(null); }}>
-                Change Photo 📷
-              </button>
-              <button className="btn-rose" onClick={() => setSelected(null)}
-                style={{background:'linear-gradient(135deg,var(--lavender),#9c27b0)'}}>
-                Close 💕
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
-function ReasonsSection() {
-  const [reason, setReason] = useState(null);
-  const [key, setKey] = useState(0);
-  const showReason = () => {
-    setReason(loveReasons[Math.floor(Math.random() * loveReasons.length)]);
-    setKey(k => k + 1);
-  };
-  return (
-    <div className="section reasons-section">
-      <h2 className="section-title">Why I Love You 💕</h2>
-      <p className="section-desc">Every click reveals another reason — and there are infinite of them</p>
-      {reason && <div key={key} className="reason-bubble">{reason}</div>}
-      <button className="btn-rose" onClick={showReason} style={{fontSize:'1.1rem', padding:'1rem 2.5rem'}}>
-        {reason ? 'Another Reason 💕' : 'Why I Love You 💕'}
-      </button>
-      {reason && (
-        <p style={{marginTop:'1rem', color:'var(--text-light)', fontSize:'0.85rem', fontStyle:'italic'}}>
-          And there are still infinite more reasons, Misbu... 💖
-        </p>
-      )}
-    </div>
-  );
-}
-
-function TimerSection() {
-  const startDate = new Date('2025-11-12T00:00:00'); // Baat karna start ki thi
-  const [time, setTime] = useState({});
-
-  const calc = () => {
-    const now = new Date();
-    const diff = now - startDate;
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const secs = Math.floor((diff % (1000 * 60)) / 1000);
-    setTime({ days, hours, mins, secs });
-  };
-
-  useEffect(() => { calc(); const t = setInterval(calc, 1000); return () => clearInterval(t); }, []);
-
-  return (
-    <div className="section timer-section">
-      <h2 className="section-title">Time Together 💑</h2>
-      <p className="section-desc">Since 12 November 2025 — the day our story began 🌸</p>
-      <div className="timer-grid">
-        {[['days', 'Days'], ['hours', 'Hours'], ['mins', 'Minutes'], ['secs', 'Seconds']].map(([k, l]) => (
-          <div key={k} className="timer-unit">
-            <span className="timer-number">{String(time[k] || 0).padStart(2, '0')}</span>
-            <span className="timer-label">{l}</span>
-          </div>
-        ))}
-      </div>
-      <p style={{marginTop:'2rem', fontFamily:'Cormorant Garamond,serif', fontStyle:'italic', fontSize:'1.1rem', color:'var(--text-mid)', textAlign:'center'}}>
-        "And I would spend every single one of these moments with you again." 💕
-      </p>
-    </div>
-  );
-}
-
-function DailySection() {
-  const idx = new Date().getDay();
-  const msg = dailyMessages[idx % dailyMessages.length];
-  const today = new Date().toLocaleDateString('en-US', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
-  return (
-    <div className="section daily-section">
-      <h2 className="section-title">Today's Love Message 🌸</h2>
-      <div className="card daily-card" style={{maxWidth:600, width:'100%', textAlign:'center', padding:'2.5rem'}}>
-        <div className="daily-date">{today}</div>
-        <div style={{fontSize:'3rem', margin:'1rem 0', animation:'heartbeat 2s ease-in-out infinite'}}>💌</div>
-        <p className="daily-message">{msg}</p>
-        <div style={{
-          background:'linear-gradient(135deg, rgba(240,98,146,0.1), rgba(206,147,216,0.1))',
-          borderRadius:'12px', padding:'0.8rem 1.2rem', marginTop:'1rem'
-        }}>
-          <p style={{fontSize:'0.85rem', color:'var(--text-light)', fontStyle:'italic'}}>
-            A fresh message of love awaits you every single day, Misbu 🌹
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function SurpriseSection() {
-  const [reveal, setReveal] = useState(null);
-  const [key, setKey] = useState(0);
-  const [showConfetti, setShowConfetti] = useState(false);
-
-  const launchConfetti = () => {
-    setShowConfetti(true);
-    setTimeout(() => setShowConfetti(false), 3000);
-  };
-
-  const doSurprise = () => {
-    const s = surprises[Math.floor(Math.random() * surprises.length)];
-    setReveal(s); setKey(k => k+1); launchConfetti();
-  };
-
-  return (
-    <div className="section surprise-section">
-      {showConfetti && Array.from({length: 30}).map((_, i) => (
-        <div key={i} className="confetti-piece" style={{
-          left: `${Math.random() * 100}%`,
-          top: '-50px',
-          background: ['#f06292','#ce93d8','#ffd700','#ff8a65','#80cbc4'][i % 5],
-          animationDelay: `${Math.random() * 1}s`,
-          width: `${6 + Math.random() * 10}px`,
-          height: `${6 + Math.random() * 10}px`,
-          borderRadius: Math.random() > 0.5 ? '50%' : '2px',
-        }}/>
-      ))}
-      <h2 className="section-title">Surprise For You 🎁</h2>
-      <p className="section-desc">Every click holds a little magic just for you, Misbu</p>
-      {reveal && (
-        <div key={key} className="surprise-reveal card" style={{textAlign:'center', maxWidth:480, padding:'2.5rem', marginBottom:'2rem'}}>
-          <div className="surprise-emoji">{reveal.emoji}</div>
-          <h3 style={{fontFamily:'Dancing Script,cursive', fontSize:'1.8rem', color:'var(--rose-deep)', marginBottom:'0.8rem'}}>{reveal.title}</h3>
-          <p style={{fontFamily:'Cormorant Garamond,serif', fontSize:'1.2rem', fontStyle:'italic', color:'var(--text-dark)', lineHeight:1.7}}>{reveal.message}</p>
-        </div>
-      )}
-      <button className="btn-rose" onClick={doSurprise} style={{fontSize:'1.1rem', padding:'1rem 2.5rem'}}>
-        {reveal ? '✨ Another Surprise!' : '🎁 Open Your Surprise!'}
-      </button>
-    </div>
-  );
-}
-
-function DiarySection() {
-  const [text, setText] = useState('');
-  const [entries, setEntries] = useState([]);
-  const [locked, setLocked] = useState(true);
-  const [pin, setPin] = useState('');
-  const SECRET = '0786';
-
-  if (locked) return (
-    <div className="section diary-section">
-      <h2 className="section-title">Secret Love Diary 📔</h2>
-      <div className="card" style={{textAlign:'center', maxWidth:400, padding:'2.5rem'}}>
-        <div className="lock-icon">🔒</div>
-        <p style={{fontFamily:'Cormorant Garamond,serif', fontStyle:'italic', fontSize:'1.1rem', color:'var(--text-mid)', marginBottom:'1.5rem'}}>
-          This diary holds the most private thoughts of a heart deeply in love...
-        </p>
-        <input className="input-field secret-input" type="password" maxLength={4}
-          placeholder="Enter PIN" value={pin}
-          onChange={e => { setPin(e.target.value); if (e.target.value === SECRET) setLocked(false); }}/>
-        <p style={{fontSize:'0.75rem', color:'var(--text-light)', marginTop:'0.8rem'}}>Hint: Our special number 🔑</p>
-      </div>
-    </div>
-  );
-
-  return (
-    <div className="section diary-section">
-      <h2 className="section-title">Secret Love Diary 📔</h2>
-      <p className="section-desc">A private space for the most heartfelt words</p>
-      <div style={{width:'100%', maxWidth:600, display:'flex', flexDirection:'column', gap:'1rem', alignItems:'center'}}>
-        <textarea className="diary-input" placeholder="Write something beautiful for Misbu here... 💕"
-          value={text} onChange={e => setText(e.target.value)}/>
-        <button className="btn-rose" onClick={() => {
-          if (text.trim()) {
-            setEntries(prev => [{text: text.trim(), date: new Date().toLocaleString()}, ...prev]);
-            setText('');
-          }
-        }}>Save to Diary 💕</button>
-        {entries.map((e, i) => (
-          <div key={i} className="diary-entry">
-            <div className="diary-entry-date">📅 {e.date}</div>
-            <div className="diary-entry-text">{e.text}</div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function MapSection() {
-  const [tooltip, setTooltip] = useState(null);
-  return (
-    <div className="section map-section">
-      <h2 className="section-title">Our Love Map 🗺️</h2>
-      <p className="section-desc">Every pin marks a place that holds a piece of our story</p>
-      <div className="map-container" style={{maxWidth:700, width:'100%'}}>
-        <svg viewBox="0 0 800 450" style={{width:'100%', height:'auto', display:'block', background:'linear-gradient(160deg,#e8f5e9 0%,#e3f2fd 40%,#f3e5f5 70%,#fce4ec 100%)'}}>
-          {/* Decorative landmasses */}
-          <ellipse cx="200" cy="200" rx="180" ry="140" fill="rgba(206,147,216,0.15)" stroke="rgba(240,98,146,0.2)" strokeWidth="1.5"/>
-          <ellipse cx="580" cy="280" rx="160" ry="120" fill="rgba(255,204,188,0.2)" stroke="rgba(240,98,146,0.2)" strokeWidth="1.5"/>
-          <ellipse cx="400" cy="150" rx="120" ry="90" fill="rgba(128,203,196,0.15)" stroke="rgba(240,98,146,0.1)" strokeWidth="1"/>
-          {/* Grid lines */}
-          {[100,200,300,400,500,600,700].map(x=><line key={x} x1={x} y1="0" x2={x} y2="450" stroke="rgba(240,98,146,0.06)" strokeWidth="1"/>)}
-          {[75,150,225,300,375].map(y=><line key={y} x1="0" y1={y} x2="800" y2={y} stroke="rgba(240,98,146,0.06)" strokeWidth="1"/>)}
-          {/* Pins */}
-          {mapLocations.map((loc, i) => {
-            const cx = loc.x / 100 * 800;
-            const cy = loc.y / 100 * 450;
-            return (
-              <g key={i} className="map-pin" onMouseEnter={() => setTooltip({...loc, cx, cy})} onMouseLeave={() => setTooltip(null)} onClick={() => setTooltip(tooltip?.label===loc.label ? null : {...loc, cx, cy})}>
-                <circle cx={cx} cy={cy} r="22" fill="rgba(240,98,146,0.15)" className="glow-ring"/>
-                <circle cx={cx} cy={cy} r="14" fill="linear-gradient(135deg, #f06292, #ce93d8)"/>
-                <circle cx={cx} cy={cy} r="14" fill="url(#pinGrad)"/>
-                <text x={cx} y={cy+5} textAnchor="middle" fontSize="14">{loc.emoji}</text>
-              </g>
-            );
-          })}
-          <defs>
-            <radialGradient id="pinGrad">
-              <stop offset="0%" stopColor="rgba(255,255,255,0.9)"/>
-              <stop offset="100%" stopColor="rgba(240,98,146,0.8)"/>
-            </radialGradient>
-          </defs>
-          {/* Connection lines */}
-          {mapLocations.map((loc, i) => {
-            if (i === 0) return null;
-            const prev = mapLocations[i-1];
-            return <line key={i}
-              x1={prev.x/100*800} y1={prev.y/100*450}
-              x2={loc.x/100*800} y2={loc.y/100*450}
-              stroke="rgba(240,98,146,0.25)" strokeWidth="1.5" strokeDasharray="5,5"/>;
-          })}
-          {/* Tooltip */}
-          {tooltip && (
-            <g>
-              <rect x={Math.min(tooltip.cx-70, 650)} y={tooltip.cy-60} width="140" height="40"
-                fill="rgba(255,240,245,0.97)" rx="10" stroke="rgba(240,98,146,0.3)" strokeWidth="1.5"
-                style={{filter:'drop-shadow(0 4px 15px rgba(240,98,146,0.3))'}}/>
-              <text x={Math.min(tooltip.cx, 720)} y={tooltip.cy-36} textAnchor="middle"
-                fill="#7b3f6e" fontSize="11" fontWeight="600" fontFamily="Quicksand,sans-serif">{tooltip.label}</text>
-            </g>
-          )}
-        </svg>
-      </div>
-      <div style={{display:'flex', flexWrap:'wrap', gap:'0.7rem', justifyContent:'center', marginTop:'1.5rem', maxWidth:700}}>
-        {mapLocations.map((loc, i) => (
-          <div key={i} style={{
-            background:'var(--gradient-card)', border:'1px solid rgba(240,98,146,0.2)',
-            borderRadius:'12px', padding:'0.5rem 1rem', fontSize:'0.8rem',
-            color:'var(--text-mid)', fontWeight:600, display:'flex', gap:'0.4rem', alignItems:'center',
-            boxShadow:'0 3px 10px rgba(240,98,146,0.1)'
-          }}>
-            <span>{loc.emoji}</span><span>{loc.label}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function DreamsSection() {
-  return (
-    <div className="section dreams-section">
-      <h2 className="section-title">Our Future Dreams 🌠</h2>
-      <p className="section-desc">The most beautiful chapter of our story is still being written</p>
-      <div className="dreams-grid">
-        {futureDrawms.map((d, i) => (
-          <div key={i} className="dream-card">
-            <span className="dream-emoji">{d.emoji}</span>
-            <div className="dream-title">{d.title}</div>
-            <div className="dream-text">{d.text}</div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-// ---- AI Chat (smart keyword-based responses) ----
 const smartReplies = [
   { keys: ['love','pyaar','mohabbat','ishq'], replies: [
     "Misbu, tumhara pyaar is poori duniya ki sabse khoobsurat cheez hai! 💕 Woh tumse itna pyaar karta hai jo alfaaz mein bayaan hi nahi ho sakta. 🌹",
@@ -2110,9 +1919,679 @@ function getSmartReply(input) {
   return aiResponses[Math.floor(Math.random() * aiResponses.length)];
 }
 
+// ==============================
+// COMPONENTS
+// ==============================
+
+function HeartParticles() {
+  const hearts = ['💕', '💗', '💖', '💝', '🩷', '❤️', '✨', '🌸'];
+  return (
+    <div className="hearts-bg">
+      {Array.from({length: 12}).map((_, i) => (
+        <div key={i} className="heart-particle" style={{
+          left: `${Math.random() * 100}%`,
+          animationDuration: `${8 + Math.random() * 12}s`,
+          animationDelay: `${Math.random() * 10}s`,
+          fontSize: `${0.6 + Math.random() * 1.2}rem`,
+        }}>{hearts[i % hearts.length]}</div>
+      ))}
+    </div>
+  );
+}
+
+function Nav({ sections, active, setActive }) {
+  const labels = {
+    welcome: '🏠', letter: '💌', gallery: '📸', reasons: '💕',
+    timer: '⏰', daily: '🌸', surprise: '🎁', diary: '📔',
+    map: '🗺️', dreams: '🌠', ai: '💬', voice: '🎙️', countdown: '📅', quiz: '🎮', domain: '🌐'
+  };
+  const names = {
+    welcome: 'Home', letter: 'Letter', gallery: 'Pics', reasons: 'Reasons',
+    timer: 'Timer', daily: 'Daily', surprise: '🎁', diary: 'Diary',
+    map: 'Map', dreams: 'Dreams', ai: 'Chat', voice: 'Voice', countdown: 'Count', quiz: 'Quiz', domain: 'Domain'
+  };
+  return (
+    <nav className="nav">
+      <div className="nav-logo">Misbu 💕</div>
+      <div className="nav-links">
+        {sections.map(s => (
+          <button key={s} className={`nav-btn${active === s ? ' active' : ''}`}
+            onClick={() => setActive(s)}>
+            {labels[s]} {names[s]}
+          </button>
+        ))}
+      </div>
+    </nav>
+  );
+}
+
+function WelcomeSection() {
+  const [showStars, setShowStars] = useState(false);
+  useEffect(() => { setTimeout(() => setShowStars(true), 1000); }, []);
+  const stars = Array.from({length: 15}).map((_, i) => ({
+    top: `${Math.random() * 100}%`, left: `${Math.random() * 100}%`,
+    delay: `${Math.random() * 3}s`, size: `${0.5 + Math.random()}rem`
+  }));
+  return (
+    <div className="section welcome-section">
+      {showStars && <div className="stars-animation">
+        {stars.map((s, i) => <span key={i} className="star" style={{
+          top: s.top, left: s.left, animationDelay: s.delay, fontSize: s.size
+        }}>✦</span>)}
+      </div>}
+      <div style={{position:'relative', zIndex:2, textAlign:'center', width:'100%'}}>
+        <div style={{fontSize:'2.5rem', marginBottom:'1rem', animation:'heartbeat 1.5s ease-in-out infinite'}}>💕</div>
+        <h1 className="welcome-name">Welcome My Love<br/>Misbu</h1>
+        <p className="welcome-subtitle">"In a sea of people, my eyes will always search for you."</p>
+        <p className="welcome-tagline">This little corner was built just for you 🌸</p>
+        <div style={{marginTop:'2rem', display:'flex', gap:'0.8rem', justifyContent:'center', flexWrap:'wrap'}}>
+          <div style={{
+            background:'linear-gradient(145deg,rgba(255,255,255,0.9),rgba(252,228,236,0.7))',
+            border:'1px solid rgba(240,98,146,0.2)', borderRadius:'16px',
+            padding:'0.8rem 1rem', backdropFilter:'blur(10px)',
+            animation:'fadeInUp 1.5s ease 1.5s forwards', opacity:0
+          }}>
+            <div style={{fontSize:'1.2rem'}}>🌹</div>
+            <div style={{fontSize:'0.7rem', color:'var(--text-mid)', fontWeight:600, marginTop:'0.2rem'}}>Made with Love</div>
+          </div>
+          <div style={{
+            background:'linear-gradient(145deg,rgba(255,255,255,0.9),rgba(252,228,236,0.7))',
+            border:'1px solid rgba(240,98,146,0.2)', borderRadius:'16px',
+            padding:'0.8rem 1rem', backdropFilter:'blur(10px)',
+            animation:'fadeInUp 1.5s ease 1.8s forwards', opacity:0
+          }}>
+            <div style={{fontSize:'1.2rem'}}>✨</div>
+            <div style={{fontSize:'0.7rem', color:'var(--text-mid)', fontWeight:600, marginTop:'0.2rem'}}>Just For Misbu</div>
+          </div>
+          <div style={{
+            background:'linear-gradient(145deg,rgba(255,255,255,0.9),rgba(252,228,236,0.7))',
+            border:'1px solid rgba(240,98,146,0.2)', borderRadius:'16px',
+            padding:'0.8rem 1rem', backdropFilter:'blur(10px)',
+            animation:'fadeInUp 1.5s ease 2.1s forwards', opacity:0
+          }}>
+            <div style={{fontSize:'1.2rem'}}>💖</div>
+            <div style={{fontSize:'0.7rem', color:'var(--text-mid)', fontWeight:600, marginTop:'0.2rem'}}>Forever Always</div>
+          </div>
+        </div>
+      </div>
+      <div className="scroll-hint">
+        <span>Scroll</span>
+        <span style={{fontSize:'1rem'}}>↓</span>
+      </div>
+    </div>
+  );
+}
+
+const dailyLetters = [
+  `My Dearest Misbu,\n\nToday is Sunday, and I find myself doing what I do every day — thinking about you. There is something about Sundays that makes me wish we were together, lazy and warm, with no place to be but beside each other.\n\nYour laugh lives in my head like a favourite song. I catch myself smiling at nothing, and then I realise — it is always because of you.\n\nYou are the most beautiful thing that has ever happened to me. Every single Sunday, and every other day too.`,
+  `My Dearest Misbu,\n\nMondays are hard for most people, but not for me — because Monday means another week of getting to love you. Another week of your messages, your voice, your warmth reaching me across whatever distance is between us.\n\nI want you to know that you make even the dullest days feel like they hold something precious. That something is you.\n\nStart this week knowing you are deeply, completely, endlessly loved. Always.`,
+  `My Dearest Misbu,\n\nI have been thinking about all the little things I love about you. The way you think. The way you care. The way you exist so beautifully in this world.\n\nYou do not always see what I see — someone extraordinary, someone rare. But I see it. I see it every time.\n\nTuesday feels brighter just because you are in it. You are my favourite part of every day, Misbu.`,
+  `My Dearest Misbu,\n\nWe are in the middle of the week and I just wanted to pause and tell you: I am so grateful you exist. That you are you. That somehow, in this enormous world, I found you.\n\nEvery conversation with you is a gift. Every moment you share with me, I hold it gently like something sacred.\n\nYou are loved beyond what words can hold. Do not forget that today, Misbu.`,
+  `My Dearest Misbu,\n\nThursday. Almost the weekend. Almost another chance to feel a little closer to you.\n\nI think about our future sometimes — the quiet mornings, the shared silences, the life we will build. And every version of that future has you at the centre of it, glowing and whole and mine.\n\nThank you for being someone worth dreaming about. You are everything, Misbu.`,
+  `My Dearest Misbu,\n\nIt is Friday, and my heart feels light — the way it always does when I think of you.\n\nI hope this week treated you well. I hope you smiled more than you worried. I hope you knew, even for a moment, how cherished you are.\n\nYou deserve every beautiful thing this world has to offer. I will spend every day trying to be one of those beautiful things for you. Always and forever, Misbu.`,
+  `My Dearest Misbu,\n\nSaturday — the day feels soft and golden, a little like you.\n\nIf I could spend this day any way I wanted, I would spend it talking to you, laughing with you, simply being near you. You are the kind of person who makes ordinary moments feel like they belong in a poem.\n\nI love you in ways I am still discovering. New reasons every day. Today, tomorrow, and every Saturday after this.`,
+];
+
+function LoveLetterSection() {
+  const todayIdx = new Date().getDay(); // 0=Sun ... 6=Sat
+  const fullText = dailyLetters[todayIdx];
+  const [displayed, setDisplayed] = useState('');
+  const [charIdx, setCharIdx] = useState(0);
+  const [started, setStarted] = useState(false);
+  const [letterKey, setLetterKey] = useState(todayIdx);
+
+  useEffect(() => {
+    setDisplayed('');
+    setCharIdx(0);
+    setStarted(false);
+  }, [letterKey]);
+
+  useEffect(() => {
+    if (!started) return;
+    if (charIdx < fullText.length) {
+      const t = setTimeout(() => {
+        setDisplayed(fullText.slice(0, charIdx + 1));
+        setCharIdx(i => i + 1);
+      }, 20);
+      return () => clearTimeout(t);
+    }
+  }, [charIdx, started, fullText]);
+
+  return (
+    <div className="section letter-section">
+      <h2 className="section-title">Today's Letter For You 💌</h2>
+      <p className="section-desc">A brand new letter every day, just for Misbu</p>
+      
+      <div style={{display:'flex', gap:'0.3rem', marginBottom:'1rem', flexWrap:'wrap', justifyContent:'center'}}>
+        {['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map((d, i) => (
+          <button key={i} onClick={() => { setLetterKey(i); }}
+            style={{
+              padding:'0.3rem 0.7rem', borderRadius:'20px', border:'none', cursor:'pointer',
+              fontFamily:'Quicksand,sans-serif', fontSize:'0.7rem', fontWeight:700,
+              background: letterKey === i
+                ? 'linear-gradient(135deg, var(--rose), var(--lavender))'
+                : 'rgba(240,98,146,0.1)',
+              color: letterKey === i ? 'white' : 'var(--text-mid)',
+              boxShadow: letterKey === i ? '0 4px 14px rgba(240,98,146,0.3)' : 'none',
+              transition:'all 0.2s ease'
+            }}>
+            {d} {i === todayIdx ? '✦' : ''}
+          </button>
+        ))}
+      </div>
+
+      <div className="letter-card card">
+        <div style={{fontSize:'0.7rem', color:'var(--text-light)', fontWeight:600, letterSpacing:'1px', marginBottom:'0.8rem', textAlign:'right'}}>
+          {['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][letterKey]}
+        </div>
+        {!started ? (
+          <div style={{textAlign:'center', padding:'1rem'}}>
+            <div style={{fontSize:'2.5rem', marginBottom:'0.8rem'}}>💌</div>
+            <p style={{fontFamily:'Cormorant Garamond,serif', fontSize:'1rem', color:'var(--text-mid)', fontStyle:'italic', marginBottom:'1rem'}}>
+              A letter has been written especially for you, Misbu...
+            </p>
+            <button className="btn-rose" onClick={() => setStarted(true)}>Open My Letter 💕</button>
+          </div>
+        ) : (
+          <>
+            <p className="letter-text">{displayed}{charIdx < fullText.length && <span className="cursor-blink"/>}</p>
+            {charIdx >= fullText.length && (
+              <>
+                <p className="letter-signature">Forever yours, with all my love 💕</p>
+                <button onClick={() => { setDisplayed(''); setCharIdx(0); setStarted(false); }}
+                  style={{marginTop:'1rem', background:'none', border:'1px solid rgba(240,98,146,0.3)',
+                    borderRadius:'20px', padding:'0.3rem 1rem', cursor:'pointer',
+                    color:'var(--text-light)', fontSize:'0.75rem', fontFamily:'Quicksand,sans-serif'}}>
+                  Read Again 🔄
+                </button>
+              </>
+            )}
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function GallerySection() {
+  const [photos, setPhotos] = useState({});
+  const [selected, setSelected] = useState(null);
+  const [uploading, setUploading] = useState(null);
+  const [slideshowOn, setSlideshowOn] = useState(false);
+  const [slideIdx, setSlideIdx] = useState(0);
+  const fileRefs = useRef({});
+  const slideTimer = useRef(null);
+
+  const uploadedPhotos = galleryMemories.filter(m => photos[m.id]);
+
+  useEffect(() => {
+    if (!slideshowOn || uploadedPhotos.length === 0) return;
+    slideTimer.current = setInterval(() => {
+      setSlideIdx(i => (i + 1) % uploadedPhotos.length);
+    }, 3500);
+    return () => clearInterval(slideTimer.current);
+  }, [slideshowOn, uploadedPhotos.length]);
+
+  const startSlideshow = () => {
+    if (uploadedPhotos.length < 2) {
+      alert('Upload at least 2 photos to start the slideshow 📸');
+      return;
+    }
+    setSlideIdx(0);
+    setSlideshowOn(true);
+  };
+
+  const handleFile = (id, file) => {
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = e => setPhotos(prev => ({...prev, [id]: e.target.result}));
+    reader.readAsDataURL(file);
+  };
+
+  if (slideshowOn && uploadedPhotos.length > 0) {
+    const current = uploadedPhotos[slideIdx % uploadedPhotos.length];
+    return (
+      <div style={{
+        position:'fixed', inset:0, zIndex:3000,
+        background:'#0a0010',
+        display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center',
+        overflow:'hidden', padding:'1rem'
+      }}>
+        <div style={{position:'absolute', inset:0, pointerEvents:'none'}}>
+          <div style={{
+            position:'absolute', width:'120%', height:'60%', left:'-10%', top:'10%',
+            background:'radial-gradient(ellipse at 30% 50%, rgba(240,98,146,0.18) 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, rgba(206,147,216,0.15) 0%, transparent 60%)',
+            animation:'auroraShift 8s ease-in-out infinite', filter:'blur(30px)'
+          }}/>
+        </div>
+
+        <div style={{
+          position:'absolute', top:0, left:0, right:0,
+          padding:'0.8rem 1rem',
+          background:'linear-gradient(to bottom, rgba(10,0,16,0.9), transparent)',
+          display:'flex', alignItems:'center', justifyContent:'space-between',
+          zIndex:10
+        }}>
+          <div style={{display:'flex', alignItems:'center', gap:'0.5rem'}}>
+            <span style={{fontSize:'1.1rem'}}>💕</span>
+            <div style={{fontFamily:'Dancing Script,cursive', fontSize:'1.2rem',
+              background:'linear-gradient(135deg,#f06292,#ce93d8)', backgroundClip:'text',
+              WebkitBackgroundClip:'text', color:'transparent'}}>
+              Our Memories
+            </div>
+          </div>
+          <button onClick={() => { setSlideshowOn(false); clearInterval(slideTimer.current); }}
+            style={{background:'rgba(240,98,146,0.2)', border:'1px solid rgba(240,98,146,0.4)',
+              borderRadius:'50%', width:'32px', height:'32px', cursor:'pointer',
+              color:'rgba(255,200,220,0.9)', fontSize:'0.9rem'}}>✕</button>
+        </div>
+
+        <div key={slideIdx} style={{
+          textAlign:'center',
+          animation:'slideshowFade 0.9s cubic-bezier(0.4,0,0.2,1)',
+          maxWidth:'95%',
+          display:'flex', flexDirection:'column', alignItems:'center', gap:'1rem',
+          zIndex:5
+        }}>
+          <div style={{
+            position:'relative',
+            borderRadius:'20px',
+            boxShadow:'0 0 0 1px rgba(240,98,146,0.3), 0 0 40px rgba(240,98,146,0.3)',
+            overflow:'hidden',
+            maxWidth:'100%'
+          }}>
+            <img
+              src={photos[current.id]}
+              alt={current.label}
+              style={{
+                maxWidth:'100%', maxHeight:'50vh', display:'block',
+                objectFit:'contain', borderRadius:'20px',
+              }}
+            />
+          </div>
+          <div style={{
+            fontFamily:'Dancing Script,cursive', fontSize:'1.3rem',
+            background:'linear-gradient(135deg,#f9a8c9,#e879f9)',
+            backgroundClip:'text', WebkitBackgroundClip:'text', color:'transparent'
+          }}>{current.emoji} {current.label}</div>
+        </div>
+
+        <div style={{
+          position:'absolute', bottom:'1rem', left:0, right:0,
+          display:'flex', flexDirection:'column', alignItems:'center', gap:'0.8rem',
+          zIndex:10
+        }}>
+          <div style={{display:'flex', gap:'4px'}}>
+            {uploadedPhotos.map((_, i) => (
+              <div key={i} onClick={() => setSlideIdx(i)} style={{
+                width: i === slideIdx % uploadedPhotos.length ? '20px' : '6px',
+                height:'6px', borderRadius:'3px', cursor:'pointer',
+                background: i === slideIdx % uploadedPhotos.length
+                  ? 'linear-gradient(90deg, #f06292, #ce93d8)'
+                  : 'rgba(255,255,255,0.25)',
+                transition:'all 0.4s ease'
+              }}/>
+            ))}
+          </div>
+
+          <div style={{display:'flex', gap:'0.8rem', alignItems:'center'}}>
+            <button onClick={() => setSlideIdx(i => (i - 1 + uploadedPhotos.length) % uploadedPhotos.length)}
+              style={{background:'rgba(255,255,255,0.08)', border:'1px solid rgba(255,255,255,0.15)',
+                borderRadius:'50%', width:'40px', height:'40px',
+                cursor:'pointer', color:'rgba(255,200,220,0.9)', fontSize:'1.2rem'}}>‹</button>
+
+            <button onClick={() => {
+                if (slideTimer.current) { clearInterval(slideTimer.current); slideTimer.current = null; }
+                else { slideTimer.current = setInterval(() => setSlideIdx(i => (i+1) % uploadedPhotos.length), 3500); }
+              }}
+              style={{background:'linear-gradient(135deg,#f06292,#ce93d8)',
+                border:'none', borderRadius:'50%', width:'48px', height:'48px',
+                cursor:'pointer', color:'white', fontSize:'1.2rem'}}>
+              {slideTimer.current ? '⏸' : '▶'}
+            </button>
+
+            <button onClick={() => setSlideIdx(i => (i + 1) % uploadedPhotos.length)}
+              style={{background:'rgba(255,255,255,0.08)', border:'1px solid rgba(255,255,255,0.15)',
+                borderRadius:'50%', width:'40px', height:'40px',
+                cursor:'pointer', color:'rgba(255,200,220,0.9)', fontSize:'1.2rem'}}>›</button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="section gallery-section">
+      <h2 className="section-title">Our Beautiful Memories 📸</h2>
+      <p className="section-desc">Click any frame to add your precious photo</p>
+
+      <div style={{display:'flex', gap:'0.8rem', marginBottom:'1rem', flexWrap:'wrap', justifyContent:'center'}}>
+        <button className="btn-rose" onClick={startSlideshow}
+          style={{padding:'0.6rem 1rem', fontSize:'0.9rem', minWidth:'auto'}}>
+          ▶ Slideshow {uploadedPhotos.length >= 2 ? `(${uploadedPhotos.length})` : ''}
+        </button>
+      </div>
+
+      <div className="gallery-grid">
+        {galleryMemories.map((m) => (
+          <div key={m.id} className="gallery-item"
+            style={{background: photos[m.id] ? 'none' : m.bg}}
+            onMouseEnter={() => setUploading(m.id)}
+            onMouseLeave={() => setUploading(null)}
+            onClick={() => {
+              if (photos[m.id]) { setSelected({...m, img: photos[m.id]}); }
+              else { fileRefs.current[m.id]?.click(); }
+            }}>
+            <input
+              ref={el => fileRefs.current[m.id] = el}
+              type="file" accept="image/*" style={{display:'none'}}
+              onChange={e => handleFile(m.id, e.target.files[0])}/>
+            {photos[m.id] ? (
+              <>
+                <img src={photos[m.id]} alt={m.label}/>
+                <div className="gallery-overlay">{m.label}</div>
+              </>
+            ) : (
+              <>
+                <div className="gallery-placeholder">
+                  <div style={{fontSize:'2rem'}}>{m.emoji}</div>
+                  <div style={{fontSize:'0.6rem', marginTop:'0.3rem', color:'var(--text-mid)'}}>{m.label}</div>
+                </div>
+              </>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {selected && (
+        <div className="modal-overlay" onClick={() => setSelected(null)}>
+          <div className="modal-box" onClick={e => e.stopPropagation()}>
+            {selected.img ? (
+              <img src={selected.img} alt={selected.label} style={{
+                width:'100%', maxHeight:'200px', objectFit:'cover',
+                borderRadius:'16px', marginBottom:'1rem'
+              }}/>
+            ) : (
+              <span className="modal-emoji">{selected.emoji}</span>
+            )}
+            <h3 className="modal-title">{selected.label}</h3>
+            <p className="modal-text">A beautiful memory that lives forever in our hearts. 💕</p>
+            <div style={{display:'flex', gap:'0.8rem', justifyContent:'center', flexWrap:'wrap'}}>
+              <button className="btn-rose" onClick={() => { fileRefs.current[selected.id]?.click(); setSelected(null); }}>
+                Change Photo 📷
+              </button>
+              <button className="btn-rose" onClick={() => setSelected(null)}
+                style={{background:'linear-gradient(135deg,var(--lavender),#9c27b0)'}}>
+                Close 💕
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function ReasonsSection() {
+  const [reason, setReason] = useState(null);
+  const [key, setKey] = useState(0);
+  const showReason = () => {
+    setReason(loveReasons[Math.floor(Math.random() * loveReasons.length)]);
+    setKey(k => k + 1);
+  };
+  return (
+    <div className="section reasons-section">
+      <h2 className="section-title">Why I Love You 💕</h2>
+      <p className="section-desc">Every click reveals another reason</p>
+      {reason && <div key={key} className="reason-bubble">{reason}</div>}
+      <button className="btn-rose" onClick={showReason} style={{fontSize:'1.1rem', padding:'1rem 2rem'}}>
+        {reason ? 'Another Reason 💕' : 'Why I Love You 💕'}
+      </button>
+    </div>
+  );
+}
+
+function TimerSection() {
+  const startDate = new Date('2025-11-12T00:00:00');
+  const [time, setTime] = useState({});
+
+  const calc = () => {
+    const now = new Date();
+    const diff = now - startDate;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const secs = Math.floor((diff % (1000 * 60)) / 1000);
+    setTime({ days, hours, mins, secs });
+  };
+
+  useEffect(() => { calc(); const t = setInterval(calc, 1000); return () => clearInterval(t); }, []);
+
+  return (
+    <div className="section timer-section">
+      <h2 className="section-title">Time Together 💑</h2>
+      <p className="section-desc">Since 12 November 2025</p>
+      <div className="timer-grid">
+        {[['days', 'Days'], ['hours', 'Hours'], ['mins', 'Minutes'], ['secs', 'Seconds']].map(([k, l]) => (
+          <div key={k} className="timer-unit">
+            <span className="timer-number">{String(time[k] || 0).padStart(2, '0')}</span>
+            <span className="timer-label">{l}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function DailySection() {
+  const idx = new Date().getDay();
+  const msg = dailyMessages[idx % dailyMessages.length];
+  const today = new Date().toLocaleDateString('en-US', {weekday:'long', month:'long', day:'numeric'});
+  return (
+    <div className="section daily-section">
+      <h2 className="section-title">Today's Love Message 🌸</h2>
+      <div className="card daily-card">
+        <div className="daily-date">{today}</div>
+        <div style={{fontSize:'2.5rem', margin:'0.8rem 0'}}>💌</div>
+        <p className="daily-message">{msg}</p>
+      </div>
+    </div>
+  );
+}
+
+function SurpriseSection() {
+  const [reveal, setReveal] = useState(null);
+  const [key, setKey] = useState(0);
+  const [showConfetti, setShowConfetti] = useState(false);
+
+  const launchConfetti = () => {
+    setShowConfetti(true);
+    setTimeout(() => setShowConfetti(false), 3000);
+  };
+
+  const doSurprise = () => {
+    const s = surprises[Math.floor(Math.random() * surprises.length)];
+    setReveal(s); setKey(k => k+1); launchConfetti();
+  };
+
+  return (
+    <div className="section surprise-section">
+      {showConfetti && Array.from({length: 20}).map((_, i) => (
+        <div key={i} className="confetti-piece" style={{
+          left: `${Math.random() * 100}%`,
+          background: ['#f06292','#ce93d8','#ffd700','#ff8a65'][i % 4],
+          animationDelay: `${Math.random() * 1}s`
+        }}/>
+      ))}
+      <h2 className="section-title">Surprise For You 🎁</h2>
+      {reveal && (
+        <div key={key} className="surprise-reveal card" style={{textAlign:'center', maxWidth:'90%', padding:'1.5rem', marginBottom:'1.5rem'}}>
+          <div className="surprise-emoji">{reveal.emoji}</div>
+          <h3 style={{fontFamily:'Dancing Script,cursive', fontSize:'1.5rem', color:'var(--rose-deep)'}}>{reveal.title}</h3>
+          <p style={{fontFamily:'Cormorant Garamond,serif', fontSize:'1rem'}}>{reveal.message}</p>
+        </div>
+      )}
+      <button className="btn-rose" onClick={doSurprise}>
+        {reveal ? '✨ Another Surprise!' : '🎁 Open Your Surprise!'}
+      </button>
+    </div>
+  );
+}
+
+// Diary Section with localStorage
+function DiarySection() {
+  const [text, setText] = useState('');
+  const [entries, setEntries] = useState([]);
+  const [locked, setLocked] = useState(true);
+  const [pin, setPin] = useState('');
+  const SECRET = '0786';
+
+  // Load entries from localStorage on mount
+  useEffect(() => {
+    const saved = localStorage.getItem('misbu-diary');
+    if (saved) {
+      try {
+        setEntries(JSON.parse(saved));
+      } catch (e) {
+        console.error('Failed to load diary entries');
+      }
+    }
+  }, []);
+
+  // Save entries to localStorage whenever they change
+  useEffect(() => {
+    if (entries.length > 0) {
+      localStorage.setItem('misbu-diary', JSON.stringify(entries));
+    }
+  }, [entries]);
+
+  const saveEntry = () => {
+    if (text.trim()) {
+      const newEntry = {
+        text: text.trim(),
+        date: new Date().toLocaleString(),
+        id: Date.now()
+      };
+      setEntries(prev => [newEntry, ...prev]);
+      setText('');
+    }
+  };
+
+  const deleteEntry = (id) => {
+    if (window.confirm('Delete this entry?')) {
+      setEntries(prev => prev.filter(e => e.id !== id));
+    }
+  };
+
+  if (locked) return (
+    <div className="section diary-section">
+      <h2 className="section-title">Secret Love Diary 📔</h2>
+      <div className="card" style={{textAlign:'center', maxWidth:400, padding:'2rem'}}>
+        <div className="lock-icon">🔒</div>
+        <p style={{fontFamily:'Cormorant Garamond,serif', fontStyle:'italic', fontSize:'1rem', color:'var(--text-mid)', marginBottom:'1rem'}}>
+          This diary holds the most private thoughts...
+        </p>
+        <input className="input-field secret-input" type="password" maxLength={4}
+          placeholder="PIN" value={pin}
+          onChange={e => { setPin(e.target.value); if (e.target.value === SECRET) setLocked(false); }}/>
+        <p style={{fontSize:'0.7rem', color:'var(--text-light)', marginTop:'0.5rem'}}>Hint: 0786</p>
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="section diary-section">
+      <h2 className="section-title">Secret Love Diary 📔</h2>
+      <p className="section-desc">Your private space - entries are saved automatically</p>
+      <div style={{width:'100%', maxWidth:600, display:'flex', flexDirection:'column', gap:'1rem', alignItems:'center'}}>
+        <textarea className="diary-input" placeholder="Write something beautiful for Misbu here... 💕"
+          value={text} onChange={e => setText(e.target.value)}/>
+        <button className="btn-rose" onClick={saveEntry}>Save to Diary 💕</button>
+        
+        {entries.map((e) => (
+          <div key={e.id} className="diary-entry" onClick={() => deleteEntry(e.id)}>
+            <div className="diary-entry-date">📅 {e.date}</div>
+            <div className="diary-entry-text">{e.text}</div>
+          </div>
+        ))}
+        
+        {entries.length === 0 && (
+          <p style={{color:'var(--text-light)', fontStyle:'italic', marginTop:'1rem'}}>
+            No entries yet. Write your first message above! 💕
+          </p>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function MapSection() {
+  const [tooltip, setTooltip] = useState(null);
+  return (
+    <div className="section map-section">
+      <h2 className="section-title">Our Love Map 🗺️</h2>
+      <p className="section-desc">Every pin marks a special place</p>
+      <div className="map-container">
+        <svg viewBox="0 0 800 450" style={{width:'100%', height:'auto', background:'linear-gradient(160deg,#e8f5e9 0%,#e3f2fd 40%,#f3e5f5 70%,#fce4ec 100%)'}}>
+          <ellipse cx="200" cy="200" rx="180" ry="140" fill="rgba(206,147,216,0.15)" stroke="rgba(240,98,146,0.2)" strokeWidth="1.5"/>
+          <ellipse cx="580" cy="280" rx="160" ry="120" fill="rgba(255,204,188,0.2)" stroke="rgba(240,98,146,0.2)" strokeWidth="1.5"/>
+          {mapLocations.map((loc, i) => {
+            const cx = loc.x / 100 * 800;
+            const cy = loc.y / 100 * 450;
+            return (
+              <g key={i} className="map-pin" onMouseEnter={() => setTooltip({...loc, cx, cy})} onMouseLeave={() => setTooltip(null)} onClick={() => setTooltip(tooltip?.label===loc.label ? null : {...loc, cx, cy})}>
+                <circle cx={cx} cy={cy} r="22" fill="rgba(240,98,146,0.15)" className="glow-ring"/>
+                <circle cx={cx} cy={cy} r="14" fill="linear-gradient(135deg, #f06292, #ce93d8)"/>
+                <text x={cx} y={cy+5} textAnchor="middle" fontSize="14">{loc.emoji}</text>
+              </g>
+            );
+          })}
+          {tooltip && (
+            <g>
+              <rect x={Math.min(tooltip.cx-60, 700)} y={tooltip.cy-50} width="120" height="30"
+                fill="rgba(255,240,245,0.97)" rx="8" stroke="rgba(240,98,146,0.3)"/>
+              <text x={Math.min(tooltip.cx, 740)} y={tooltip.cy-30} textAnchor="middle"
+                fill="#7b3f6e" fontSize="10" fontWeight="600">{tooltip.label}</text>
+            </g>
+          )}
+        </svg>
+      </div>
+      <div style={{display:'flex', flexWrap:'wrap', gap:'0.5rem', justifyContent:'center', marginTop:'1rem'}}>
+        {mapLocations.map((loc, i) => (
+          <div key={i} style={{
+            background:'var(--gradient-card)', border:'1px solid rgba(240,98,146,0.2)',
+            borderRadius:'10px', padding:'0.4rem 0.8rem', fontSize:'0.7rem',
+            color:'var(--text-mid)', fontWeight:600, display:'flex', gap:'0.3rem', alignItems:'center'
+          }}>
+            <span>{loc.emoji}</span><span>{loc.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function DreamsSection() {
+  return (
+    <div className="section dreams-section">
+      <h2 className="section-title">Our Future Dreams 🌠</h2>
+      <p className="section-desc">The best chapter is still being written</p>
+      <div className="dreams-grid">
+        {futureDreams.map((d, i) => (
+          <div key={i} className="dream-card">
+            <span className="dream-emoji">{d.emoji}</span>
+            <div className="dream-title">{d.title}</div>
+            <div className="dream-text">{d.text}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function AISection() {
   const [messages, setMessages] = useState([
-    {role:'ai', text:"Hello meri pyaari Misbu! 💕 Main tumhara personal Love AI hoon, sirf tumhare liye bana hoon! Kuch bhi pucho — main hamesha yahaan hoon tumhare liye. Aaj kaisa feel ho raha hai? 🌸✨"}
+    {role:'ai', text:"Hello meri pyaari Misbu! 💕 Main tumhara personal Love AI hoon. Kuch bhi pucho! 🌸"}
   ]);
   const [input, setInput] = useState('');
   const [typing, setTyping] = useState(false);
@@ -2130,24 +2609,19 @@ function AISection() {
       const reply = getSmartReply(userMsg);
       setTyping(false);
       setMessages(prev => [...prev, {role:'ai', text: reply}]);
-    }, 1000 + Math.random() * 600);
+    }, 1000);
   };
 
   return (
     <div className="section chat-section">
       <h2 className="section-title">AI Love Assistant 💬</h2>
-      <p className="section-desc">Tumhara personal Love AI — hamesha yahaan hai tumhare liye, Misbu 💕</p>
-
       <div className="chat-container">
         <div className="chat-header">
           <div className="chat-avatar">💕</div>
           <div>
-            <div style={{fontFamily:'Dancing Script,cursive', fontSize:'1.1rem', fontWeight:700}}>
-              Misbu's Love AI ✨
-            </div>
-            <div style={{fontSize:'0.75rem', opacity:0.85}}>🟢 Hamesha Online • Sirf Tumhare Liye</div>
+            <div style={{fontFamily:'Dancing Script,cursive', fontSize:'1rem'}}>Misbu's Love AI</div>
+            <div style={{fontSize:'0.65rem', opacity:0.85}}>🟢 Online</div>
           </div>
-          <div style={{marginLeft:'auto', fontSize:'1.2rem', animation:'heartbeat 2s ease-in-out infinite'}}>💗</div>
         </div>
         <div className="chat-messages">
           {messages.map((m, i) => (
@@ -2161,29 +2635,14 @@ function AISection() {
           <div ref={msgEndRef}/>
         </div>
         <div className="chat-input-row">
-          <input className="chat-input" placeholder="Kuch bhi likho Misbu... 💕"
+          <input className="chat-input" placeholder="Kuch bhi likho... 💕"
             value={input} onChange={e => setInput(e.target.value)}
             onKeyDown={e => e.key === 'Enter' && send()}/>
-          <button className="btn-rose" style={{padding:'0.6rem 1.2rem', fontSize:'0.9rem'}}
+          <button className="btn-rose" style={{padding:'0.6rem 1rem', fontSize:'0.9rem', minWidth:'auto'}}
             onClick={send} disabled={typing}>
-            {typing ? '...' : 'Send 💕'}
+            {typing ? '...' : 'Send'}
           </button>
         </div>
-      </div>
-
-      <div style={{marginTop:'1rem', display:'flex', flexWrap:'wrap', gap:'0.5rem', justifyContent:'center', maxWidth:600}}>
-        {['Tum bahut cute ho 💕','Miss kar raha hoon 🥺','Aaj kaisa tha din? 🌸','I love you Misbu 💖','Future ke baare mein batao ✨','Mujhe khush karo 😊'].map((q,i) => (
-          <button key={i} onClick={() => { setInput(q); setTimeout(send, 50); }}
-            style={{background:'linear-gradient(135deg,rgba(240,98,146,0.1),rgba(206,147,216,0.1))',
-              border:'1px solid rgba(240,98,146,0.25)', borderRadius:'20px',
-              padding:'0.4rem 0.9rem', fontSize:'0.78rem', cursor:'pointer',
-              color:'var(--text-mid)', fontFamily:'Quicksand,sans-serif', fontWeight:600,
-              transition:'all 0.2s ease'}}
-            onMouseEnter={e => e.target.style.background='linear-gradient(135deg,rgba(240,98,146,0.2),rgba(206,147,216,0.2))'}
-            onMouseLeave={e => e.target.style.background='linear-gradient(135deg,rgba(240,98,146,0.1),rgba(206,147,216,0.1))'}>
-            {q}
-          </button>
-        ))}
       </div>
     </div>
   );
@@ -2207,7 +2666,7 @@ function VoiceSection() {
       mediaRef.current.onstop = () => {
         const blob = new Blob(chunksRef.current, {type:'audio/webm'});
         const url = URL.createObjectURL(blob);
-        setRecordings(prev => [{url, duration: timer, date: new Date().toLocaleTimeString()}, ...prev]);
+        setRecordings(prev => [{url, duration: timer, date: new Date().toLocaleTimeString(), id: Date.now()}, ...prev]);
         stream.getTracks().forEach(t => t.stop());
       };
       mediaRef.current.start();
@@ -2215,7 +2674,7 @@ function VoiceSection() {
       setTimer(0);
       timerRef.current = setInterval(() => setTimer(t => t + 1), 1000);
     } catch {
-      alert('Microphone access needed to record voice messages 🎙️');
+      alert('Microphone access needed 🎙️');
     }
   };
 
@@ -2225,53 +2684,43 @@ function VoiceSection() {
     setRecording(false);
   };
 
-  const playRecording = (url, i) => {
-    if (playing === i) { setPlaying(null); return; }
+  const playRecording = (url, id) => {
+    if (playing === id) { setPlaying(null); return; }
     const audio = new Audio(url);
     audio.play();
-    setPlaying(i);
+    setPlaying(id);
     audio.onended = () => setPlaying(null);
   };
 
   const fmtTime = s => `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;
 
-  const waveHeights = [0.3,0.7,0.5,1,0.6,0.8,0.4,0.9,0.5,0.7,0.3,0.8,0.6,1,0.4,0.7];
-
   return (
     <div className="section voice-section">
       <h2 className="section-title">Voice Love Messages 🎙️</h2>
-      <p className="section-desc">Record the sound of your love for Misbu</p>
-      <div style={{display:'flex', flexDirection:'column', alignItems:'center', gap:'1.5rem', width:'100%'}}>
+      <div style={{display:'flex', flexDirection:'column', alignItems:'center', gap:'1rem', width:'100%'}}>
         <button className={`voice-btn${recording?' recording':''}`}
           onClick={recording ? stopRecording : startRecording}>
           {recording ? '⏹' : '🎙️'}
         </button>
         {recording && (
-          <div style={{display:'flex', alignItems:'center', gap:'0.8rem', color:'var(--rose)', fontWeight:600}}>
-            <div style={{width:10,height:10,borderRadius:'50%',background:'#e53935',animation:'recordPulse 1s ease-in-out infinite'}}/>
+          <div style={{display:'flex', alignItems:'center', gap:'0.5rem'}}>
+            <div style={{width:8,height:8,borderRadius:'50%',background:'#e53935',animation:'recordPulse 1s ease-in-out infinite'}}/>
             Recording... {fmtTime(timer)}
           </div>
         )}
-        {!recording && <p style={{fontSize:'0.85rem', color:'var(--text-light)', fontStyle:'italic'}}>
-          Tap to record a voice message for Misbu 💕
-        </p>}
-        {recordings.map((r, i) => (
-          <div key={i} className="voice-message-item">
-            <button className="voice-play-btn" onClick={() => playRecording(r.url, i)}>
-              {playing === i ? '⏸' : '▶'}
+        {recordings.map((r) => (
+          <div key={r.id} className="voice-message-item">
+            <button className="voice-play-btn" onClick={() => playRecording(r.url, r.id)}>
+              {playing === r.id ? '⏸' : '▶'}
             </button>
             <div className="voice-waveform">
-              {waveHeights.map((h, j) => (
+              {[1,2,3,4,5,6,7,8].map((_, j) => (
                 <div key={j} className="voice-bar" style={{
-                  height: playing === i ? `${h * 36}px` : `${h * 20}px`,
-                  transition: `height ${0.1 + j * 0.05}s ease`
+                  height: playing === r.id ? `${Math.random() * 30}px` : '20px'
                 }}/>
               ))}
             </div>
-            <div>
-              <div className="voice-duration">{fmtTime(r.duration)}</div>
-              <div style={{fontSize:'0.7rem', color:'var(--text-light)'}}>{r.date}</div>
-            </div>
+            <div className="voice-duration">{fmtTime(r.duration)}</div>
           </div>
         ))}
       </div>
@@ -2279,9 +2728,8 @@ function VoiceSection() {
   );
 }
 
-// Shaadi prediction — generates a romantic predicted date each day, consistent within same day
 function getShaadiPrediction() {
-  const seed = new Date().toDateString(); // changes daily
+  const seed = new Date().toDateString();
   let hash = 0;
   for (let c of seed) hash = (hash * 31 + c.charCodeAt(0)) & 0xffffffff;
   const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
@@ -2290,10 +2738,8 @@ function getShaadiPrediction() {
   const m = Math.abs(hash >> 4) % 12;
   const maxDay = new Date(y, m + 1, 0).getDate();
   const d = (Math.abs(hash >> 8) % maxDay) + 1;
-  // nice day like Fri/Sat preferred — snap to nearest friday
   const date = new Date(y, m, d);
-  const dow = date.getDay();
-  const daysToFri = (5 - dow + 7) % 7;
+  const daysToFri = (5 - date.getDay() + 7) % 7;
   date.setDate(date.getDate() + daysToFri);
   return date;
 }
@@ -2326,73 +2772,41 @@ function CountdownSection() {
 
   const bday = getBirthdayDate();
   const shaadi = shaadiDate.current;
-  const shaadiStr = shaadi.toLocaleDateString('en-US',{weekday:'long', month:'long', day:'numeric', year:'numeric'});
-  const bdayStr = bday.toLocaleDateString('en-US',{month:'long', day:'numeric', year:'numeric'});
+  const shaadiStr = shaadi.toLocaleDateString('en-US',{month:'long', day:'numeric', year:'numeric'});
+  const bdayStr = bday.toLocaleDateString('en-US',{month:'long', day:'numeric'});
 
-  const CountCard = ({emoji, title, subtitle, note, time, color}) => (
-    <div className="card" style={{
-      maxWidth:520, width:'100%', textAlign:'center', padding:'2rem',
-      background:`linear-gradient(145deg, rgba(255,255,255,0.95), ${color})`,
-      border:`1px solid rgba(240,98,146,0.25)`
-    }}>
-      <div style={{fontSize:'2.5rem', marginBottom:'0.5rem'}}>{emoji}</div>
-      <div style={{fontFamily:'Dancing Script,cursive', fontSize:'1.6rem', color:'var(--rose-deep)', marginBottom:'0.2rem'}}>{title}</div>
-      <div style={{fontSize:'0.78rem', color:'var(--text-light)', fontWeight:600, letterSpacing:'1px', marginBottom:'1.2rem'}}>{subtitle}</div>
-      <div style={{display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:'0.7rem', marginBottom:'1rem'}}>
+  const CountCard = ({emoji, title, subtitle, time}) => (
+    <div className="card" style={{maxWidth:520, width:'100%', textAlign:'center', padding:'1.5rem'}}>
+      <div style={{fontSize:'2rem', marginBottom:'0.3rem'}}>{emoji}</div>
+      <div style={{fontFamily:'Dancing Script,cursive', fontSize:'1.3rem', color:'var(--rose-deep)'}}>{title}</div>
+      <div style={{fontSize:'0.7rem', color:'var(--text-light)', marginBottom:'0.8rem'}}>{subtitle}</div>
+      <div style={{display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:'0.5rem'}}>
         {[['days','Days'],['hours','Hrs'],['mins','Min'],['secs','Sec']].map(([k,l]) => (
-          <div key={k} style={{
-            background:'rgba(255,255,255,0.8)', borderRadius:'14px', padding:'0.8rem 0.4rem',
-            border:'1px solid rgba(240,98,146,0.15)', boxShadow:'0 3px 10px rgba(240,98,146,0.08)'
-          }}>
-            <div style={{fontFamily:'Cormorant Garamond,serif', fontSize:'2rem', fontWeight:600, color:'var(--rose-deep)', lineHeight:1}}>
+          <div key={k} style={{background:'rgba(255,255,255,0.8)', borderRadius:'10px', padding:'0.5rem'}}>
+            <div style={{fontFamily:'Cormorant Garamond,serif', fontSize:'1.5rem', fontWeight:600, color:'var(--rose-deep)'}}>
               {String(time[k]||0).padStart(2,'0')}
             </div>
-            <div style={{fontSize:'0.65rem', color:'var(--text-light)', fontWeight:700, textTransform:'uppercase', letterSpacing:'1px', marginTop:'3px'}}>{l}</div>
+            <div style={{fontSize:'0.6rem', color:'var(--text-light)'}}>{l}</div>
           </div>
         ))}
       </div>
-      {note && <div style={{
-        background:'rgba(240,98,146,0.07)', borderRadius:'10px', padding:'0.6rem 1rem',
-        fontSize:'0.8rem', color:'var(--text-mid)', fontStyle:'italic', lineHeight:1.5
-      }}>{note}</div>}
     </div>
   );
 
   return (
-    <div className="section countdown-section" style={{gap:'1.5rem'}}>
+    <div className="section countdown-section">
       <h2 className="section-title">Counting Down 📅</h2>
-      <p className="section-desc">Every special moment is worth every second of the wait</p>
-
       <CountCard
         emoji="🎂"
         title="Misbu's Birthday"
-        subtitle={bdayStr.toUpperCase()}
+        subtitle={bdayStr}
         time={birthdayTime}
-        color="rgba(252,228,236,0.6)"
-        note="The day the most beautiful person in the world was born 🌸 The whole universe celebrated that day, Misbu."
       />
-
-      <div style={{
-        background:'linear-gradient(135deg, rgba(255,215,0,0.12), rgba(240,98,146,0.12))',
-        border:'2px dashed rgba(240,98,146,0.3)', borderRadius:'16px',
-        padding:'1rem 1.5rem', maxWidth:520, width:'100%', textAlign:'center'
-      }}>
-        <div style={{fontSize:'1.2rem', marginBottom:'0.3rem'}}>🔮</div>
-        <div style={{fontSize:'0.8rem', color:'var(--text-mid)', fontWeight:700}}>
-          Today's Shaadi Prediction refreshes every day...
-        </div>
-        <div style={{fontSize:'0.75rem', color:'var(--text-light)', marginTop:'0.2rem', fontStyle:'italic'}}>
-          The universe whispers a new date each morning 💫
-        </div>
-      </div>
-
       <CountCard
         emoji="💍"
         title="Our Shaadi — Predicted!"
-        subtitle={`✨ ${shaadiStr.toUpperCase()} ✨`}
+        subtitle={shaadiStr}
         time={shaadiTime}
-        color="rgba(243,229,245,0.6)"
-        note={`Today's cosmic prediction says: ${shaadiStr} is written in the stars for us. 🌟 This date refreshes every day — but no matter which day it is, we will be together forever, Misbu. 💍`}
       />
     </div>
   );
@@ -2412,7 +2826,7 @@ function QuizSection() {
     setTimeout(() => {
       if (qi + 1 >= quizQuestions.length) setDone(true);
       else { setQi(q => q + 1); setAnswered(null); }
-    }, 1200);
+    }, 1000);
   };
 
   const reset = () => { setQi(0); setScore(0); setAnswered(null); setDone(false); };
@@ -2420,17 +2834,15 @@ function QuizSection() {
   if (done) return (
     <div className="section quiz-section">
       <h2 className="section-title">Love Quiz 🎮</h2>
-      <div className="card quiz-card" style={{padding:'2.5rem'}}>
-        <div style={{fontSize:'4rem', marginBottom:'1rem'}}>
+      <div className="card quiz-card">
+        <div style={{fontSize:'3rem', marginBottom:'0.5rem'}}>
           {score >= 5 ? '🏆' : score >= 3 ? '💕' : '🌸'}
         </div>
-        <div className="quiz-score">
-          You scored {score}/{quizQuestions.length}!
-        </div>
-        <p style={{fontFamily:'Cormorant Garamond,serif', fontStyle:'italic', fontSize:'1.15rem', color:'var(--text-dark)', margin:'1rem 0', lineHeight:1.7}}>
-          {score >= 5 ? "Perfect score! You know us so well, Misbu! Your heart truly knows every detail of our love story. 💕" :
-           score >= 3 ? "Wonderful! Love runs deep between us, Misbu. Every answer was filled with warmth and truth. 🌸" :
-           "Every answer was full of love, Misbu! That is all that truly matters. 💕"}
+        <div className="quiz-score">You scored {score}/{quizQuestions.length}!</div>
+        <p style={{fontFamily:'Cormorant Garamond,serif', fontSize:'1rem', margin:'1rem 0'}}>
+          {score >= 5 ? "Perfect score! You know us so well! 💕" :
+           score >= 3 ? "Wonderful! Love runs deep between us. 🌸" :
+           "Every answer was full of love! 💕"}
         </p>
         <button className="btn-rose" onClick={reset}>Play Again 🎮</button>
       </div>
@@ -2443,11 +2855,10 @@ function QuizSection() {
   return (
     <div className="section quiz-section">
       <h2 className="section-title">Love Quiz 🎮</h2>
-      <p className="section-desc">How well do you know our love story, Misbu?</p>
-      <div className="card quiz-card" style={{padding:'2rem'}}>
-        <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'0.8rem'}}>
-          <span style={{fontSize:'0.8rem', color:'var(--text-light)', fontWeight:600}}>Question {qi+1} of {quizQuestions.length}</span>
-          <span style={{fontSize:'0.8rem', color:'var(--rose-deep)', fontWeight:700}}>Score: {score} 💕</span>
+      <div className="card quiz-card">
+        <div style={{display:'flex', justifyContent:'space-between', marginBottom:'0.5rem'}}>
+          <span style={{fontSize:'0.7rem'}}>Q{qi+1}/{quizQuestions.length}</span>
+          <span style={{fontSize:'0.7rem'}}>Score: {score} 💕</span>
         </div>
         <div className="quiz-progress">
           <div className="quiz-progress-bar" style={{width:`${progress}%`}}/>
@@ -2464,20 +2875,15 @@ function QuizSection() {
   );
 }
 
-// ── Music: Web Audio API se generate hoti hai — koi URL/CORS issue nahi ──
 const SONGS = [
   { title: "Romantic Melody", artist: "Love Theme 🎹" },
   { title: "Sweet Serenade", artist: "Gentle Piano 🎻" },
   { title: "Tender Moments", artist: "Soft Waltz 🌙" }
 ];
 
-// Each song = different note pattern
 const SONG_NOTES = [
-  // Song 1: soft romantic arpeggio
   [261.6,329.6,392,523.2,392,329.6, 293.6,369.9,440,587.3,440,369.9, 246.9,311.1,392,523.2,392,311.1, 261.6,329.6,392,523.2,392,329.6],
-  // Song 2: gentle descending melody
   [523.2,493.8,440,392,349.2,329.6,293.6,261.6, 293.6,329.6,349.2,392,440,493.8,523.2,587.3, 523.2,493.8,440,392,349.2,329.6,261.6,246.9],
-  // Song 3: waltz-like pattern
   [392,493.8,587.3,493.8,392,329.6, 349.2,440,523.2,440,349.2,293.6, 329.6,415.3,493.8,415.3,329.6,261.6, 293.6,369.9,440,369.9,293.6,246.9]
 ];
 
@@ -2492,7 +2898,6 @@ function MusicPlayer() {
   const gainRef = useRef(null);
   const noteTimerRef = useRef(null);
   const noteIdxRef = useRef(0);
-  const progressTimerRef = useRef(null);
   const playingRef = useRef(false);
 
   const getCtx = () => {
@@ -2516,7 +2921,7 @@ function MusicPlayer() {
     env.gain.linearRampToValueAtTime(0.4, when + 0.05);
     env.gain.exponentialRampToValueAtTime(0.001, when + dur - 0.05);
     osc.start(when); osc.stop(when + dur);
-    // harmonic overtone for richness
+    
     const osc2 = ctx.createOscillator();
     const env2 = ctx.createGain();
     osc2.connect(env2); env2.connect(gainRef.current);
@@ -2534,7 +2939,6 @@ function MusicPlayer() {
     const notes = SONG_NOTES[songIdx];
     const noteDur = 0.55;
     const now = ctx.currentTime;
-    // schedule next 4 notes
     for (let i = 0; i < 4; i++) {
       const ni = (noteIdxRef.current + i) % notes.length;
       playNote(notes[ni], now + i * noteDur, noteDur * 0.9);
@@ -2561,14 +2965,12 @@ function MusicPlayer() {
     setPlaying(false);
   }, []);
 
-  // stop when song changes
   useEffect(() => {
     stopMusic();
     noteIdxRef.current = 0;
     setProgress(0);
   }, [songIdx]);
 
-  // cleanup
   useEffect(() => () => { stopMusic(); ctxRef.current?.close(); }, []);
 
   const togglePlay = () => {
@@ -2581,33 +2983,28 @@ function MusicPlayer() {
     setSongIdx(i => (i + dir + SONGS.length) % SONGS.length);
   };
 
-  /* ── minimised bubble ── */
   if (minimized) return (
     <button onClick={() => setMinimized(false)} style={{
-      position:'fixed', bottom:'1.5rem', right:'1.5rem', zIndex:999,
-      background: playing ? 'linear-gradient(135deg,var(--rose),var(--lavender))' : 'rgba(255,255,255,0.92)',
-      border: playing ? 'none' : '2px solid rgba(240,98,146,0.35)',
-      borderRadius:'50%', width:'52px', height:'52px', fontSize:'1.4rem',
+      position:'fixed', bottom:'1rem', right:'1rem', zIndex:999,
+      background: playing ? 'linear-gradient(135deg,var(--rose),var(--lavender))' : 'rgba(255,255,255,0.95)',
+      border:'2px solid rgba(240,98,146,0.35)',
+      borderRadius:'50%', width:'48px', height:'48px', fontSize:'1.2rem',
       cursor:'pointer', color: playing ? 'white' : 'var(--rose)',
-      boxShadow: playing ? '0 6px 28px rgba(240,98,146,0.55)' : '0 4px 15px rgba(240,98,146,0.2)',
-      animation: playing ? 'heartbeat 2s ease-in-out infinite' : 'none',
+      boxShadow:'0 4px 15px rgba(240,98,146,0.3)',
       display:'flex', alignItems:'center', justifyContent:'center'
     }}>🎵</button>
   );
 
   return (
-    <div className="music-player" style={{flexDirection:'column', gap:'0.8rem', padding:'1.2rem 1.5rem', minWidth:280}}>
-
-      {/* Header row */}
+    <div className="music-player">
       <div style={{display:'flex', alignItems:'center', justifyContent:'space-between', width:'100%'}}>
-        <div style={{display:'flex', alignItems:'center', gap:'0.6rem'}}>
+        <div style={{display:'flex', alignItems:'center', gap:'0.5rem'}}>
           <div style={{
-            width:'38px', height:'38px', borderRadius:'10px', flexShrink:0,
+            width:'32px', height:'32px', borderRadius:'8px',
             background: playing ? 'linear-gradient(135deg,var(--rose),var(--lavender))' : 'linear-gradient(135deg,var(--blush),var(--lavender-light))',
             border:'2px solid rgba(240,98,146,0.2)',
             display:'flex', alignItems:'center', justifyContent:'center',
-            fontSize:'1.2rem',
-            animation: playing ? 'heartbeat 2s ease-in-out infinite' : 'none'
+            fontSize:'1rem'
           }}>🎵</div>
           <div style={{minWidth:0}}>
             <div className="music-title">{SONGS[songIdx].title}</div>
@@ -2616,105 +3013,63 @@ function MusicPlayer() {
         </div>
         <button onClick={() => setMinimized(true)} style={{
           background:'none', border:'none', cursor:'pointer',
-          color:'var(--text-light)', fontSize:'1rem', padding:'2px 6px', borderRadius:'6px'
+          color:'var(--text-light)', fontSize:'1rem'
         }}>−</button>
       </div>
 
-      {/* Wave */}
       {playing && (
         <div className="music-wave" style={{justifyContent:'center'}}>
-          {[1,2,3,4,5,6,7].map(i => (
+          {[1,2,3,4,5].map(i => (
             <div key={i} className="wave-bar" style={{animationDelay:`${i*0.08}s`}}/>
           ))}
         </div>
       )}
 
-      {/* Progress bar */}
-      <div style={{
-        width:'100%', height:'5px', background:'rgba(240,98,146,0.15)',
-        borderRadius:'3px'
-      }}>
-        <div style={{
-          height:'100%', borderRadius:'3px', transition:'width 0.3s linear',
-          width:`${progress}%`,
-          background:'linear-gradient(90deg,var(--rose),var(--lavender))'
-        }}/>
+      <div style={{width:'100%', height:'4px', background:'rgba(240,98,146,0.15)', borderRadius:'2px'}}>
+        <div style={{height:'100%', borderRadius:'2px', width:`${progress}%`, background:'linear-gradient(90deg,var(--rose),var(--lavender))'}}/>
       </div>
 
-      {/* Controls */}
-      <div style={{display:'flex', alignItems:'center', gap:'0.6rem', justifyContent:'center', width:'100%'}}>
+      <div style={{display:'flex', alignItems:'center', gap:'0.5rem', justifyContent:'center', width:'100%'}}>
         <button onClick={() => changeTrack(-1)} style={{
-          background:'rgba(240,98,146,0.1)', border:'none', width:'32px', height:'32px',
-          borderRadius:'50%', cursor:'pointer', color:'var(--rose)', fontSize:'0.9rem',
-          display:'flex', alignItems:'center', justifyContent:'center', transition:'all 0.2s'
+          background:'rgba(240,98,146,0.1)', border:'none', width:'30px', height:'30px',
+          borderRadius:'50%', cursor:'pointer', color:'var(--rose)', fontSize:'0.8rem'
         }}>⏮</button>
 
-        <button className="music-btn" onClick={togglePlay} style={{width:'46px', height:'46px', fontSize:'1.2rem'}}>
+        <button className="music-btn" onClick={togglePlay} style={{width:'40px', height:'40px'}}>
           {playing ? '⏸' : '▶'}
         </button>
 
         <button onClick={() => changeTrack(1)} style={{
-          background:'rgba(240,98,146,0.1)', border:'none', width:'32px', height:'32px',
-          borderRadius:'50%', cursor:'pointer', color:'var(--rose)', fontSize:'0.9rem',
-          display:'flex', alignItems:'center', justifyContent:'center', transition:'all 0.2s'
+          background:'rgba(240,98,146,0.1)', border:'none', width:'30px', height:'30px',
+          borderRadius:'50%', cursor:'pointer', color:'var(--rose)', fontSize:'0.8rem'
         }}>⏭</button>
 
         <button onClick={() => setShowVolume(v => !v)} style={{
           background:'none', border:'none', cursor:'pointer',
-          color:'var(--text-light)', fontSize:'1rem', marginLeft:'0.3rem'
+          color:'var(--text-light)', fontSize:'0.9rem'
         }}>🔊</button>
       </div>
 
-      {/* Volume slider */}
       {showVolume && (
         <input type="range" min="0" max="1" step="0.05" value={volume}
           onChange={e => setVolume(parseFloat(e.target.value))}
-          style={{width:'100%', accentColor:'var(--rose)', cursor:'pointer'}}/>
+          style={{width:'100%', accentColor:'var(--rose)'}}/>
       )}
-
-      <div style={{fontSize:'0.7rem', color:'var(--text-light)', textAlign:'center', fontStyle:'italic'}}>
-        {songIdx + 1} / {SONGS.length} • For Misbu 💕
-      </div>
     </div>
   );
 }
 
 function DomainSection() {
-  const Step = ({num, icon, title, desc, code, link, linkText}) => (
-    <div style={{
-      background:'var(--gradient-card)', border:'1px solid rgba(240,98,146,0.2)',
-      borderRadius:'20px', padding:'1.5rem', boxShadow:'var(--shadow-rose)',
-      display:'flex', gap:'1rem', alignItems:'flex-start'
-    }}>
-      <div style={{
-        width:'40px', height:'40px', borderRadius:'50%', flexShrink:0,
-        background:'linear-gradient(135deg, var(--rose), var(--lavender))',
-        color:'white', display:'flex', alignItems:'center', justifyContent:'center',
-        fontWeight:700, fontSize:'1rem', boxShadow:'0 4px 12px rgba(240,98,146,0.3)'
-      }}>{num}</div>
+  const Step = ({num, icon, title, desc, code}) => (
+    <div className="domain-step">
+      <div className="domain-step-num">{num}</div>
       <div style={{flex:1}}>
-        <div style={{display:'flex', alignItems:'center', gap:'0.5rem', marginBottom:'0.4rem'}}>
-          <span style={{fontSize:'1.2rem'}}>{icon}</span>
-          <span style={{fontFamily:'Dancing Script,cursive', fontSize:'1.15rem', color:'var(--rose-deep)', fontWeight:700}}>{title}</span>
+        <div style={{display:'flex', alignItems:'center', gap:'0.5rem', marginBottom:'0.3rem'}}>
+          <span style={{fontSize:'1rem'}}>{icon}</span>
+          <span style={{fontFamily:'Dancing Script,cursive', fontSize:'1rem', color:'var(--rose-deep)'}}>{title}</span>
         </div>
-        <p style={{fontSize:'0.85rem', color:'var(--text-mid)', lineHeight:1.7, marginBottom: code||link ? '0.7rem' : 0}}>{desc}</p>
-        {code && (
-          <div style={{
-            background:'rgba(74,25,66,0.06)', border:'1px solid rgba(240,98,146,0.15)',
-            borderRadius:'10px', padding:'0.6rem 1rem',
-            fontFamily:'monospace', fontSize:'0.82rem', color:'var(--text-dark)',
-            wordBreak:'break-all', lineHeight:1.7
-          }}>{code}</div>
-        )}
-        {link && (
-          <a href={link} target="_blank" rel="noopener" style={{
-            display:'inline-block', marginTop:'0.6rem',
-            background:'linear-gradient(135deg, var(--rose), var(--lavender))',
-            color:'white', padding:'0.4rem 1rem', borderRadius:'20px',
-            fontSize:'0.8rem', fontWeight:700, textDecoration:'none',
-            boxShadow:'0 4px 12px rgba(240,98,146,0.3)'
-          }}>{linkText} →</a>
-        )}
+        <p style={{fontSize:'0.8rem', color:'var(--text-mid)', lineHeight:1.6, marginBottom: code ? '0.5rem' : 0}}>{desc}</p>
+        {code && <div className="domain-code">{code}</div>}
       </div>
     </div>
   );
@@ -2722,102 +3077,51 @@ function DomainSection() {
   return (
     <div className="section" style={{background:'linear-gradient(135deg,#fff9f0 0%,#f3e5f5 100%)'}}>
       <h2 className="section-title">Custom Domain Guide 🌐</h2>
-      <p className="section-desc">Give Misbu's app a beautiful URL like <strong style={{color:'var(--rose-deep)'}}>misbu.love</strong> or <strong style={{color:'var(--rose-deep)'}}>formisbu.com</strong></p>
+      <p className="section-desc">Give Misbu's app a beautiful URL</p>
 
       <div style={{maxWidth:640, width:'100%', display:'flex', flexDirection:'column', gap:'1rem'}}>
 
-        {/* Option A - Netlify */}
         <div style={{
           background:'linear-gradient(135deg, rgba(240,98,146,0.08), rgba(206,147,216,0.08))',
-          border:'2px solid rgba(240,98,146,0.2)', borderRadius:'20px', padding:'1.2rem 1.5rem'
+          border:'2px solid rgba(240,98,146,0.2)', borderRadius:'20px', padding:'1rem'
         }}>
-          <div style={{fontFamily:'Dancing Script,cursive', fontSize:'1.4rem', color:'var(--rose-deep)', marginBottom:'0.8rem'}}>
-            🚀 Option A — Netlify (Easiest, Free Hosting)
+          <div style={{fontFamily:'Dancing Script,cursive', fontSize:'1.2rem', color:'var(--rose-deep)', marginBottom:'0.8rem'}}>
+            🚀 Netlify (Easiest, Free)
           </div>
 
           <div style={{display:'flex', flexDirection:'column', gap:'0.8rem'}}>
             <Step num="1" icon="📁" title="Upload to Netlify"
-              desc="netlify.com/drop pe jao → index.html drag karke drop karo → tumhe ek free URL milega jaise amazing-misbu-123.netlify.app"
-              link="https://netlify.com/drop" linkText="Open Netlify Drop"/>
-
+              desc="netlify.com/drop pe jao → index.html drag karo → free URL milega"/>
             <Step num="2" icon="🛒" title="Domain Kharido"
-              desc="Namecheap ya GoDaddy se domain kharido. Suggestions:"
-              code={"misbu.love — ~$5/year 💕\nformisbu.com — ~$10/year\nmisbu.site — ~$2/year (cheapest)"}
-              link="https://www.namecheap.com" linkText="Namecheap pe dekho"/>
-
-            <Step num="3" icon="⚙️" title="Netlify mein Custom Domain Add Karo"
-              desc="Netlify dashboard → Site Settings → Domain Management → Add Custom Domain → apna domain type karo → Verify karo"/>
-
-            <Step num="4" icon="🔗" title="DNS Configure Karo (Namecheap)"
-              desc="Namecheap → Dashboard → apne domain ke 'Manage' pe click karo → Advanced DNS tab → yeh records add karo:"
-              code={"Type: A Record\nHost: @\nValue: 75.2.60.5  (Netlify IP)\nTTL: Automatic\n\nType: CNAME\nHost: www\nValue: your-site-name.netlify.app\nTTL: Automatic"}/>
-
-            <Step num="5" icon="🔒" title="Free HTTPS Enable Karo"
-              desc="Netlify mein Domain Settings → HTTPS → 'Verify DNS Configuration' → 'Provision Certificate' — bas 1 click! 🎉"/>
+              desc="Namecheap se domain kharido. Suggestions: misbu.love (~$5), formisbu.com (~$10)"
+              code="misbu.love - ~$5/year\nformisbu.com - ~$10/year"/>
+            <Step num="3" icon="⚙️" title="DNS Configure Karo"
+              desc="Namecheap mein yeh records add karo:"
+              code="A Record: 75.2.60.5\nCNAME: your-site.netlify.app"/>
           </div>
         </div>
 
-        {/* Option B - GitHub Pages */}
-        <div style={{
-          background:'linear-gradient(135deg, rgba(206,147,216,0.08), rgba(240,98,146,0.08))',
-          border:'2px solid rgba(206,147,216,0.25)', borderRadius:'20px', padding:'1.2rem 1.5rem'
-        }}>
-          <div style={{fontFamily:'Dancing Script,cursive', fontSize:'1.4rem', color:'var(--rose-deep)', marginBottom:'0.8rem'}}>
-            🐙 Option B — GitHub Pages (Also Free)
-          </div>
-          <div style={{display:'flex', flexDirection:'column', gap:'0.8rem'}}>
-            <Step num="1" icon="📤" title="GitHub pe Upload Karo"
-              desc="github.com → New repo → misbu-love naam rakho → index.html upload karo → Settings → Pages → main branch select karo"/>
-            <Step num="2" icon="📄" title="CNAME File Banao"
-              desc="Repo mein ek new file banao naam: CNAME (no extension) → iske andar sirf apna domain likho:"
-              code="misbu.love"/>
-            <Step num="3" icon="🔗" title="DNS Same Steps"
-              desc="Domain registrar pe CNAME record banao:"
-              code={"Type: CNAME\nHost: www\nValue: yourusername.github.io\n\nType: A (for root domain)\nHost: @\nValue: 185.199.108.153"}/>
-          </div>
-        </div>
-
-        {/* Recommended domains */}
         <div style={{
           background:'linear-gradient(135deg, rgba(255,215,0,0.1), rgba(240,98,146,0.1))',
-          border:'2px dashed rgba(240,98,146,0.3)', borderRadius:'20px', padding:'1.2rem 1.5rem',
+          border:'2px dashed rgba(240,98,146,0.3)', borderRadius:'20px', padding:'1rem',
           textAlign:'center'
         }}>
-          <div style={{fontFamily:'Dancing Script,cursive', fontSize:'1.3rem', color:'var(--rose-deep)', marginBottom:'0.8rem'}}>
-            💕 Recommended Domain Names
+          <div style={{fontFamily:'Dancing Script,cursive', fontSize:'1.1rem', color:'var(--rose-deep)', marginBottom:'0.5rem'}}>
+            💕 Recommended Domains
           </div>
-          <div style={{display:'flex', flexWrap:'wrap', gap:'0.6rem', justifyContent:'center'}}>
-            {['misbu.love','formisbu.com','misbu.site','mymisbu.com','misbu.in','4misbu.com','misbu.co'].map(d => (
+          <div style={{display:'flex', flexWrap:'wrap', gap:'0.5rem', justifyContent:'center'}}>
+            {['misbu.love','formisbu.com','misbu.site','4misbu.com'].map(d => (
               <div key={d} style={{
                 background:'white', border:'1px solid rgba(240,98,146,0.25)',
-                borderRadius:'20px', padding:'0.4rem 0.9rem',
-                fontSize:'0.82rem', fontWeight:700, color:'var(--text-dark)',
-                fontFamily:'monospace'
+                borderRadius:'16px', padding:'0.3rem 0.7rem', fontSize:'0.7rem'
               }}>{d}</div>
             ))}
           </div>
-          <p style={{fontSize:'0.78rem', color:'var(--text-light)', marginTop:'0.8rem', fontStyle:'italic'}}>
-            💡 .love aur .site domains bahut saste hote hain — perfect for this app!
-          </p>
-        </div>
-
-        <div style={{
-          background:'rgba(72,199,142,0.1)', border:'1px solid rgba(72,199,142,0.3)',
-          borderRadius:'16px', padding:'1rem 1.2rem', textAlign:'center'
-        }}>
-          <span style={{fontSize:'1.2rem'}}>✅</span>
-          <span style={{fontSize:'0.85rem', color:'#2d8653', fontWeight:700, marginLeft:'0.5rem'}}>
-            Total cost: Domain (~$2-10/year) + Hosting: FREE forever 🎉
-          </span>
         </div>
       </div>
     </div>
   );
 }
-
-// ==============================
-// MAIN APP
-// ==============================
 
 const SECTIONS = ['welcome','letter','gallery','reasons','timer','daily','surprise','diary','map','dreams','ai','voice','countdown','quiz','domain'];
 
@@ -2869,7 +3173,6 @@ function App() {
             <p className="modal-text">
               You found the secret, Misbu! 🌟<br/><br/>
               You are not just the love of a lifetime. You are the love of every lifetime, every universe, every star that has ever burned. In every world that could ever exist, I would always find you. I would always choose you. Always.<br/><br/>
-              No matter what comes or goes in this world, my love for you is the one constant that will never waver. Never.<br/><br/>
               Forever and always, Misbu. Only you. 💕
             </p>
             <button className="btn-lavender" onClick={() => setSecretMode(false)}>Close 💕</button>
